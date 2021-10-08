@@ -27,6 +27,11 @@
             <version>7.0</version>
             <scope>provided</scope>
         </dependency>
+		<dependency>
+			<groupId>de.mkammerer</groupId>
+			<artifactId>argon2-jvm</artifactId>
+			<version>2.10.1</version>
+		</dependency>
     </dependencies>
 
     <build>
