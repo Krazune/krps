@@ -15,5 +15,6 @@
 
 			<input type="submit" value="Log in">
 		</form>
+		<a href="/">Index</a>
     </body>
 </html>
