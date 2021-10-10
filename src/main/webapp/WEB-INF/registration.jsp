@@ -6,7 +6,7 @@
         <title>Registration | KRSP</title>
     </head>
     <body>
-		<form action="" method="post">
+		<form action="/registeruser" method="post">
 			<label for="username">Username:</label>
 			<input type="text" id="username" name="username">
 

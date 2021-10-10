@@ -60,6 +60,10 @@
         <servlet-name>RegistrationPageController</servlet-name>
         <servlet-class>krazune.krps.RegistrationPageController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RegisterUser</servlet-name>
+        <servlet-class>krazune.krps.RegisterUser</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>IndexPageController</servlet-name>
         <url-pattern>/</url-pattern>
@@ -79,6 +83,10 @@
     <servlet-mapping>
         <servlet-name>RegistrationPageController</servlet-name>
         <url-pattern>/registration</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegisterUser</servlet-name>
+        <url-pattern>/registeruser</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
