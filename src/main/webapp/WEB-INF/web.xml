@@ -3,38 +3,38 @@
     <filter>
         <filter-name>RedirectOnSessionFilter</filter-name>
         <filter-class>krazune.krps.SessionRedirectFilter</filter-class>
-		<init-param>
-			<param-name>redirect-url</param-name>
-			<param-value>/</param-value>
-		</init-param>
-		<init-param>
-			<param-name>redirect-on-user-session</param-name>
-			<param-value>true</param-value>
-		</init-param>
-		<init-param>
-			<param-name>url-list-parameter</param-name>
-			<param-value>/loginuser,/login</param-value>
-		</init-param>
+        <init-param>
+            <param-name>redirect-url</param-name>
+            <param-value>/</param-value>
+        </init-param>
+        <init-param>
+            <param-name>redirect-on-user-session</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <init-param>
+            <param-name>url-list-parameter</param-name>
+            <param-value>/loginuser,/login,/registration</param-value>
+        </init-param>
     </filter>
     <filter-mapping>
         <filter-name>RedirectOnSessionFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-	<filter>
+    <filter>
         <filter-name>RedirectOnNoSessionFilter</filter-name>
         <filter-class>krazune.krps.SessionRedirectFilter</filter-class>
-		<init-param>
-			<param-name>redirect-url</param-name>
-			<param-value>/</param-value>
-		</init-param>
-		<init-param>
-			<param-name>redirect-on-user-session</param-name>
-			<param-value>false</param-value>
-		</init-param>
-		<init-param>
-			<param-name>url-list-parameter</param-name>
-			<param-value>/logoutuser</param-value>
-		</init-param>
+        <init-param>
+            <param-name>redirect-url</param-name>
+            <param-value>/</param-value>
+        </init-param>
+        <init-param>
+            <param-name>redirect-on-user-session</param-name>
+            <param-value>false</param-value>
+        </init-param>
+        <init-param>
+            <param-name>url-list-parameter</param-name>
+            <param-value>/logoutuser</param-value>
+        </init-param>
     </filter>
     <filter-mapping>
         <filter-name>RedirectOnNoSessionFilter</filter-name>
@@ -56,6 +56,10 @@
         <servlet-name>LogoutUser</servlet-name>
         <servlet-class>krazune.krps.LogoutUser</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RegistrationPageController</servlet-name>
+        <servlet-class>krazune.krps.RegistrationPageController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>IndexPageController</servlet-name>
         <url-pattern>/</url-pattern>
@@ -71,6 +75,10 @@
     <servlet-mapping>
         <servlet-name>LogoutUser</servlet-name>
         <url-pattern>/logoutuser</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegistrationPageController</servlet-name>
+        <url-pattern>/registration</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

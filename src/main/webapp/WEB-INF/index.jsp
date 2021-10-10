@@ -15,6 +15,7 @@
 		</c:if>
 		<c:if test="${sessionScope.sessionUserName == null}">
 			<a href="/login">Log in</a>
+			<a href="/registration">Register</a>
 		</c:if>
     </body>
 </html>
