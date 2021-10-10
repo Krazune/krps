@@ -8,12 +8,12 @@
     <body>
 		<form action="/changeuserpassword" method="post">
 			<label for="username">Current password:</label>
-			<input type="text" id="username" name="current-password">
+			<input type="password" id="username" name="username">
 
 			<label for="password">New password:</label>
 			<input type="password" id="password" name="password">
 
-			<label for="password">New password:</label>
+			<label for="password-confirmation">New password:</label>
 			<input type="password" id="password-confirmation" name="password-confirmation">
 
 			<input type="submit" value="Change password">
