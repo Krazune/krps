@@ -6,7 +6,7 @@
         <title>Settings | KRSP</title>
     </head>
     <body>
-		<form action="" method="post">
+		<form action="/changeuserpassword" method="post">
 			<label for="username">Current password:</label>
 			<input type="text" id="username" name="current-password">
 
