@@ -13,7 +13,7 @@
 			<label for="password">Password:</label>
 			<input type="password" id="password" name="password">
 
-			<label for="password">Password:</label>
+			<label for="password-confirmation">Password:</label>
 			<input type="password" id="password-confirmation" name="password-confirmation">
 
 			<input type="submit" value="Register">
