@@ -1,5 +1,7 @@
 package krazune.krps;
 
+import de.mkammerer.argon2.Argon2;
+import de.mkammerer.argon2.Argon2Factory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -61,6 +63,36 @@ public class UserDAO
 			if (result.next())
 			{
 				String name = result.getString("name");
+				String passwordHash = result.getString("password_hash");
+				Timestamp creationDate = result.getTimestamp("creation_date");
+
+				user = new User(id, name, passwordHash, creationDate);
+			}
+		}
+		catch (Exception e)
+		{
+			throw e;
+		}
+
+		return user;
+	}
+
+	public User findByName(String name) throws SQLException
+	{
+		User user = null;
+
+		try (Connection connection = connectionFactory.createConnection())
+		{
+			String query = "SELECT * FROM users WHERE name = ?";
+			PreparedStatement selectStatement = connection.prepareStatement(query);
+
+			selectStatement.setString(1, name);
+
+			ResultSet result = selectStatement.executeQuery();
+
+			if (result.next())
+			{
+				int id = result.getInt("id");
 				String passwordHash = result.getString("password_hash");
 				Timestamp creationDate = result.getTimestamp("creation_date");
 
@@ -154,5 +186,28 @@ public class UserDAO
 		}
 
 		return true;
+	}
+
+	public User findByLoginInformation(String name, String password) throws SQLException
+	{
+		User user = findByName(name);
+
+		if (user == null)
+		{
+			return null;
+		}
+
+		Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
+		char[] passwordArray = password.toCharArray();
+		boolean validInformation = argon2.verify(user.getPasswordHash(), passwordArray);
+
+		argon2.wipeArray(passwordArray);
+
+		if (!validInformation)
+		{
+			return null;
+		}
+
+		return user;
 	}
 }
