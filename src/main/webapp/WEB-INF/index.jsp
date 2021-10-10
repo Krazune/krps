@@ -11,6 +11,7 @@
         <h1>Index page</h1>
 		<c:if test="${sessionScope.sessionUserName != null}">
 			<p>Welcome, ${sessionScope.sessionUserName}</p>
+			<a href="/settings">Settings</a>
 			<a href="/logoutuser">Log out</a>
 		</c:if>
 		<c:if test="${sessionScope.sessionUserName == null}">

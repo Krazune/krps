@@ -33,7 +33,7 @@
         </init-param>
         <init-param>
             <param-name>url-list-parameter</param-name>
-            <param-value>/logoutuser</param-value>
+            <param-value>/logoutuser,/settings,/changeuserpassword</param-value>
         </init-param>
     </filter>
     <filter-mapping>
@@ -64,6 +64,14 @@
         <servlet-name>RegisterUser</servlet-name>
         <servlet-class>krazune.krps.RegisterUser</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SettingsPageController</servlet-name>
+        <servlet-class>krazune.krps.SettingsPageController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ChangeUserPassword</servlet-name>
+        <servlet-class>krazune.krps.ChangeUserPassword</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>IndexPageController</servlet-name>
         <url-pattern>/</url-pattern>
@@ -87,6 +95,14 @@
     <servlet-mapping>
         <servlet-name>RegisterUser</servlet-name>
         <url-pattern>/registeruser</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SettingsPageController</servlet-name>
+        <url-pattern>/settings</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChangeUserPassword</servlet-name>
+        <url-pattern>/changeuserpassword</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
