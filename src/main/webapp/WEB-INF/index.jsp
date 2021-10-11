@@ -10,6 +10,18 @@
     <body>
         <h1>Index page</h1>
 		<c:if test="${sessionScope.sessionUserName != null}">
+			<p>Game</p>
+			<form>
+				<input type="radio" id="rock" name="decision" value="rock">
+				<label for="rock">Rock</label>
+				<input type="radio" id="paper" name="decision" value="paper">
+				<label for="paper">Paper</label>
+				<input type="radio" id="scissors" name="decision" value="scissors">
+				<label for="scissors">Scissors</label>
+				<input type="submit" value="Confirm">
+			</form>
+		</c:if>
+		<c:if test="${sessionScope.sessionUserName != null}">
 			<p>Welcome, ${sessionScope.sessionUserName}</p>
 			<a href="/settings">Settings</a>
 			<a href="/logoutuser">Log out</a>
