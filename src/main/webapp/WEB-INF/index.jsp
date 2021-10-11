@@ -11,7 +11,7 @@
         <h1>Index page</h1>
 		<c:if test="${sessionScope.sessionUserName != null}">
 			<p>Game</p>
-			<form>
+			<form action="/playgame" method="POST">
 				<input type="radio" id="rock" name="decision" value="rock">
 				<label for="rock">Rock</label>
 				<input type="radio" id="paper" name="decision" value="paper">
