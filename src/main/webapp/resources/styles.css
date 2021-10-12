@@ -1,4 +1,44 @@
-*
+/* dosis-regular - latin */
+@font-face
 {
-	background-color: red;
+	font-family: "Dosis";
+	font-style: normal;
+	font-weight: 200;
+	src:
+		url("dosis-v19-latin-200.woff2") format("woff2"),	/* Chrome 26+, Opera 23+, Firefox 39+ */
+		url("dosis-v19-latin-200.woff") format("woff");		/* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+.page
+{
+	margin: 0;
+	background-color: #F1EBDE;
+}
+
+.text
+{
+	font-family: "Dosis", Helvetica, sans-serif;
+	color: #4C4C47;
+}
+
+.header
+{
+	padding: 10px;
+}
+
+.header-title
+{
+	text-align: center;
+	font-size: 3.5em;
+	color: #E63C2D;
+	margin: 5px auto;
+	line-height: 1;
+}
+
+.textheader-subtitle
+{
+	text-align: center;
+	font-size: 1.3em;
+	margin: 5px auto;
+	line-height: 1;
 }
