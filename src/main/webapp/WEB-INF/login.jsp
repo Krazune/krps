@@ -20,6 +20,11 @@
 
 			<input type="submit" value="Log in">
 		</form>
-		<a href="/">Index</a>
+		<nav class="navigation">
+			<ul class="navigation__list">
+				<li class="navigation__list-item"><a class="text navigation__link" href="/">Home</a></li>
+				<li class="navigation__list-item"><a class="text navigation__link" href="/registration">Register</a></li>
+			</ul>
+		</nav>
     </body>
 </html>

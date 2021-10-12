@@ -42,3 +42,20 @@
 	margin: 5px auto;
 	line-height: 1;
 }
+
+.navigation__list
+{
+	list-style-type: none;
+	display: flex;
+	justify-content: center;
+}
+
+.navigation__list-item
+{
+	margin: 5px 10px;
+}
+
+.navigation__link:hover
+{
+	color: #E63C2D;
+}
