@@ -6,6 +6,7 @@
     <head>
         <meta charset="UTF-8">
         <title>KRPS</title>
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/styles.css">
     </head>
     <body>
         <h1>Index page</h1>

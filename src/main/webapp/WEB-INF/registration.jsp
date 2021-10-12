@@ -4,6 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Registration | KRSP</title>
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/styles.css">
     </head>
     <body>
 		<form action="/registeruser" method="post">
