@@ -9,7 +9,10 @@
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/styles.css">
     </head>
     <body class="page">
-        <h1>Index page</h1>
+		<header class="header">
+			<h1 class="text header-title">ROCK PAPER SCISSORS</h1>
+			<h2 class="text textheader-subtitle">by krazune</h2>
+		</header>
 		<c:if test="${sessionScope.sessionUserName != null}">
 			<p>Game</p>
 			<form action="/playgame" method="POST">
