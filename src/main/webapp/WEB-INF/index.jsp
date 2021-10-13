@@ -8,7 +8,7 @@
         <title>KRPS</title>
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/styles.css">
     </head>
-    <body>
+    <body class="page">
         <h1>Index page</h1>
 		<c:if test="${sessionScope.sessionUserName != null}">
 			<p>Game</p>
