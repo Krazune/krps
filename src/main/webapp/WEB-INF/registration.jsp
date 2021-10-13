@@ -19,7 +19,7 @@
 			<label class="text registration-form__label" for="password">Password:</label>
 			<input class="text input-text" type="password" id="password" name="password">
 
-			<label class="text registration-form__label" for="password-confirmation">Password:</label>
+			<label class="text registration-form__label" for="password-confirmation">Password (confirmation):</label>
 			<input class="text input-text" type="password" id="password-confirmation" name="password-confirmation">
 
 			<input class="text button registration-form__button" type="submit" value="Register">
