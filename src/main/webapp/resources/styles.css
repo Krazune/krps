@@ -107,6 +107,37 @@
 	align-self: center;
 }
 
+.registration-form
+{
+	display: flex;
+	flex-direction: column;
+}
+
+.registration-form__title
+{
+	font-size: 2em;
+	margin: 5px 0;
+}
+
+.registration-form__label
+{
+	font-size: 1.2em;
+	margin: 10px 0 5px 0;
+}
+
+.registration-form--limited-width
+{
+	width: 400px;
+	margin: auto;
+}
+
+.registration-form__button
+{
+	width: 200px;
+	margin: 10px;
+	align-self: center;
+}
+
 .navigation__list
 {
 	list-style-type: none;
