@@ -13,8 +13,8 @@
 		</header>
 		<form class="password-change-form password-change-form--limited-width" action="/changeuserpassword" method="post">
 			<p class="text password-change-form__title">Password settings</p>
-			<label class="text registration-form__label" for="username">Current password:</label>
-			<input class="text input-text" type="password" id="username" name="username">
+			<label class="text registration-form__label" for="current-password">Current password:</label>
+			<input class="text input-text" type="password" id="current-password" name="current-password">
 
 			<label class="text registration-form__label" for="password">New password:</label>
 			<input class="text input-text" type="password" id="password" name="password">
