@@ -23,6 +23,11 @@
 
 			<input type="submit" value="Register">
 		</form>
-		<a href="/">Index</a>
+		<nav class="navigation">
+			<ul class="navigation__list">
+				<li class="navigation__list-item"><a class="text navigation__link" href="/">Home</a></li>
+				<li class="navigation__list-item"><a class="text navigation__link" href="/login">Log in</a></li>
+			</ul>
+		</nav>
     </body>
 </html>
