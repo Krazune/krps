@@ -138,6 +138,37 @@
 	align-self: center;
 }
 
+.password-change-form
+{
+	display: flex;
+	flex-direction: column;
+}
+
+.password-change-form__title
+{
+	font-size: 2em;
+	margin: 5px 0;
+}
+
+.password-change-form__label
+{
+	font-size: 1.2em;
+	margin: 10px 0 5px 0;
+}
+
+.password-change-form--limited-width
+{
+	width: 400px;
+	margin: auto;
+}
+
+.password-change-form__button
+{
+	width: 300px;
+	margin: 10px;
+	align-self: center;
+}
+
 .navigation__list
 {
 	list-style-type: none;

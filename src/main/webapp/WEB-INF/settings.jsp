@@ -11,17 +11,18 @@
 			<h1 class="text header-title">ROCK PAPER SCISSORS</h1>
 			<h2 class="text textheader-subtitle">by krazune</h2>
 		</header>
-		<form action="/changeuserpassword" method="post">
-			<label for="username">Current password:</label>
-			<input type="password" id="username" name="username">
+		<form class="password-change-form password-change-form--limited-width" action="/changeuserpassword" method="post">
+			<p class="text password-change-form__title">Password settings</p>
+			<label class="text registration-form__label" for="username">Current password:</label>
+			<input class="text input-text" type="password" id="username" name="username">
 
-			<label for="password">New password:</label>
-			<input type="password" id="password" name="password">
+			<label class="text registration-form__label" for="password">New password:</label>
+			<input class="text input-text" type="password" id="password" name="password">
 
-			<label for="password-confirmation">New password:</label>
-			<input type="password" id="password-confirmation" name="password-confirmation">
+			<label class="text registration-form__label" for="password-confirmation">New password (confirmation):</label>
+			<input class="text input-text" type="password" id="password-confirmation" name="password-confirmation">
 
-			<input type="submit" value="Change password">
+			<input class="text button password-change-form__button" type="submit" value="Change password">
 		</form>
 		<nav class="navigation">
 			<ul class="navigation__list">
