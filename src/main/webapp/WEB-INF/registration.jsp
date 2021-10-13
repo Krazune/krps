@@ -6,7 +6,7 @@
         <title>Registration | KRSP</title>
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/styles.css">
     </head>
-    <body>
+    <body class="page">
 		<form action="/registeruser" method="post">
 			<label for="username">Username:</label>
 			<input type="text" id="username" name="username">
