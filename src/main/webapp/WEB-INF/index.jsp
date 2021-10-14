@@ -14,7 +14,24 @@
 			<h2 class="text textheader-subtitle">by krazune</h2>
 		</header>
 		<c:if test="${sessionScope.sessionUserName != null}">
-			<p>Game</p>
+			<div class="game game--limited-width">
+				<div class="game__player-container game__player">
+					<img class="game__player-choice-image" src="${pageContext.request.contextPath}/resources/question.svg" alt="Unknown choice."/>
+					<p class="text game__player-title">You</p>
+				</div>
+				<p class="text game__versus-label">VS</p>
+				<div class="game__player-container game__computer">
+					<img class="game__player-choice-image" src="${pageContext.request.contextPath}/resources/question.svg" alt="Unknown choice."/>
+					<p class="text game__player-title">Computer</p>
+				</div>
+				<p class="text game__description">Choose your move, and confirm it.</p>
+				<div class="game__choices">
+					<button class="game__choice-button"><img class="game__choice-image" src="${pageContext.request.contextPath}/resources/hand-rock.svg" alt="Choose rock."/></button>
+					<button class="game__choice-button"><img class="game__choice-image" src="${pageContext.request.contextPath}/resources/hand-paper.svg" alt="Choose paper."/></button>
+					<button class="game__choice-button"><img class="game__choice-image" src="${pageContext.request.contextPath}/resources/hand-scissors.svg" alt="Choose scissors."/></button>
+				</div>
+				<button class="button text game__confirm-button">Confirm</button>
+			</div>
 			<form action="/playgame" method="POST">
 				<input type="radio" id="rock" name="decision" value="rock">
 				<label for="rock">Rock</label>

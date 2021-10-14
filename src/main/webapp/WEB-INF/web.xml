@@ -52,6 +52,10 @@
 		<servlet-name>default</servlet-name>
 		<url-pattern>*.woff</url-pattern>
 	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>*.svg</url-pattern>
+	</servlet-mapping>
     <servlet>
         <servlet-name>IndexPageController</servlet-name>
         <servlet-class>krazune.krps.IndexPageController</servlet-class>
