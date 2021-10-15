@@ -6,6 +6,10 @@
     <head>
         <meta charset="UTF-8">
         <title>KRPS</title>
+		<c:if test="${sessionScope.sessionUserName != null}">
+			<script src="${pageContext.request.contextPath}/resources/index.js"></script>
+			<script src="${pageContext.request.contextPath}/resources/game-manager.js"></script>
+		</c:if>
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/styles.css">
     </head>
     <body class="page">
@@ -14,16 +18,24 @@
 			<h2 class="text textheader-subtitle">by krazune</h2>
 		</header>
 		<c:if test="${sessionScope.sessionUserName != null}">
-			<p>Game</p>
-			<form action="/playgame" method="POST">
-				<input type="radio" id="rock" name="decision" value="rock">
-				<label for="rock">Rock</label>
-				<input type="radio" id="paper" name="decision" value="paper">
-				<label for="paper">Paper</label>
-				<input type="radio" id="scissors" name="decision" value="scissors">
-				<label for="scissors">Scissors</label>
-				<input type="submit" value="Confirm">
-			</form>
+			<div class="game game--limited-width">
+				<div class="game__player-container game__player">
+					<img id="player-choice-image" class="game__player-choice-image" src="${pageContext.request.contextPath}/resources/question.svg" alt="Unknown choice."/>
+					<p class="text game__player-title">You</p>
+				</div>
+				<p class="text game__versus-label">VS</p>
+				<div class="game__player-container game__computer">
+					<img id="computer-choice-image" class="game__player-choice-image" src="${pageContext.request.contextPath}/resources/question.svg" alt="Unknown choice."/>
+					<p class="text game__player-title">Computer</p>
+				</div>
+				<p id="game-description" class="text game__description">Choose your move, and confirm it.</p>
+				<div class="game__choices">
+					<button id="game-rock-choice" class="game__choice-button"><img class="game__choice-image" src="${pageContext.request.contextPath}/resources/hand-rock.svg" alt="Choose rock."/></button>
+					<button id="game-paper-choice" class="game__choice-button"><img class="game__choice-image" src="${pageContext.request.contextPath}/resources/hand-paper.svg" alt="Choose paper."/></button>
+					<button id="game-scissors-choice" class="game__choice-button"><img class="game__choice-image" src="${pageContext.request.contextPath}/resources/hand-scissors.svg" alt="Choose scissors."/></button>
+				</div>
+				<button id="game-confirm-button" class="button text game__confirm-button" disabled="true">Confirm</button>
+			</div>
 		</c:if>
 		<nav class="navigation">
 			<ul class="navigation__list">

@@ -1,7 +1,6 @@
 package krazune.krps;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Random;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -97,11 +96,18 @@ public class PlayGame extends HttpServlet
 
 			gameDao.insert(newGame);
 
-			PrintWriter printWriter = response.getWriter();
+			response.setContentType("application/json");
+			response.setCharacterEncoding("utf-8");
 
-			printWriter.println(newGame.getUserChoice());
-			printWriter.println(newGame.getCPUChoice());
-			printWriter.println(newGame.getResult());
+			StringBuilder resultJsonString = new StringBuilder("{");
+
+			resultJsonString.append("\"playerChoice\":\"" + newGame.getUserChoice().toString().toLowerCase() + "\",");
+			resultJsonString.append("\"computerChoice\":\"" + newGame.getCPUChoice().toString().toLowerCase() + "\",");
+			resultJsonString.append("\"result\":\"" + newGame.getResult().toString().toLowerCase() + "\"");
+
+			resultJsonString.append("}");
+
+			response.getWriter().print(resultJsonString);
 		}
 		catch (Exception e)
 		{
