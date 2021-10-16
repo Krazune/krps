@@ -129,6 +129,43 @@ public class GameDAO
 		return games;
 	}
 
+	public List<Game> findByUser(User user, int limit) throws SQLException
+	{
+		List<Game> games = new ArrayList<>();
+
+		try (Connection connection = connectionFactory.createConnection())
+		{
+			String query = "SELECT id, user_choice, result, creation_date FROM games WHERE user_id = ? ORDER BY creation_date DESC LIMIT ?";
+			PreparedStatement selectStatement = connection.prepareStatement(query);
+
+			selectStatement.setInt(1, user.getId());
+			selectStatement.setInt(2, limit);
+
+			ResultSet result = selectStatement.executeQuery();
+
+			while (result.next())
+			{
+				int id = result.getInt("id");
+				char userChoiceCharacter = result.getString("user_choice").charAt(0);
+				GameChoice userChoice = GameChoice.calculateChoice(userChoiceCharacter);
+				char gameResultCharacter = result.getString("result").charAt(0);
+				GameResult gameResult = GameResult.calculateResult(gameResultCharacter);
+				GameChoice cpuChoice = Game.calculateGameChoiceFromResult(userChoice, gameResult);
+				Timestamp creationDate = result.getTimestamp("creation_date");
+
+				Game game = new Game(id, user, userChoice, cpuChoice, creationDate);
+
+				games.add(game);
+			}
+		}
+		catch (Exception e)
+		{
+			throw e;
+		}
+
+		return games;
+	}
+
 	public boolean update(Game game) throws SQLException
 	{
 		try (Connection connection = connectionFactory.createConnection())
