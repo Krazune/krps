@@ -162,6 +162,18 @@
 	font-size: 1.5em;
 }
 
+.account-buttons
+{
+	display: flex;
+	justify-content: center;
+}
+
+.account-buttons__button
+{
+	width: 100px;
+	margin: 10px;
+}
+
 .login-form
 {
 	display: flex;
@@ -212,6 +224,8 @@
     padding: 10px;
     line-height: 1;
     cursor: pointer;
+	text-decoration: none;
+	text-align: center;
 }
 
 .button:hover
