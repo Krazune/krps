@@ -54,11 +54,13 @@
 				<c:if test="${sessionScope.sessionUserName != null}">
 					<li class="navigation__list-item"><a class="text navigation__link" href="/settings">Settings</a></li>
 					<li class="navigation__list-item"><a class="text navigation__link" href="/statistics">Statistics</a></li>
+					<li class="navigation__list-item"><a class="text navigation__link" href="/information">Information</a></li>
 					<li class="navigation__list-item"><a class="text navigation__link" href="/logoutuser">Log out</a></li>
 				</c:if>
 
 				<c:if test="${sessionScope.sessionUserName == null}">
 					<li class="navigation__list-item"><a class="text navigation__link" href="/statistics">Statistics</a></li>
+					<li class="navigation__list-item"><a class="text navigation__link" href="/information">Information</a></li>
 				</c:if>
 			</ul>
 		</nav>

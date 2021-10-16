@@ -44,6 +44,10 @@
         <servlet-name>StatisticsPageController</servlet-name>
         <servlet-class>krazune.krps.StatisticsPageController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>InformationPageController</servlet-name>
+        <servlet-class>krazune.krps.InformationPageController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>default</servlet-name>
         <url-pattern>*.css</url-pattern>
@@ -139,6 +143,10 @@
     <servlet-mapping>
         <servlet-name>StatisticsPageController</servlet-name>
         <url-pattern>/statistics</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InformationPageController</servlet-name>
+        <url-pattern>/information</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -26,6 +26,7 @@
 				<li class="navigation__list-item"><a class="text navigation__link" href="/">Home</a></li>
 				<li class="navigation__list-item"><a class="text navigation__link" href="/registration">Register</a></li>
 				<li class="navigation__list-item"><a class="text navigation__link" href="/statistics">Statistics</a></li>
+				<li class="navigation__list-item"><a class="text navigation__link" href="/information">Information</a></li>
 			</ul>
 		</nav>
     </body>
