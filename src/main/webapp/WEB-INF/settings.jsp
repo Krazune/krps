@@ -28,6 +28,7 @@
 			<ul class="navigation__list">
 				<li class="navigation__list-item"><a class="text navigation__link" href="/">Home</a></li>
 				<li class="navigation__list-item"><a class="text navigation__link" href="/statistics">Statistics</a></li>
+				<li class="navigation__list-item"><a class="text navigation__link" href="/information">Information</a></li>
 				<li class="navigation__list-item"><a class="text navigation__link" href="/logoutuser">Log out</a></li>
 			</ul>
 		</nav>
