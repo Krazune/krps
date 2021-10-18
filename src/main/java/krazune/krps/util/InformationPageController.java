@@ -1,4 +1,4 @@
-package krazune.krps;
+package krazune.krps.util;
 
 import java.io.IOException;
 import javax.servlet.ServletException;

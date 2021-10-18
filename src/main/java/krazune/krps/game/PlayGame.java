@@ -1,4 +1,4 @@
-package krazune.krps;
+package krazune.krps.game;
 
 import java.io.IOException;
 import java.util.Random;
@@ -7,6 +7,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import krazune.krps.util.ConnectionFactory;
+import krazune.krps.user.UserDAO;
+import krazune.krps.user.User;
+import krazune.krps.util.PropertiesLoader;
 
 public class PlayGame extends HttpServlet
 {

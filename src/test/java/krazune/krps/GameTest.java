@@ -2,6 +2,10 @@ package krazune.krps;
 
 import org.junit.jupiter.api.Test;
 
+import krazune.krps.game.GameChoice;
+import krazune.krps.game.GameResult;
+import krazune.krps.game.Game;
+
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class GameTest

@@ -1,6 +1,8 @@
-package krazune.krps;
+package krazune.krps.game;
 
 import java.sql.Timestamp;
+
+import krazune.krps.user.User;
 
 public class Game
 {

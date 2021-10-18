@@ -1,4 +1,4 @@
-package krazune.krps;
+package krazune.krps.util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

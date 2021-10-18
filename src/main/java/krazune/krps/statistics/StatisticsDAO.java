@@ -1,10 +1,11 @@
-package krazune.krps;
+package krazune.krps.statistics;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.List;
+
+import krazune.krps.util.ConnectionFactory;
+import krazune.krps.user.User;
 
 public class StatisticsDAO
 {

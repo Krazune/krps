@@ -1,4 +1,4 @@
-package krazune.krps;
+package krazune.krps.game;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,6 +7,9 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+
+import krazune.krps.user.User;
+import krazune.krps.util.ConnectionFactory;
 
 public class GameDAO
 {

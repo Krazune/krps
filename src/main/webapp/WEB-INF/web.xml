@@ -2,7 +2,7 @@
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <filter>
         <filter-name>RedirectOnSessionFilter</filter-name>
-        <filter-class>krazune.krps.SessionRedirectFilter</filter-class>
+        <filter-class>krazune.krps.user.SessionRedirectFilter</filter-class>
         <init-param>
             <param-name>redirect-url</param-name>
             <param-value>/</param-value>
@@ -22,7 +22,7 @@
     </filter-mapping>
     <filter>
         <filter-name>RedirectOnNoSessionFilter</filter-name>
-        <filter-class>krazune.krps.SessionRedirectFilter</filter-class>
+        <filter-class>krazune.krps.user.SessionRedirectFilter</filter-class>
         <init-param>
             <param-name>redirect-url</param-name>
             <param-value>/</param-value>
@@ -42,11 +42,11 @@
     </filter-mapping>
     <servlet>
         <servlet-name>StatisticsPageController</servlet-name>
-        <servlet-class>krazune.krps.StatisticsPageController</servlet-class>
+        <servlet-class>krazune.krps.statistics.StatisticsPageController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>InformationPageController</servlet-name>
-        <servlet-class>krazune.krps.InformationPageController</servlet-class>
+        <servlet-class>krazune.krps.util.InformationPageController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>default</servlet-name>
@@ -70,39 +70,39 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>IndexPageController</servlet-name>
-        <servlet-class>krazune.krps.IndexPageController</servlet-class>
+        <servlet-class>krazune.krps.util.IndexPageController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LoginPageController</servlet-name>
-        <servlet-class>krazune.krps.LoginPageController</servlet-class>
+        <servlet-class>krazune.krps.user.LoginPageController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LoginUser</servlet-name>
-        <servlet-class>krazune.krps.LoginUser</servlet-class>
+        <servlet-class>krazune.krps.user.LoginUser</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LogoutUser</servlet-name>
-        <servlet-class>krazune.krps.LogoutUser</servlet-class>
+        <servlet-class>krazune.krps.user.LogoutUser</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>RegistrationPageController</servlet-name>
-        <servlet-class>krazune.krps.RegistrationPageController</servlet-class>
+        <servlet-class>krazune.krps.user.RegistrationPageController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>RegisterUser</servlet-name>
-        <servlet-class>krazune.krps.RegisterUser</servlet-class>
+        <servlet-class>krazune.krps.user.RegisterUser</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>SettingsPageController</servlet-name>
-        <servlet-class>krazune.krps.SettingsPageController</servlet-class>
+        <servlet-class>krazune.krps.util.SettingsPageController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ChangeUserPassword</servlet-name>
-        <servlet-class>krazune.krps.ChangeUserPassword</servlet-class>
+        <servlet-class>krazune.krps.user.ChangeUserPassword</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>PlayGame</servlet-name>
-        <servlet-class>krazune.krps.PlayGame</servlet-class>
+        <servlet-class>krazune.krps.game.PlayGame</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>IndexPageController</servlet-name>

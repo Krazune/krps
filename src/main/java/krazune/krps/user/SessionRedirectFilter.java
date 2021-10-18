@@ -1,4 +1,4 @@
-package krazune.krps;
+package krazune.krps.user;
 
 import java.io.IOException;
 import java.util.ArrayList;
