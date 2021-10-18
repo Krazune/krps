@@ -9,10 +9,7 @@
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/styles.css">
     </head>
     <body class="page">
-		<header class="header">
-			<h1 class="text header-title">ROCK PAPER SCISSORS</h1>
-			<h2 class="text textheader-subtitle">by krazune</h2>
-		</header>
+		<%@ include file="/WEB-INF/jspf/header.jspf" %>
 		<p>Global statistics</p>
 		<p>Total games: ${totalGameCount}</p>
 		<p>Total wins: ${totalWinCount}</p>

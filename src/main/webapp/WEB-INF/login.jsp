@@ -7,10 +7,7 @@
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/styles.css">
     </head>
     <body class="page">
-		<header class="header">
-			<h1 class="text header-title">ROCK PAPER SCISSORS</h1>
-			<h2 class="text textheader-subtitle">by krazune</h2>
-		</header>
+		<%@ include file="/WEB-INF/jspf/header.jspf" %>
 		<form class="login-form login-form--limited-width" action="/loginuser" method="post">
 			<p class="text login-form__title">Login</p>
 			<label class="text login-form__label" for="username">Username:</label>
