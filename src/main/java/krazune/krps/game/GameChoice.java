@@ -7,7 +7,7 @@ public enum GameChoice
 	PAPER,
 	SCISSORS;
 
-	public static GameChoice calculateChoice(char choice)
+	public static GameChoice convertToChoice(char choice)
 	{
 		if (choice == 'r')
 		{
@@ -27,7 +27,7 @@ public enum GameChoice
 		return UNKNOWN;
 	}
 
-	public static char calculateChoiceCharacter(GameChoice choice)
+	public static char convertToChar(GameChoice choice)
 	{
 		if (choice == ROCK)
 		{

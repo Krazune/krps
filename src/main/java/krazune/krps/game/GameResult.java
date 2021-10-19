@@ -7,7 +7,7 @@ public enum GameResult
 	LOSS, // l, li, ll, l_
 	DRAW;
 
-	public static GameResult calculateResult(char result)
+	public static GameResult convertToGameResult(char result)
 	{
 		if (result == 'w')
 		{
@@ -27,7 +27,7 @@ public enum GameResult
 		return UNKNOWN;
 	}
 
-	public static char calculateResultCharacter(GameResult result)
+	public static char convertToChar(GameResult result)
 	{
 		if (result == WIN)
 		{

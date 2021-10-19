@@ -25,8 +25,8 @@ public class GameDAO
 		{
 			String query = "INSERT INTO games (user_id, user_choice, result) VALUES (?, ?, ?) RETURNING id, creation_date";
 			PreparedStatement selectStatement = connection.prepareStatement(query);
-			char userChoice = GameChoice.calculateChoiceCharacter(game.getUserChoice());
-			char gameResult = GameResult.calculateResultCharacter(game.getResult());
+			char userChoice = GameChoice.convertToChar(game.getUserChoice());
+			char gameResult = GameResult.convertToChar(game.getResult());
 
 			selectStatement.setInt(1, game.getUser().getId());
 			selectStatement.setString(2, Character.toString(userChoice));
@@ -73,9 +73,9 @@ public class GameDAO
 				User user = new User(userId, name, passwordHash, userCreationDate);
 
 				char userChoiceCharacter = result.getString("user_choice").charAt(0);
-				GameChoice userChoice = GameChoice.calculateChoice(userChoiceCharacter);
+				GameChoice userChoice = GameChoice.convertToChoice(userChoiceCharacter);
 				char gameResultCharacter = result.getString("result").charAt(0);
-				GameResult gameResult = GameResult.calculateResult(gameResultCharacter);
+				GameResult gameResult = GameResult.convertToGameResult(gameResultCharacter);
 				GameChoice cpuChoice = Game.calculateGameChoiceFromResult(userChoice, gameResult);
 				Timestamp creationDate = result.getTimestamp("creation_date");
 
@@ -112,9 +112,9 @@ public class GameDAO
 
 				int id = result.getInt("id");
 				char userChoiceCharacter = result.getString("user_choice").charAt(0);
-				GameChoice userChoice = GameChoice.calculateChoice(userChoiceCharacter);
+				GameChoice userChoice = GameChoice.convertToChoice(userChoiceCharacter);
 				char gameResultCharacter = result.getString("result").charAt(0);
-				GameResult gameResult = GameResult.calculateResult(gameResultCharacter);
+				GameResult gameResult = GameResult.convertToGameResult(gameResultCharacter);
 				GameChoice cpuChoice = Game.calculateGameChoiceFromResult(userChoice, gameResult);
 				Timestamp creationDate = result.getTimestamp("creation_date");
 
@@ -149,9 +149,9 @@ public class GameDAO
 			{
 				int id = result.getInt("id");
 				char userChoiceCharacter = result.getString("user_choice").charAt(0);
-				GameChoice userChoice = GameChoice.calculateChoice(userChoiceCharacter);
+				GameChoice userChoice = GameChoice.convertToChoice(userChoiceCharacter);
 				char gameResultCharacter = result.getString("result").charAt(0);
-				GameResult gameResult = GameResult.calculateResult(gameResultCharacter);
+				GameResult gameResult = GameResult.convertToGameResult(gameResultCharacter);
 				GameChoice cpuChoice = Game.calculateGameChoiceFromResult(userChoice, gameResult);
 				Timestamp creationDate = result.getTimestamp("creation_date");
 
@@ -175,8 +175,8 @@ public class GameDAO
 			String query = "UPDATE games SET user_id = ?, user_choice = ?, result = ? WHERE id = ?";
 			PreparedStatement selectStatement = connection.prepareStatement(query);
 
-			char userChoice = GameChoice.calculateChoiceCharacter(game.getUserChoice());
-			char gameResult = GameResult.calculateResultCharacter(game.getResult());
+			char userChoice = GameChoice.convertToChar(game.getUserChoice());
+			char gameResult = GameResult.convertToChar(game.getResult());
 
 			selectStatement.setInt(1, game.getUser().getId());
 			selectStatement.setString(2, Character.toString(userChoice));
