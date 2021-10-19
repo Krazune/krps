@@ -17,32 +17,14 @@ public class SessionRedirectFilter implements Filter
 {
 	private String redirectUrl;
 	private boolean redirectOnUserSession = false;
-	private ArrayList<String> urlList;
+	private ArrayList<String> urlList = new ArrayList<>();
 
 	public void init(FilterConfig filterConfig) throws ServletException
 	{
 		redirectUrl = filterConfig.getInitParameter("redirect-url");
 
-		String redirectOnUserSessionParameter = filterConfig.getInitParameter("redirect-on-user-session");
-
-		if (redirectOnUserSessionParameter != null)
-		{
-			redirectOnUserSession = redirectOnUserSessionParameter.equalsIgnoreCase("true");
-		}
-
-		String urlListParameter = filterConfig.getInitParameter("url-list-parameter");
-
-		if (urlListParameter != null)
-		{
-			StringTokenizer token = new StringTokenizer(urlListParameter, ",");
-
-			urlList = new ArrayList<String>();
-
-			while (token.hasMoreTokens())
-			{
-				urlList.add(token.nextToken());
-			}
-		}
+		loadRedirectOnUserSessionParameter(filterConfig);
+		loadUrlListParameter(filterConfig);
 	}
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
@@ -57,22 +39,66 @@ public class SessionRedirectFilter implements Filter
 			return;
 		}
 
-		HttpSession session = httpRequest.getSession(false);
-		boolean userSessionExists = session != null && session.getAttribute("sessionUserId") != null && session.getAttribute("sessionUserName") != null;
-
-		if (redirectOnUserSession != userSessionExists)
+		if (redirectOnUserSession != userSessionExists(httpRequest))
 		{
 			chain.doFilter(request, response);
 
 			return;
 		}
 
-		HttpServletResponse httpResponse = (HttpServletResponse)response;
-
-		httpResponse.sendRedirect(redirectUrl);
+		((HttpServletResponse)response).sendRedirect(redirectUrl);
 	}
 
 	public void destroy()
 	{
+	}
+
+	private void loadRedirectOnUserSessionParameter(FilterConfig filterConfig)
+	{
+		String redirectOnUserSessionParameter = filterConfig.getInitParameter("redirect-on-user-session");
+
+		if (redirectOnUserSessionParameter != null)
+		{
+			redirectOnUserSession = redirectOnUserSessionParameter.equalsIgnoreCase("true");
+		}
+	}
+
+	private void loadUrlListParameter(FilterConfig filterConfig)
+	{
+		String urlListParameter = filterConfig.getInitParameter("url-list-parameter");
+
+		if (urlListParameter != null)
+		{
+			StringTokenizer token = new StringTokenizer(urlListParameter, ",");
+
+			urlList = new ArrayList<>();
+
+			while (token.hasMoreTokens())
+			{
+				urlList.add(token.nextToken());
+			}
+		}
+	}
+
+	private boolean userSessionExists(HttpServletRequest httpRequest)
+	{
+		HttpSession session = httpRequest.getSession(false);
+
+		if (session == null)
+		{
+			return false;
+		}
+
+		if (session.getAttribute("sessionUserId") == null)
+		{
+			return false;
+		}
+
+		if (session.getAttribute("sessionUserName") == null)
+		{
+			return false;
+		}
+
+		return true;
 	}
 }
