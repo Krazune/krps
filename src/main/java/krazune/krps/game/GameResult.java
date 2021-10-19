@@ -9,17 +9,17 @@ public enum GameResult
 
 	public static GameResult convertToGameResult(char result)
 	{
-		if (result == 'w')
+		if (result == 'w' || result == 'W')
 		{
 			return WIN;
 		}
 
-		if (result == 'l')
+		if (result == 'l' || result == 'L')
 		{
 			return LOSS;
 		}
 
-		if (result == 'd')
+		if (result == 'd' || result == 'D')
 		{
 			return DRAW;
 		}
