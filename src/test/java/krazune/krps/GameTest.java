@@ -93,7 +93,7 @@ public class GameTest
 	@Test
 	public void calculateGameResultWinTest()
 	{
-		GameResult result = GameResult.UNKNOWN;
+		GameResult result;
 
 		result = Game.calculateGameResult(GameChoice.ROCK, GameChoice.SCISSORS);
 
@@ -111,7 +111,7 @@ public class GameTest
 	@Test
 	public void calculateGameResultLossTest()
 	{
-		GameResult result = GameResult.UNKNOWN;
+		GameResult result;
 
 		result = Game.calculateGameResult(GameChoice.ROCK, GameChoice.PAPER);
 
@@ -129,7 +129,7 @@ public class GameTest
 	@Test
 	public void calculateGameResultDrawTest()
 	{
-		GameResult result = GameResult.UNKNOWN;
+		GameResult result;
 
 		result = Game.calculateGameResult(GameChoice.ROCK, GameChoice.ROCK);
 
@@ -147,7 +147,7 @@ public class GameTest
 	@Test
 	public void calculateGameResultUnknownTest()
 	{
-		GameResult result = GameResult.WIN;
+		GameResult result;
 
 		result = Game.calculateGameResult(GameChoice.UNKNOWN, GameChoice.ROCK);
 
@@ -165,7 +165,7 @@ public class GameTest
 	@Test
 	public void calculateGameChoiceFromResultRockTest()
 	{
-		GameChoice choice = GameChoice.UNKNOWN;
+		GameChoice choice;
 
 		choice = Game.calculateGameChoiceFromResult(GameChoice.PAPER, GameResult.WIN);
 
@@ -183,7 +183,7 @@ public class GameTest
 	@Test
 	public void calculateGameChoiceFromResultPaperTest()
 	{
-		GameChoice choice = GameChoice.UNKNOWN;
+		GameChoice choice;
 
 		choice = Game.calculateGameChoiceFromResult(GameChoice.SCISSORS, GameResult.WIN);
 
@@ -201,7 +201,7 @@ public class GameTest
 	@Test
 	public void calculateGameChoiceFromResultScissorsTest()
 	{
-		GameChoice choice = GameChoice.UNKNOWN;
+		GameChoice choice;
 
 		choice = Game.calculateGameChoiceFromResult(GameChoice.ROCK, GameResult.WIN);
 
@@ -219,7 +219,7 @@ public class GameTest
 	@Test
 	public void calculateGameChoiceFromResultUnknownTest()
 	{
-		GameChoice choice = GameChoice.ROCK;
+		GameChoice choice;
 
 		choice = Game.calculateGameChoiceFromResult(GameChoice.UNKNOWN, GameResult.WIN);
 
