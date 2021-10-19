@@ -48,7 +48,7 @@
 			gamePaperChoice.classList.remove("game__choice-button--selected");
 			gameScissorsChoice.classList.remove("game__choice-button--selected");
 
-			playerChoiceImage.src = "/resources/hand-rock.svg";
+			playerChoiceImage.src = "/resources/images/hand-rock.svg";
 			playerChoiceImage.alt = "Rock chosen.";
 
 			gameConfirmButton.disabled = false;
@@ -67,7 +67,7 @@
 			gamePaperChoice.classList.add("game__choice-button--selected");
 			gameScissorsChoice.classList.remove("game__choice-button--selected");
 
-			playerChoiceImage.src = "/resources/hand-paper.svg";
+			playerChoiceImage.src = "/resources/images/hand-paper.svg";
 			playerChoiceImage.alt = "Paper chosen.";
 
 			gameConfirmButton.disabled = false;
@@ -86,7 +86,7 @@
 			gamePaperChoice.classList.remove("game__choice-button--selected");
 			gameScissorsChoice.classList.add("game__choice-button--selected");
 
-			playerChoiceImage.src = "/resources/hand-scissors.svg";
+			playerChoiceImage.src = "/resources/images/hand-scissors.svg";
 			playerChoiceImage.alt = "Scissors chosen.";
 
 			gameConfirmButton.disabled = false;
@@ -103,10 +103,10 @@
 
 	function gameResetHandler()
 	{
-		playerChoiceImage.src = "/resources/question.svg";
+		playerChoiceImage.src = "/resources/images/question.svg";
 		playerChoiceImage.alt = "Unknown choice.";
 
-		computerChoiceImage.src = "/resources/question.svg";
+		computerChoiceImage.src = "/resources/images/question.svg";
 		computerChoiceImage.alt = "Unknown choice.";
 
 		gameDescriptionLabel.innerHTML = "Choose your move, and confirm it.";
@@ -125,17 +125,17 @@
 		switch (computerChoice)
 		{
 			case "rock":
-			computerChoiceImage.src = "/resources/hand-rock.svg";
+			computerChoiceImage.src = "/resources/images/hand-rock.svg";
 			computerChoiceImage.alt = "Rock chosen.";
 			break;
 
 			case "paper":
-			computerChoiceImage.src = "/resources/hand-paper.svg";
+			computerChoiceImage.src = "/resources/images/hand-paper.svg";
 			computerChoiceImage.alt = "Paper chosen.";
 			break;
 
 			case "scissors":
-			computerChoiceImage.src = "/resources/hand-scissors.svg";
+			computerChoiceImage.src = "/resources/images/hand-scissors.svg";
 			computerChoiceImage.alt = "Scissors chosen.";
 			break;
 		}

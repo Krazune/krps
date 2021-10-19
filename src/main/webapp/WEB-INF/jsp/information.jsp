@@ -6,7 +6,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Information | KRSP</title>
-		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/styles.css">
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/styles/styles.css">
     </head>
     <body class="page">
 		<%@ include file="/WEB-INF/jspf/header.jspf" %>

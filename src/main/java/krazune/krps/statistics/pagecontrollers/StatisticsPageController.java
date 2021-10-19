@@ -82,6 +82,6 @@ public class StatisticsPageController extends HttpServlet
 			throw new ServletException(e);
 		}
 
-		request.getRequestDispatcher("/WEB-INF/statistics.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/statistics.jsp").forward(request, response);
 	}
 }
