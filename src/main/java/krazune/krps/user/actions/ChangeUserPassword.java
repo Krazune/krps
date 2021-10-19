@@ -1,16 +1,19 @@
-package krazune.krps.user;
+package krazune.krps.user.actions;
 
+import de.mkammerer.argon2.Argon2;
+import de.mkammerer.argon2.Argon2Factory;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
+import krazune.krps.user.User;
+import krazune.krps.user.UserDAO;
 import krazune.krps.util.PropertiesLoader;
 import krazune.krps.util.ConnectionFactory;
 
-public class RegisterUser extends HttpServlet
+public class ChangeUserPassword extends HttpServlet
 {
 	PropertiesLoader propertiesLoader;
 
@@ -31,23 +34,26 @@ public class RegisterUser extends HttpServlet
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException
 	{
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
-		String passwordConfirmation = request.getParameter("password-confirmation");
+		String currentPassword = request.getParameter("current-password");
+		String newPassword = request.getParameter("password");
+		String newPasswordConfirmation = request.getParameter("password-confirmation");
 
-		if (username.isEmpty() || password.isEmpty() || passwordConfirmation.isEmpty())
+		if (currentPassword.isEmpty() || newPassword.isEmpty() || newPasswordConfirmation.isEmpty())
 		{
-			response.sendRedirect("/registration");
+			response.sendRedirect("/settings");
 
 			return;
 		}
 
-		if (!password.equals(passwordConfirmation))
+		if (!newPassword.equals(newPasswordConfirmation))
 		{
-			response.sendRedirect("/registration");
+			response.sendRedirect("/settings");
 
 			return;
 		}
+
+		HttpSession session = request.getSession(true);
+		int sessionUserId = (Integer)session.getAttribute("sessionUserId");
 
 		try
 		{
@@ -58,9 +64,17 @@ public class RegisterUser extends HttpServlet
 			ConnectionFactory connectionFactory = new ConnectionFactory(jdbcUrl, jdbcUsername, jdbcPassword);
 			UserDAO userDao = new UserDAO(connectionFactory);
 
-			if (userDao.findByName(username) != null)
+			User sessionUser = userDao.find(sessionUserId);
+
+			Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
+			char[] currentPasswordArray = currentPassword.toCharArray();
+			boolean correctPassword = argon2.verify(sessionUser.getPasswordHash(), currentPasswordArray);
+
+			argon2.wipeArray(currentPasswordArray);
+
+			if (!correctPassword)
 			{
-				response.sendRedirect("/registration");
+				response.sendRedirect("/settings");
 
 				return;
 			}
@@ -71,16 +85,11 @@ public class RegisterUser extends HttpServlet
 			int argon2Memory = propertiesLoader.getArgon2Memory();
 			int argon2Parallelism = propertiesLoader.getArgon2Parallelism();
 
-			String passwordHash = UserDAO.getPasswordHash(password, argon2SaltSize, argon2HashSize, argon2Iterators, argon2Memory, argon2Parallelism);
+			String newPasswordHash = UserDAO.getPasswordHash(newPassword, argon2SaltSize, argon2HashSize, argon2Iterators, argon2Memory, argon2Parallelism);
 
-			User newUser = new User(username, passwordHash);
+			sessionUser.setPasswordHash(newPasswordHash);
 
-			userDao.insert(newUser);
-
-			HttpSession session = request.getSession(true);
-
-			session.setAttribute("sessionUserId", newUser.getId());
-			session.setAttribute("sessionUserName", newUser.getName());
+			userDao.update(sessionUser);
 
 			response.sendRedirect("/");
 		}

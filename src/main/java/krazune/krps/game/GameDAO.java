@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
-
 import krazune.krps.user.User;
 import krazune.krps.util.ConnectionFactory;
 

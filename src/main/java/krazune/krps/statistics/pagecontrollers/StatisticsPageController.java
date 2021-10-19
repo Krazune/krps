@@ -1,4 +1,4 @@
-package krazune.krps.statistics;
+package krazune.krps.statistics.pagecontrollers;
 
 import java.io.IOException;
 import java.util.List;
@@ -7,12 +7,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import krazune.krps.util.ConnectionFactory;
 import krazune.krps.game.Game;
 import krazune.krps.game.GameDAO;
-import krazune.krps.user.UserDAO;
+import krazune.krps.statistics.StatisticsDAO;
 import krazune.krps.user.User;
+import krazune.krps.user.UserDAO;
+import krazune.krps.util.ConnectionFactory;
 import krazune.krps.util.PropertiesLoader;
 
 public class StatisticsPageController extends HttpServlet

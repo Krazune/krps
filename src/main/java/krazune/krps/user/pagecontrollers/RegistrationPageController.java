@@ -1,4 +1,4 @@
-package krazune.krps.user;
+package krazune.krps.user.pagecontrollers;
 
 import java.io.IOException;
 import javax.servlet.ServletException;

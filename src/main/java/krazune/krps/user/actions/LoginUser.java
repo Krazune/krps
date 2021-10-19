@@ -1,4 +1,4 @@
-package krazune.krps.user;
+package krazune.krps.user.actions;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -6,9 +6,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import krazune.krps.util.PropertiesLoader;
+import krazune.krps.user.User;
+import krazune.krps.user.UserDAO;
 import krazune.krps.util.ConnectionFactory;
+import krazune.krps.util.PropertiesLoader;
 
 public class LoginUser extends HttpServlet
 {
