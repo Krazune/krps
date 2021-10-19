@@ -24,14 +24,12 @@ public class LogoutUser extends HttpServlet
 	private void doRequest(HttpServletRequest request, HttpServletResponse response)
 			throws IOException
 	{
-		HttpSession session = request.getSession();
+		HttpSession session = request.getSession(false);
 
-		if (session == null)
+		if (session != null)
 		{
-			return;
+			session.removeAttribute("sessionUser");
 		}
-
-		session.removeAttribute("sessionUser");
 
 		response.sendRedirect("/");
 	}
