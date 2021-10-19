@@ -80,8 +80,7 @@ public class RegisterUser extends HttpServlet
 
 			HttpSession session = request.getSession(true);
 
-			session.setAttribute("sessionUserId", newUser.getId());
-			session.setAttribute("sessionUserName", newUser.getName());
+			session.setAttribute("sessionUser", newUser);
 
 			response.sendRedirect("/");
 		}

@@ -11,7 +11,6 @@ import krazune.krps.game.Game;
 import krazune.krps.game.GameChoice;
 import krazune.krps.game.GameDAO;
 import krazune.krps.user.User;
-import krazune.krps.user.UserDAO;
 import krazune.krps.util.ConnectionFactory;
 import krazune.krps.util.PropertiesLoader;
 
@@ -85,7 +84,7 @@ public class PlayGame extends HttpServlet
 		}
 
 		HttpSession session = request.getSession(true);
-		int sessionUserId = (Integer)session.getAttribute("sessionUserId");
+		User sessionUser = (User)session.getAttribute("sessionUser");
 
 		try
 		{
@@ -94,9 +93,6 @@ public class PlayGame extends HttpServlet
 			String jdbcPassword = propertiesLoader.getJdbcPassword();
 
 			ConnectionFactory connectionFactory = new ConnectionFactory(jdbcUrl, jdbcUsername, jdbcPassword);
-			UserDAO userDao = new UserDAO(connectionFactory);
-
-			User sessionUser = userDao.find(sessionUserId);
 
 			Game newGame = new Game(sessionUser, playerChoice, computerChoice);
 			GameDAO gameDao = new GameDAO(connectionFactory);

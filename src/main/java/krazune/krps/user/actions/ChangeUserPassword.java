@@ -53,7 +53,7 @@ public class ChangeUserPassword extends HttpServlet
 		}
 
 		HttpSession session = request.getSession(true);
-		int sessionUserId = (Integer)session.getAttribute("sessionUserId");
+		User sessionUser = (User)session.getAttribute("sessionUser");
 
 		try
 		{
@@ -62,9 +62,6 @@ public class ChangeUserPassword extends HttpServlet
 			String jdbcPassword = propertiesLoader.getJdbcPassword();
 
 			ConnectionFactory connectionFactory = new ConnectionFactory(jdbcUrl, jdbcUsername, jdbcPassword);
-			UserDAO userDao = new UserDAO(connectionFactory);
-
-			User sessionUser = userDao.find(sessionUserId);
 
 			Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
 			char[] currentPasswordArray = currentPassword.toCharArray();
@@ -89,6 +86,8 @@ public class ChangeUserPassword extends HttpServlet
 
 			sessionUser.setPasswordHash(newPasswordHash);
 
+			UserDAO userDao = new UserDAO(connectionFactory);
+			
 			userDao.update(sessionUser);
 
 			response.sendRedirect("/");

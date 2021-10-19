@@ -11,7 +11,6 @@ import krazune.krps.game.Game;
 import krazune.krps.game.GameDAO;
 import krazune.krps.statistics.StatisticsDAO;
 import krazune.krps.user.User;
-import krazune.krps.user.UserDAO;
 import krazune.krps.util.ConnectionFactory;
 import krazune.krps.util.PropertiesLoader;
 
@@ -56,10 +55,9 @@ public class StatisticsPageController extends HttpServlet
 
 			HttpSession session = request.getSession(false);
 
-			if (session != null && session.getAttribute("sessionUserId") != null)
+			if (session != null && session.getAttribute("sessionUser") != null)
 			{
-				UserDAO userDao = new UserDAO(connectionFactory);
-				User sessionUser = userDao.find((int)session.getAttribute("sessionUserId"));
+				User sessionUser = (User)session.getAttribute("sessionUser");
 
 				request.setAttribute("userGameCount", statisticsDao.getTotalGameCountByUser(sessionUser));
 				request.setAttribute("userWinCount", statisticsDao.getTotalWinCountByUser(sessionUser));

@@ -89,12 +89,7 @@ public class SessionRedirectFilter implements Filter
 			return false;
 		}
 
-		if (session.getAttribute("sessionUserId") == null)
-		{
-			return false;
-		}
-
-		if (session.getAttribute("sessionUserName") == null)
+		if (session.getAttribute("sessionUser") == null)
 		{
 			return false;
 		}

@@ -31,8 +31,7 @@ public class LogoutUser extends HttpServlet
 			return;
 		}
 
-		session.removeAttribute("sessionUserId");
-		session.removeAttribute("sessionUserName");
+		session.removeAttribute("sessionUser");
 
 		response.sendRedirect("/");
 	}
