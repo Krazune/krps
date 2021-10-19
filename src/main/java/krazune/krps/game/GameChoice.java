@@ -27,6 +27,26 @@ public enum GameChoice
 		return UNKNOWN;
 	}
 
+	public static GameChoice convertToChoice(String choice)
+	{
+		if (choice.equalsIgnoreCase("rock"))
+		{
+			return ROCK;
+		}
+
+		if (choice.equalsIgnoreCase("paper"))
+		{
+			return PAPER;
+		}
+
+		if (choice.equalsIgnoreCase("scissors"))
+		{
+			return SCISSORS;
+		}
+
+		return UNKNOWN;
+	}
+
 	public static char convertToChar(GameChoice choice)
 	{
 		if (choice == ROCK)
@@ -45,5 +65,25 @@ public enum GameChoice
 		}
 
 		return '\0';
+	}
+
+	public static String convertToString(GameChoice choice)
+	{
+		if (choice == ROCK)
+		{
+			return "rock";
+		}
+
+		if (choice == PAPER)
+		{
+			return "paper";
+		}
+
+		if (choice == SCISSORS)
+		{
+			return "scissors";
+		}
+
+		return "unknown";
 	}
 }
