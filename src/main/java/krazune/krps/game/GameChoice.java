@@ -9,17 +9,17 @@ public enum GameChoice
 
 	public static GameChoice convertToChoice(char choice)
 	{
-		if (choice == 'r')
+		if (choice == 'r' || choice == 'R')
 		{
 			return ROCK;
 		}
 
-		if (choice == 'p')
+		if (choice == 'p' || choice == 'P')
 		{
 			return PAPER;
 		}
 
-		if (choice == 's')
+		if (choice == 's' || choice == 'S')
 		{
 			return SCISSORS;
 		}
