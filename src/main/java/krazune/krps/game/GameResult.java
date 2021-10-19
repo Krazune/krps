@@ -27,6 +27,26 @@ public enum GameResult
 		return UNKNOWN;
 	}
 
+	public static GameResult convertToGameResult(String result)
+	{
+		if (result.equalsIgnoreCase("win"))
+		{
+			return WIN;
+		}
+
+		if (result.equalsIgnoreCase("loss"))
+		{
+			return LOSS;
+		}
+
+		if (result.equalsIgnoreCase("draw"))
+		{
+			return DRAW;
+		}
+
+		return UNKNOWN;
+	}
+
 	public static char convertToChar(GameResult result)
 	{
 		if (result == WIN)
@@ -45,5 +65,25 @@ public enum GameResult
 		}
 
 		return '\0';
+	}
+
+	public static String convertToString(GameResult result)
+	{
+		if (result == WIN)
+		{
+			return "win";
+		}
+
+		if (result == LOSS)
+		{
+			return "loss";
+		}
+
+		if (result == DRAW)
+		{
+			return "draw";
+		}
+
+		return "unknown";
 	}
 }
