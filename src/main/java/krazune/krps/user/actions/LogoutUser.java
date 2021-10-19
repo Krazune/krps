@@ -12,18 +12,6 @@ public class LogoutUser extends HttpServlet
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException
 	{
-		doRequest(request, response);
-	}
-
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException
-	{
-		doRequest(request, response);
-	}
-
-	private void doRequest(HttpServletRequest request, HttpServletResponse response)
-			throws IOException
-	{
 		HttpSession session = request.getSession(false);
 
 		if (session != null)

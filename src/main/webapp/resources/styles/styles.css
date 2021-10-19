@@ -321,6 +321,16 @@
 	margin: 5px 10px;
 }
 
+.navigation__link
+{
+	font-size: 1em;
+	background-color: transparent;
+	text-decoration: underline;
+	border: none;
+	cursor: pointer;
+	padding: 0;
+}
+
 .navigation__link:hover
 {
 	color: #E63C2D;
