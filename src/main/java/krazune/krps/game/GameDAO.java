@@ -228,9 +228,13 @@ public class GameDAO
 		{
 			String query = "SELECT COUNT(id) FROM games WHERE user_choice = 'p' AND user_id = ?";
 			PreparedStatement selectStatement = connection.prepareStatement(query);
+
 			selectStatement.setInt(1, user.getId());
+
 			ResultSet result = selectStatement.executeQuery();
+
 			result.next();
+
 			return result.getInt(1);
 		}
 		catch (Exception e)
@@ -246,7 +250,9 @@ public class GameDAO
 			String query = "SELECT COUNT(id) FROM games WHERE user_choice = 'r'";
 			PreparedStatement selectStatement = connection.prepareStatement(query);
 			ResultSet result = selectStatement.executeQuery();
+
 			result.next();
+
 			return result.getInt(1);
 		}
 		catch (Exception e)
@@ -262,7 +268,9 @@ public class GameDAO
 			String query = "SELECT COUNT(id) FROM games WHERE user_choice = 'p'";
 			PreparedStatement selectStatement = connection.prepareStatement(query);
 			ResultSet result = selectStatement.executeQuery();
+
 			result.next();
+
 			return result.getInt(1);
 		}
 		catch (Exception e)
@@ -277,9 +285,13 @@ public class GameDAO
 		{
 			String query = "SELECT COUNT(id) FROM games WHERE user_choice = 's' AND user_id = ?";
 			PreparedStatement selectStatement = connection.prepareStatement(query);
+
 			selectStatement.setInt(1, user.getId());
+
 			ResultSet result = selectStatement.executeQuery();
+
 			result.next();
+
 			return result.getInt(1);
 		}
 		catch (Exception e)
@@ -295,7 +307,9 @@ public class GameDAO
 			String query = "SELECT COUNT(id) FROM games WHERE result = 'd'";
 			PreparedStatement selectStatement = connection.prepareStatement(query);
 			ResultSet result = selectStatement.executeQuery();
+
 			result.next();
+
 			return result.getInt(1);
 		}
 		catch (Exception e)
@@ -310,9 +324,13 @@ public class GameDAO
 		{
 			String query = "SELECT COUNT(id) FROM games WHERE user_choice = 'r' AND user_id = ?";
 			PreparedStatement selectStatement = connection.prepareStatement(query);
+
 			selectStatement.setInt(1, user.getId());
+
 			ResultSet result = selectStatement.executeQuery();
+
 			result.next();
+
 			return result.getInt(1);
 		}
 		catch (Exception e)
@@ -327,9 +345,13 @@ public class GameDAO
 		{
 			String query = "SELECT COUNT(id) FROM games WHERE user_id = ?";
 			PreparedStatement selectStatement = connection.prepareStatement(query);
+
 			selectStatement.setInt(1, user.getId());
+
 			ResultSet result = selectStatement.executeQuery();
+
 			result.next();
+
 			return result.getInt(1);
 		}
 		catch (Exception e)
@@ -345,7 +367,9 @@ public class GameDAO
 			String query = "SELECT COUNT(id) FROM games WHERE result = 'w'";
 			PreparedStatement selectStatement = connection.prepareStatement(query);
 			ResultSet result = selectStatement.executeQuery();
+
 			result.next();
+
 			return result.getInt(1);
 		}
 		catch (Exception e)
@@ -360,9 +384,13 @@ public class GameDAO
 		{
 			String query = "SELECT COUNT(id) FROM games WHERE result = 'l' AND user_id = ?";
 			PreparedStatement selectStatement = connection.prepareStatement(query);
+
 			selectStatement.setInt(1, user.getId());
+
 			ResultSet result = selectStatement.executeQuery();
+
 			result.next();
+
 			return result.getInt(1);
 		}
 		catch (Exception e)
@@ -378,7 +406,9 @@ public class GameDAO
 			String query = "SELECT COUNT(id) FROM games";
 			PreparedStatement selectStatement = connection.prepareStatement(query);
 			ResultSet result = selectStatement.executeQuery();
+
 			result.next();
+
 			return result.getInt(1);
 		}
 		catch (Exception e)
@@ -394,7 +424,9 @@ public class GameDAO
 			String query = "SELECT COUNT(id) FROM games WHERE user_choice = 's'";
 			PreparedStatement selectStatement = connection.prepareStatement(query);
 			ResultSet result = selectStatement.executeQuery();
+
 			result.next();
+
 			return result.getInt(1);
 		}
 		catch (Exception e)
@@ -409,9 +441,13 @@ public class GameDAO
 		{
 			String query = "SELECT COUNT(id) FROM games WHERE result = 'd' AND user_id = ?";
 			PreparedStatement selectStatement = connection.prepareStatement(query);
+
 			selectStatement.setInt(1, user.getId());
+
 			ResultSet result = selectStatement.executeQuery();
+
 			result.next();
+
 			return result.getInt(1);
 		}
 		catch (Exception e)
@@ -427,7 +463,9 @@ public class GameDAO
 			String query = "SELECT COUNT(id) FROM games WHERE result = 'l'";
 			PreparedStatement selectStatement = connection.prepareStatement(query);
 			ResultSet result = selectStatement.executeQuery();
+
 			result.next();
+
 			return result.getInt(1);
 		}
 		catch (Exception e)
@@ -442,9 +480,13 @@ public class GameDAO
 		{
 			String query = "SELECT COUNT(id) FROM games WHERE result = 'w' AND user_id = ?";
 			PreparedStatement selectStatement = connection.prepareStatement(query);
+
 			selectStatement.setInt(1, user.getId());
+
 			ResultSet result = selectStatement.executeQuery();
+
 			result.next();
+
 			return result.getInt(1);
 		}
 		catch (Exception e)
