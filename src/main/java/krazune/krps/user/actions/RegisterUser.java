@@ -10,6 +10,7 @@ import krazune.krps.user.User;
 import krazune.krps.user.UserDAO;
 import krazune.krps.util.ConnectionFactory;
 import krazune.krps.util.PropertiesLoader;
+import krazune.krps.util.validators.StringValidator;
 
 public class RegisterUser extends HttpServlet
 {
@@ -17,17 +18,29 @@ public class RegisterUser extends HttpServlet
 			throws ServletException, IOException
 	{
 		String username = request.getParameter("username");
+		StringValidator usernameValidator = new StringValidator();
+
+		usernameValidator.setInput(username);
+
+		usernameValidator.setMinimumSize(3);
+		usernameValidator.setMaximumSize(32);
+		usernameValidator.setPattern("[a-zA-Z0-9]+");
+
+		usernameValidator.validate();
+
 		String password = request.getParameter("password");
+		StringValidator passwordValidator = new StringValidator();
+
+		passwordValidator.setInput(username);
+
+		passwordValidator.setMinimumSize(6);
+		passwordValidator.setMaximumSize(128);
+
+		passwordValidator.validate();
+
 		String passwordConfirmation = request.getParameter("password-confirmation");
 
-		if (username.isEmpty() || password.isEmpty() || passwordConfirmation.isEmpty())
-		{
-			response.sendRedirect("/registration");
-
-			return;
-		}
-
-		if (!password.equals(passwordConfirmation))
+		if (!usernameValidator.isValid() || !passwordValidator.isValid() || !password.equals(passwordConfirmation))
 		{
 			response.sendRedirect("/registration");
 
