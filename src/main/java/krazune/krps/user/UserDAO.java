@@ -114,7 +114,6 @@ public class UserDAO
 		{
 			String query = "SELECT * FROM users";
 			PreparedStatement selectStatement = connection.prepareStatement(query);
-
 			ResultSet result = selectStatement.executeQuery();
 
 			while (result.next())
@@ -123,7 +122,6 @@ public class UserDAO
 				String name = result.getString("name");
 				String passwordHash = result.getString("password_hash");
 				Timestamp creationDate = result.getTimestamp("creation_date");
-
 				User newUser = new User(id, name, passwordHash, creationDate);
 
 				users.add(newUser);
