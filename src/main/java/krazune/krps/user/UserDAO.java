@@ -20,7 +20,7 @@ public class UserDAO
 		this.connectionFactory = connectionFactory;
 	}
 
-	public boolean insert(User user) throws SQLException
+	public void insert(User user) throws SQLException
 	{
 		try (Connection connection = connectionFactory.createConnection())
 		{
@@ -44,8 +44,6 @@ public class UserDAO
 		{
 			throw e;
 		}
-
-		return false;
 	}
 
 	public User find(int id) throws SQLException
