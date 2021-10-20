@@ -15,17 +15,17 @@ public class GameTest
 		Game game = new Game();
 
 		game.setUserChoice(GameChoice.ROCK);
-		game.setCPUChoice(GameChoice.SCISSORS);
+		game.setComputerChoice(GameChoice.SCISSORS);
 
 		assertTrue(game.getResult() == GameResult.WIN);
 
 		game.setUserChoice(GameChoice.PAPER);
-		game.setCPUChoice(GameChoice.ROCK);
+		game.setComputerChoice(GameChoice.ROCK);
 
 		assertTrue(game.getResult() == GameResult.WIN);
 
 		game.setUserChoice(GameChoice.SCISSORS);
-		game.setCPUChoice(GameChoice.PAPER);
+		game.setComputerChoice(GameChoice.PAPER);
 
 		assertTrue(game.getResult() == GameResult.WIN);
 	}
@@ -36,17 +36,17 @@ public class GameTest
 		Game game = new Game();
 
 		game.setUserChoice(GameChoice.ROCK);
-		game.setCPUChoice(GameChoice.PAPER);
+		game.setComputerChoice(GameChoice.PAPER);
 
 		assertTrue(game.getResult() == GameResult.LOSS);
 
 		game.setUserChoice(GameChoice.PAPER);
-		game.setCPUChoice(GameChoice.SCISSORS);
+		game.setComputerChoice(GameChoice.SCISSORS);
 
 		assertTrue(game.getResult() == GameResult.LOSS);
 
 		game.setUserChoice(GameChoice.SCISSORS);
-		game.setCPUChoice(GameChoice.ROCK);
+		game.setComputerChoice(GameChoice.ROCK);
 
 		assertTrue(game.getResult() == GameResult.LOSS);
 	}
@@ -57,17 +57,17 @@ public class GameTest
 		Game game = new Game();
 
 		game.setUserChoice(GameChoice.ROCK);
-		game.setCPUChoice(GameChoice.ROCK);
+		game.setComputerChoice(GameChoice.ROCK);
 
 		assertTrue(game.getResult() == GameResult.DRAW);
 
 		game.setUserChoice(GameChoice.PAPER);
-		game.setCPUChoice(GameChoice.PAPER);
+		game.setComputerChoice(GameChoice.PAPER);
 
 		assertTrue(game.getResult() == GameResult.DRAW);
 
 		game.setUserChoice(GameChoice.SCISSORS);
-		game.setCPUChoice(GameChoice.SCISSORS);
+		game.setComputerChoice(GameChoice.SCISSORS);
 
 		assertTrue(game.getResult() == GameResult.DRAW);
 	}
@@ -84,7 +84,7 @@ public class GameTest
 		assertTrue(game.getResult() == GameResult.UNKNOWN);
 
 		game.setUserChoice(GameChoice.UNKNOWN);
-		game.setCPUChoice(GameChoice.ROCK);
+		game.setComputerChoice(GameChoice.ROCK);
 
 		assertTrue(game.getResult() == GameResult.UNKNOWN);
 	}
@@ -94,15 +94,15 @@ public class GameTest
 	{
 		GameResult result;
 
-		result = Game.calculateGameResult(GameChoice.ROCK, GameChoice.SCISSORS);
+		result = Game.getResultFromChoices(GameChoice.ROCK, GameChoice.SCISSORS);
 
 		assertTrue(result == GameResult.WIN);
 
-		result = Game.calculateGameResult(GameChoice.PAPER, GameChoice.ROCK);
+		result = Game.getResultFromChoices(GameChoice.PAPER, GameChoice.ROCK);
 
 		assertTrue(result == GameResult.WIN);
 
-		result = Game.calculateGameResult(GameChoice.SCISSORS, GameChoice.PAPER);
+		result = Game.getResultFromChoices(GameChoice.SCISSORS, GameChoice.PAPER);
 
 		assertTrue(result == GameResult.WIN);
 	}
@@ -112,15 +112,15 @@ public class GameTest
 	{
 		GameResult result;
 
-		result = Game.calculateGameResult(GameChoice.ROCK, GameChoice.PAPER);
+		result = Game.getResultFromChoices(GameChoice.ROCK, GameChoice.PAPER);
 
 		assertTrue(result == GameResult.LOSS);
 
-		result = Game.calculateGameResult(GameChoice.PAPER, GameChoice.SCISSORS);
+		result = Game.getResultFromChoices(GameChoice.PAPER, GameChoice.SCISSORS);
 
 		assertTrue(result == GameResult.LOSS);
 
-		result = Game.calculateGameResult(GameChoice.SCISSORS, GameChoice.ROCK);
+		result = Game.getResultFromChoices(GameChoice.SCISSORS, GameChoice.ROCK);
 
 		assertTrue(result == GameResult.LOSS);
 	}
@@ -130,15 +130,15 @@ public class GameTest
 	{
 		GameResult result;
 
-		result = Game.calculateGameResult(GameChoice.ROCK, GameChoice.ROCK);
+		result = Game.getResultFromChoices(GameChoice.ROCK, GameChoice.ROCK);
 
 		assertTrue(result == GameResult.DRAW);
 
-		result = Game.calculateGameResult(GameChoice.PAPER, GameChoice.PAPER);
+		result = Game.getResultFromChoices(GameChoice.PAPER, GameChoice.PAPER);
 
 		assertTrue(result == GameResult.DRAW);
 
-		result = Game.calculateGameResult(GameChoice.SCISSORS, GameChoice.SCISSORS);
+		result = Game.getResultFromChoices(GameChoice.SCISSORS, GameChoice.SCISSORS);
 
 		assertTrue(result == GameResult.DRAW);
 	}
@@ -148,15 +148,15 @@ public class GameTest
 	{
 		GameResult result;
 
-		result = Game.calculateGameResult(GameChoice.UNKNOWN, GameChoice.ROCK);
+		result = Game.getResultFromChoices(GameChoice.UNKNOWN, GameChoice.ROCK);
 
 		assertTrue(result == GameResult.UNKNOWN);
 
-		result = Game.calculateGameResult(GameChoice.ROCK, GameChoice.UNKNOWN);
+		result = Game.getResultFromChoices(GameChoice.ROCK, GameChoice.UNKNOWN);
 
 		assertTrue(result == GameResult.UNKNOWN);
 
-		result = Game.calculateGameResult(GameChoice.UNKNOWN, GameChoice.UNKNOWN);
+		result = Game.getResultFromChoices(GameChoice.UNKNOWN, GameChoice.UNKNOWN);
 
 		assertTrue(result == GameResult.UNKNOWN);
 	}
@@ -166,15 +166,15 @@ public class GameTest
 	{
 		GameChoice choice;
 
-		choice = Game.calculateGameChoiceFromResult(GameChoice.PAPER, GameResult.WIN);
+		choice = Game.getChoiceFromResult(GameChoice.PAPER, GameResult.WIN);
 
 		assertTrue(choice == GameChoice.ROCK);
 
-		choice = Game.calculateGameChoiceFromResult(GameChoice.SCISSORS, GameResult.LOSS);
+		choice = Game.getChoiceFromResult(GameChoice.SCISSORS, GameResult.LOSS);
 
 		assertTrue(choice == GameChoice.ROCK);
 
-		choice = Game.calculateGameChoiceFromResult(GameChoice.ROCK, GameResult.DRAW);
+		choice = Game.getChoiceFromResult(GameChoice.ROCK, GameResult.DRAW);
 
 		assertTrue(choice == GameChoice.ROCK);
 	}
@@ -184,15 +184,15 @@ public class GameTest
 	{
 		GameChoice choice;
 
-		choice = Game.calculateGameChoiceFromResult(GameChoice.SCISSORS, GameResult.WIN);
+		choice = Game.getChoiceFromResult(GameChoice.SCISSORS, GameResult.WIN);
 
 		assertTrue(choice == GameChoice.PAPER);
 
-		choice = Game.calculateGameChoiceFromResult(GameChoice.ROCK, GameResult.LOSS);
+		choice = Game.getChoiceFromResult(GameChoice.ROCK, GameResult.LOSS);
 
 		assertTrue(choice == GameChoice.PAPER);
 
-		choice = Game.calculateGameChoiceFromResult(GameChoice.PAPER, GameResult.DRAW);
+		choice = Game.getChoiceFromResult(GameChoice.PAPER, GameResult.DRAW);
 
 		assertTrue(choice == GameChoice.PAPER);
 	}
@@ -202,15 +202,15 @@ public class GameTest
 	{
 		GameChoice choice;
 
-		choice = Game.calculateGameChoiceFromResult(GameChoice.ROCK, GameResult.WIN);
+		choice = Game.getChoiceFromResult(GameChoice.ROCK, GameResult.WIN);
 
 		assertTrue(choice == GameChoice.SCISSORS);
 
-		choice = Game.calculateGameChoiceFromResult(GameChoice.PAPER, GameResult.LOSS);
+		choice = Game.getChoiceFromResult(GameChoice.PAPER, GameResult.LOSS);
 
 		assertTrue(choice == GameChoice.SCISSORS);
 
-		choice = Game.calculateGameChoiceFromResult(GameChoice.SCISSORS, GameResult.DRAW);
+		choice = Game.getChoiceFromResult(GameChoice.SCISSORS, GameResult.DRAW);
 
 		assertTrue(choice == GameChoice.SCISSORS);
 	}
@@ -220,15 +220,15 @@ public class GameTest
 	{
 		GameChoice choice;
 
-		choice = Game.calculateGameChoiceFromResult(GameChoice.UNKNOWN, GameResult.WIN);
+		choice = Game.getChoiceFromResult(GameChoice.UNKNOWN, GameResult.WIN);
 
 		assertTrue(choice == GameChoice.UNKNOWN);
 
-		choice = Game.calculateGameChoiceFromResult(GameChoice.PAPER, GameResult.UNKNOWN);
+		choice = Game.getChoiceFromResult(GameChoice.PAPER, GameResult.UNKNOWN);
 
 		assertTrue(choice == GameChoice.UNKNOWN);
 
-		choice = Game.calculateGameChoiceFromResult(GameChoice.UNKNOWN, GameResult.UNKNOWN);
+		choice = Game.getChoiceFromResult(GameChoice.UNKNOWN, GameResult.UNKNOWN);
 
 		assertTrue(choice == GameChoice.UNKNOWN);
 	}

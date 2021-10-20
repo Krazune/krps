@@ -76,7 +76,7 @@ public class GameDAO
 				GameChoice userChoice = GameChoice.convertToChoice(userChoiceCharacter);
 				char gameResultCharacter = result.getString("result").charAt(0);
 				GameResult gameResult = GameResult.convertToGameResult(gameResultCharacter);
-				GameChoice cpuChoice = Game.calculateGameChoiceFromResult(userChoice, gameResult);
+				GameChoice cpuChoice = Game.getChoiceFromResult(userChoice, gameResult);
 				Timestamp creationDate = result.getTimestamp("creation_date");
 
 				game = new Game(id, user, userChoice, cpuChoice, creationDate);
@@ -115,7 +115,7 @@ public class GameDAO
 				GameChoice userChoice = GameChoice.convertToChoice(userChoiceCharacter);
 				char gameResultCharacter = result.getString("result").charAt(0);
 				GameResult gameResult = GameResult.convertToGameResult(gameResultCharacter);
-				GameChoice cpuChoice = Game.calculateGameChoiceFromResult(userChoice, gameResult);
+				GameChoice cpuChoice = Game.getChoiceFromResult(userChoice, gameResult);
 				Timestamp creationDate = result.getTimestamp("creation_date");
 
 				Game game = new Game(id, user, userChoice, cpuChoice, creationDate);
@@ -152,7 +152,7 @@ public class GameDAO
 				GameChoice userChoice = GameChoice.convertToChoice(userChoiceCharacter);
 				char gameResultCharacter = result.getString("result").charAt(0);
 				GameResult gameResult = GameResult.convertToGameResult(gameResultCharacter);
-				GameChoice cpuChoice = Game.calculateGameChoiceFromResult(userChoice, gameResult);
+				GameChoice cpuChoice = Game.getChoiceFromResult(userChoice, gameResult);
 				Timestamp creationDate = result.getTimestamp("creation_date");
 
 				Game game = new Game(id, user, userChoice, cpuChoice, creationDate);

@@ -8,14 +8,14 @@ public class Game
 	private int id;
 	private User user;
 	private GameChoice userChoice;
-	private GameChoice cpuChoice;
+	private GameChoice computerChoice;
 	private GameResult result;
 	private Timestamp creationDate;
 
 	public Game()
 	{
 		userChoice = GameChoice.UNKNOWN;
-		cpuChoice = GameChoice.UNKNOWN;
+		computerChoice = GameChoice.UNKNOWN;
 
 		result = GameResult.UNKNOWN;
 	}
@@ -24,7 +24,7 @@ public class Game
 	{
 		this.user = user;
 		this.userChoice = userChoice;
-		this.cpuChoice = cpuChoice;
+		this.computerChoice = cpuChoice;
 
 		this.result = updateResult();
 	}
@@ -34,7 +34,7 @@ public class Game
 		this.id = id;
 		this.user = user;
 		this.userChoice = userChoice;
-		this.cpuChoice = cpuChoice;
+		this.computerChoice = cpuChoice;
 		this.creationDate = creationDate;
 
 		updateResult();
@@ -72,14 +72,14 @@ public class Game
 		return updateResult();
 	}
 
-	public GameChoice getCPUChoice()
+	public GameChoice getComputerChoice()
 	{
-		return cpuChoice;
+		return computerChoice;
 	}
 
-	public GameResult setCPUChoice(GameChoice choice)
+	public GameResult setComputerChoice(GameChoice choice)
 	{
-		cpuChoice = choice;
+		computerChoice = choice;
 
 		return updateResult();
 	}
@@ -101,12 +101,12 @@ public class Game
 
 	private GameResult updateResult()
 	{
-		result = calculateGameResult(userChoice, cpuChoice);
+		result = getResultFromChoices(userChoice, computerChoice);
 
 		return result;
 	}
 
-	public static GameResult calculateGameResult(GameChoice choiceA, GameChoice ChoiceB)
+	public static GameResult getResultFromChoices(GameChoice choiceA, GameChoice ChoiceB)
 	{
 		switch (choiceA)
 		{
@@ -159,7 +159,7 @@ public class Game
 		return GameResult.UNKNOWN;
 	}
 
-	public static GameChoice calculateGameChoiceFromResult(GameChoice choice, GameResult result)
+	public static GameChoice getChoiceFromResult(GameChoice choice, GameResult result)
 	{
 		switch (choice)
 		{

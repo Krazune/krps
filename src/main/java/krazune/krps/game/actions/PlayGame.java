@@ -105,7 +105,7 @@ public class PlayGame extends HttpServlet
 			StringBuilder resultJsonString = new StringBuilder("{");
 
 			resultJsonString.append("\"playerChoice\":\"" + newGame.getUserChoice().toString().toLowerCase() + "\",");
-			resultJsonString.append("\"computerChoice\":\"" + newGame.getCPUChoice().toString().toLowerCase() + "\",");
+			resultJsonString.append("\"computerChoice\":\"" + newGame.getComputerChoice().toString().toLowerCase() + "\",");
 			resultJsonString.append("\"result\":\"" + newGame.getResult().toString().toLowerCase() + "\"");
 
 			resultJsonString.append("}");
