@@ -48,7 +48,7 @@
 					<c:forEach items="${lastGames}" var="game">
 						<tr>
 							<td>${game.getUserChoice()}</td>
-							<td>${game.getCPUChoice()}</td>
+							<td>${game.getComputerChoice()}</td>
 							<td>${game.getResult()}</td>
 							<td>${game.getCreationDate()}</td>
 						</tr>
