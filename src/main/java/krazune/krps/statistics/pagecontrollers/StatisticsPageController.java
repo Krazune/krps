@@ -15,27 +15,12 @@ import krazune.krps.util.PropertiesLoader;
 
 public class StatisticsPageController extends HttpServlet
 {
-	PropertiesLoader propertiesLoader;
-
-	public void init() throws ServletException
-	{
-		propertiesLoader = new PropertiesLoader();
-
-		try
-		{
-			propertiesLoader.load();
-		}
-		catch (IOException e)
-		{
-			throw new ServletException(e);
-		}
-	}
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException
 	{
 		try
 		{
+			PropertiesLoader propertiesLoader = (PropertiesLoader)request.getAttribute("propertiesLoader");
 			String jdbcUrl = propertiesLoader.getJdbcUrl();
 			String jdbcUsername = propertiesLoader.getJdbcUser();
 			String jdbcPassword = propertiesLoader.getJdbcPassword();
