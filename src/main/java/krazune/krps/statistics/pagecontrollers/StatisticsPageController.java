@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import krazune.krps.game.Game;
 import krazune.krps.game.GameDAO;
-import krazune.krps.statistics.StatisticsDAO;
 import krazune.krps.user.User;
 import krazune.krps.util.ConnectionFactory;
 import krazune.krps.util.PropertiesLoader;
@@ -42,16 +41,16 @@ public class StatisticsPageController extends HttpServlet
 			String jdbcPassword = propertiesLoader.getJdbcPassword();
 
 			ConnectionFactory connectionFactory = new ConnectionFactory(jdbcUrl, jdbcUsername, jdbcPassword);
-			StatisticsDAO statisticsDao = new StatisticsDAO(connectionFactory);
+			GameDAO gameDao = new GameDAO(connectionFactory);
 
-			request.setAttribute("totalGameCount", statisticsDao.getTotalGameCount());
-			request.setAttribute("totalWinCount", statisticsDao.getTotalWinCount());
-			request.setAttribute("totalLossCount", statisticsDao.getTotalLossCount());
-			request.setAttribute("totalDrawCount", statisticsDao.getTotalDrawCount());
+			request.setAttribute("totalGameCount", gameDao.getTotalGameCount());
+			request.setAttribute("totalWinCount", gameDao.getTotalWinCount());
+			request.setAttribute("totalLossCount", gameDao.getTotalLossCount());
+			request.setAttribute("totalDrawCount", gameDao.getTotalDrawCount());
 
-			request.setAttribute("playerRockCount", statisticsDao.getPlayerRockCount());
-			request.setAttribute("playerPaperCount", statisticsDao.getPlayerPaperCount());
-			request.setAttribute("playerScissorsCount", statisticsDao.getPlayerScissorsCount());
+			request.setAttribute("playerRockCount", gameDao.getPlayerRockCount());
+			request.setAttribute("playerPaperCount", gameDao.getPlayerPaperCount());
+			request.setAttribute("playerScissorsCount", gameDao.getPlayerScissorsCount());
 
 			HttpSession session = request.getSession(false);
 
@@ -59,16 +58,14 @@ public class StatisticsPageController extends HttpServlet
 			{
 				User sessionUser = (User)session.getAttribute("sessionUser");
 
-				request.setAttribute("userGameCount", statisticsDao.getTotalGameCountByUser(sessionUser));
-				request.setAttribute("userWinCount", statisticsDao.getTotalWinCountByUser(sessionUser));
-				request.setAttribute("userLossCount", statisticsDao.getTotalLossCountByUser(sessionUser));
-				request.setAttribute("userDrawCount", statisticsDao.getTotalDrawCountByUser(sessionUser));
+				request.setAttribute("userGameCount", gameDao.getTotalGameCountByUser(sessionUser));
+				request.setAttribute("userWinCount", gameDao.getTotalWinCountByUser(sessionUser));
+				request.setAttribute("userLossCount", gameDao.getTotalLossCountByUser(sessionUser));
+				request.setAttribute("userDrawCount", gameDao.getTotalDrawCountByUser(sessionUser));
 
-				request.setAttribute("userRockCount", statisticsDao.getPlayerRockCountByUser(sessionUser));
-				request.setAttribute("userPaperCount", statisticsDao.getPlayerPaperCountByUser(sessionUser));
-				request.setAttribute("userScissorsCount", statisticsDao.getPlayerScissorsCountByUser(sessionUser));
-
-				GameDAO gameDao = new GameDAO(connectionFactory);
+				request.setAttribute("userRockCount", gameDao.getPlayerRockCountByUser(sessionUser));
+				request.setAttribute("userPaperCount", gameDao.getPlayerPaperCountByUser(sessionUser));
+				request.setAttribute("userScissorsCount", gameDao.getPlayerScissorsCountByUser(sessionUser));
 
 				List<Game> lastGames = gameDao.findByUser(sessionUser, 10);
 
