@@ -33,7 +33,7 @@
         </init-param>
         <init-param>
             <param-name>url-list-parameter</param-name>
-            <param-value>/logoutuser,/settings,/changeuserpassword,/playgame</param-value>
+            <param-value>/logoutuser,/settings,/playgame</param-value>
         </init-param>
     </filter>
     <filter-mapping>
@@ -101,10 +101,6 @@
         <servlet-class>krazune.krps.util.pagecontrollers.SettingsPageController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ChangeUserPassword</servlet-name>
-        <servlet-class>krazune.krps.user.actions.ChangeUserPassword</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>PlayGame</servlet-name>
         <servlet-class>krazune.krps.game.actions.PlayGame</servlet-class>
     </servlet>
@@ -131,10 +127,6 @@
     <servlet-mapping>
         <servlet-name>SettingsPageController</servlet-name>
         <url-pattern>/settings</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ChangeUserPassword</servlet-name>
-        <url-pattern>/changeuserpassword</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>PlayGame</servlet-name>
