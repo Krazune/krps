@@ -97,10 +97,6 @@
         <servlet-class>krazune.krps.user.pagecontrollers.RegistrationPageController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>RegisterUser</servlet-name>
-        <servlet-class>krazune.krps.user.actions.RegisterUser</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>SettingsPageController</servlet-name>
         <servlet-class>krazune.krps.util.pagecontrollers.SettingsPageController</servlet-class>
     </servlet>
@@ -131,10 +127,6 @@
     <servlet-mapping>
         <servlet-name>RegistrationPageController</servlet-name>
         <url-pattern>/registration</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>RegisterUser</servlet-name>
-        <url-pattern>/registeruser</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>SettingsPageController</servlet-name>
