@@ -13,7 +13,7 @@
         </init-param>
         <init-param>
             <param-name>url-list-parameter</param-name>
-            <param-value>/loginuser,/login,/registration</param-value>
+            <param-value>/login,/registration</param-value>
         </init-param>
     </filter>
     <filter>
@@ -85,10 +85,6 @@
         <servlet-class>krazune.krps.user.pagecontrollers.LoginPageController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>LoginUser</servlet-name>
-        <servlet-class>krazune.krps.user.actions.LoginUser</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>LogoutUser</servlet-name>
         <servlet-class>krazune.krps.user.actions.LogoutUser</servlet-class>
     </servlet>
@@ -111,10 +107,6 @@
     <servlet-mapping>
         <servlet-name>LoginPageController</servlet-name>
         <url-pattern>/login</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>LoginUser</servlet-name>
-        <url-pattern>/loginuser</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LogoutUser</servlet-name>
