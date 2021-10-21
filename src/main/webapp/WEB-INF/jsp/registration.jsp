@@ -1,3 +1,5 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -18,6 +20,16 @@
 
 			<label class="text registration-form__label" for="password-confirmation">Password (confirmation):</label>
 			<input class="text input-text" type="password" id="password-confirmation" name="password-confirmation">
+
+			<c:forEach items="${usernameErrorMessages}" var="errorMessage">
+				<p>${errorMessage}</p>
+			</c:forEach>
+			<c:forEach items="${passwordErrorMessages}" var="errorMessage">
+				<p>${errorMessage}</p>
+			</c:forEach>
+			<c:forEach items="${passwordConfirmationErrorMessages}" var="errorMessage">
+				<p>${errorMessage}</p>
+			</c:forEach>
 
 			<input class="text button registration-form__button" type="submit" value="Register">
 		</form>

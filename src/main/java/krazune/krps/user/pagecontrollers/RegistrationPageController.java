@@ -1,6 +1,8 @@
 package krazune.krps.user.pagecontrollers;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -35,7 +37,15 @@ public class RegistrationPageController extends HttpServlet
 
 		if (!usernameErrors.isEmpty() || !passwordErrors.isEmpty() || !passwordConfirmationErrors.isEmpty())
 		{
-			response.sendRedirect("/registration");
+			List<String> usernameErrorMessages = getUsernameErrorMessages(usernameErrors);
+			List<String> passwordErrorMessages = getPasswordErrorMessages(passwordErrors);
+			List<String> passwordConfirmationErrorMessages = getPasswordConfirmationErrorMessages(passwordConfirmationErrors);
+
+			request.setAttribute("usernameErrorMessages", usernameErrorMessages);
+			request.setAttribute("passwordErrorMessages", passwordErrorMessages);
+			request.setAttribute("passwordConfirmationErrorMessages", passwordConfirmationErrorMessages);
+
+			request.getRequestDispatcher("/WEB-INF/jsp/registration.jsp").forward(request, response);
 
 			return;
 		}
@@ -123,5 +133,54 @@ public class RegistrationPageController extends HttpServlet
 		passwordConfirmationValidator.validate();
 
 		return passwordConfirmationValidator.getErrors();
+	}
+
+	private List<String> getUsernameErrorMessages(Set<StringValidatorError> errorSet)
+	{
+		List<String> messages = new ArrayList<>();
+
+		if (errorSet.contains(StringValidatorError.TOO_SHORT))
+		{
+			messages.add("Username too short.");
+		}
+		else if (errorSet.contains(StringValidatorError.TOO_LONG))
+		{
+			messages.add("Username too long.");
+		}
+
+		if (errorSet.contains(StringValidatorError.NO_PATTERN_MATCH))
+		{
+			messages.add("Username has invalid characters.");
+		}
+
+		return messages;
+	}
+
+	private List<String> getPasswordErrorMessages(Set<StringValidatorError> errorSet)
+	{
+		List<String> messages = new ArrayList<>();
+
+		if (errorSet.contains(StringValidatorError.TOO_SHORT))
+		{
+			messages.add("Password too short.");
+		}
+		else if (errorSet.contains(StringValidatorError.TOO_LONG))
+		{
+			messages.add("Password too long.");
+		}
+
+		return messages;
+	}
+
+	private List<String> getPasswordConfirmationErrorMessages(Set<StringValidatorError> errorSet)
+	{
+		List<String> messages = new ArrayList<>();
+
+		if (errorSet.contains(StringValidatorError.NO_PATTERN_MATCH))
+		{
+			messages.add("Passwords aren't equal.");
+		}
+
+		return messages;
 	}
 }
