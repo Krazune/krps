@@ -62,7 +62,8 @@ public class RegistrationPageController extends HttpServlet
 
 			if (userDao.findByName(username) != null)
 			{
-				response.sendRedirect("/registration");
+				request.setAttribute("accountErrorMessage", "Username already in use.");
+				request.getRequestDispatcher("/WEB-INF/jsp/registration.jsp").forward(request, response);
 
 				return;
 			}

@@ -30,6 +30,9 @@
 			<c:forEach items="${passwordConfirmationErrorMessages}" var="errorMessage">
 				<p>${errorMessage}</p>
 			</c:forEach>
+			<c:if test="${accountErrorMessage != null}">
+				<p>${accountErrorMessage}</p>
+			</c:if>
 
 			<input class="text button registration-form__button" type="submit" value="Register">
 		</form>
