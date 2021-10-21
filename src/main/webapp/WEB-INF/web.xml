@@ -13,7 +13,7 @@
         </init-param>
         <init-param>
             <param-name>url-list-parameter</param-name>
-            <param-value>/loginuser,/login,/registration</param-value>
+            <param-value>/login,/registration</param-value>
         </init-param>
     </filter>
     <filter>
@@ -33,7 +33,7 @@
         </init-param>
         <init-param>
             <param-name>url-list-parameter</param-name>
-            <param-value>/logoutuser,/settings,/changeuserpassword,/playgame</param-value>
+            <param-value>/logoutuser,/settings,/playgame</param-value>
         </init-param>
     </filter>
     <filter-mapping>
@@ -85,10 +85,6 @@
         <servlet-class>krazune.krps.user.pagecontrollers.LoginPageController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>LoginUser</servlet-name>
-        <servlet-class>krazune.krps.user.actions.LoginUser</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>LogoutUser</servlet-name>
         <servlet-class>krazune.krps.user.actions.LogoutUser</servlet-class>
     </servlet>
@@ -97,16 +93,8 @@
         <servlet-class>krazune.krps.user.pagecontrollers.RegistrationPageController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>RegisterUser</servlet-name>
-        <servlet-class>krazune.krps.user.actions.RegisterUser</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>SettingsPageController</servlet-name>
         <servlet-class>krazune.krps.util.pagecontrollers.SettingsPageController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ChangeUserPassword</servlet-name>
-        <servlet-class>krazune.krps.user.actions.ChangeUserPassword</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>PlayGame</servlet-name>
@@ -121,10 +109,6 @@
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>LoginUser</servlet-name>
-        <url-pattern>/loginuser</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>LogoutUser</servlet-name>
         <url-pattern>/logoutuser</url-pattern>
     </servlet-mapping>
@@ -133,16 +117,8 @@
         <url-pattern>/registration</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>RegisterUser</servlet-name>
-        <url-pattern>/registeruser</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>SettingsPageController</servlet-name>
         <url-pattern>/settings</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ChangeUserPassword</servlet-name>
-        <url-pattern>/changeuserpassword</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>PlayGame</servlet-name>
