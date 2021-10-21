@@ -80,7 +80,7 @@ public class StringValidator
 			return;
 		}
 
-		if (input.length() > maximumSize)
+		if (maximumSize > -1 && input.length() > maximumSize)
 		{
 			errors.add(StringValidatorError.TOO_LONG);
 
