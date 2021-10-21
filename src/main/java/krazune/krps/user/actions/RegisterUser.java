@@ -1,6 +1,7 @@
 package krazune.krps.user.actions;
 
 import java.io.IOException;
+import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +12,7 @@ import krazune.krps.user.UserDAO;
 import krazune.krps.util.ConnectionFactory;
 import krazune.krps.util.PropertiesLoader;
 import krazune.krps.util.validators.StringValidator;
+import krazune.krps.util.validators.StringValidatorError;
 
 public class RegisterUser extends HttpServlet
 {
@@ -18,29 +20,15 @@ public class RegisterUser extends HttpServlet
 			throws ServletException, IOException
 	{
 		String username = request.getParameter("username");
-		StringValidator usernameValidator = new StringValidator();
-
-		usernameValidator.setInput(username);
-
-		usernameValidator.setMinimumSize(3);
-		usernameValidator.setMaximumSize(32);
-		usernameValidator.setPattern("[a-zA-Z0-9]+");
-
-		usernameValidator.validate();
+		Set<StringValidatorError> usernameErrors = validateUsernameInput(username);
 
 		String password = request.getParameter("password");
-		StringValidator passwordValidator = new StringValidator();
-
-		passwordValidator.setInput(username);
-
-		passwordValidator.setMinimumSize(6);
-		passwordValidator.setMaximumSize(128);
-
-		passwordValidator.validate();
+		Set<StringValidatorError> passwordErrors = validatePasswordInput(password);
 
 		String passwordConfirmation = request.getParameter("password-confirmation");
+		Set<StringValidatorError> passwordConfirmationErrors = validatePasswordConfirmationInput(passwordConfirmation, password);
 
-		if (!usernameValidator.isValid() || !passwordValidator.isValid() || !password.equals(passwordConfirmation))
+		if (!usernameErrors.isEmpty() || !passwordErrors.isEmpty() || !passwordConfirmationErrors.isEmpty())
 		{
 			response.sendRedirect("/registration");
 
@@ -86,5 +74,49 @@ public class RegisterUser extends HttpServlet
 		{
 			throw new ServletException(e);
 		}
+	}
+
+	private Set<StringValidatorError> validateUsernameInput(String username)
+	{
+		StringValidator usernameValidator = new StringValidator();
+
+		usernameValidator.setInput(username);
+
+		usernameValidator.setMinimumSize(3);
+		usernameValidator.setMaximumSize(32);
+		usernameValidator.setPattern("[a-zA-Z0-9]+");
+
+		usernameValidator.validate();
+
+		return usernameValidator.getErrors();
+	}
+
+	private Set<StringValidatorError> validatePasswordInput(String password)
+	{
+		StringValidator passwordValidator = new StringValidator();
+
+		passwordValidator.setInput(password);
+
+		passwordValidator.setMinimumSize(6);
+		passwordValidator.setMaximumSize(128);
+
+		passwordValidator.validate();
+
+		return passwordValidator.getErrors();
+	}
+
+	private Set<StringValidatorError> validatePasswordConfirmationInput(String passwordConfirmation, String password)
+	{
+		StringValidator passwordConfirmationValidator = new StringValidator();
+
+		passwordConfirmationValidator.setInput(passwordConfirmation);
+
+		passwordConfirmationValidator.setMinimumSize(6);
+		passwordConfirmationValidator.setMaximumSize(128);
+		passwordConfirmationValidator.setPattern("\\Q" + password + "\\E"); // This is not efficient, but it's not critical.
+
+		passwordConfirmationValidator.validate();
+
+		return passwordConfirmationValidator.getErrors();
 	}
 }
