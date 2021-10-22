@@ -106,50 +106,50 @@ public class Game
 		return result;
 	}
 
-	public static GameResult getResultFromChoices(GameChoice choiceA, GameChoice ChoiceB)
+	public static GameResult getResultFromChoices(GameChoice choiceA, GameChoice choiceB)
 	{
 		switch (choiceA)
 		{
 			case ROCK:
-			if (ChoiceB == GameChoice.ROCK)
+			if (choiceB == GameChoice.ROCK)
 			{
 				return GameResult.DRAW;
 			}
-			else if (ChoiceB == GameChoice.PAPER)
+			else if (choiceB == GameChoice.PAPER)
 			{
 				return GameResult.LOSS;
 			}
-			else if (ChoiceB == GameChoice.SCISSORS)
+			else if (choiceB == GameChoice.SCISSORS)
 			{
 				return GameResult.WIN;
 			}
 			break;
 
 			case PAPER:
-			if (ChoiceB == GameChoice.ROCK)
+			if (choiceB == GameChoice.ROCK)
 			{
 				return GameResult.WIN;
 			}
-			else if (ChoiceB == GameChoice.PAPER)
+			else if (choiceB == GameChoice.PAPER)
 			{
 				return GameResult.DRAW;
 			}
-			else if (ChoiceB == GameChoice.SCISSORS)
+			else if (choiceB == GameChoice.SCISSORS)
 			{
 				return GameResult.LOSS;
 			}
 			break;
 
 			case SCISSORS:
-			if (ChoiceB == GameChoice.ROCK)
+			if (choiceB == GameChoice.ROCK)
 			{
 				return GameResult.LOSS;
 			}
-			else if (ChoiceB == GameChoice.PAPER)
+			else if (choiceB == GameChoice.PAPER)
 			{
 				return GameResult.WIN;
 			}
-			else if (ChoiceB == GameChoice.SCISSORS)
+			else if (choiceB == GameChoice.SCISSORS)
 			{
 				return GameResult.DRAW;
 			}
