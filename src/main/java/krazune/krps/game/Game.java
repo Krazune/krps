@@ -111,49 +111,49 @@ public class Game
 		switch (choiceA)
 		{
 			case ROCK:
-			if (choiceB == GameChoice.ROCK)
+			switch (choiceB)
 			{
+				case ROCK:
 				return GameResult.DRAW;
-			}
-			else if (choiceB == GameChoice.PAPER)
-			{
+
+				case PAPER:
 				return GameResult.LOSS;
-			}
-			else if (choiceB == GameChoice.SCISSORS)
-			{
+
+				case SCISSORS:
 				return GameResult.WIN;
 			}
 			break;
+
 
 			case PAPER:
-			if (choiceB == GameChoice.ROCK)
+			switch (choiceB)
 			{
+				case ROCK:
 				return GameResult.WIN;
-			}
-			else if (choiceB == GameChoice.PAPER)
-			{
+
+				case PAPER:
 				return GameResult.DRAW;
-			}
-			else if (choiceB == GameChoice.SCISSORS)
-			{
+
+				case SCISSORS:
 				return GameResult.LOSS;
 			}
 			break;
 
+
 			case SCISSORS:
-			if (choiceB == GameChoice.ROCK)
+			switch (choiceB)
 			{
+				case ROCK:
 				return GameResult.LOSS;
-			}
-			else if (choiceB == GameChoice.PAPER)
-			{
+
+				case PAPER:
 				return GameResult.WIN;
-			}
-			else if (choiceB == GameChoice.SCISSORS)
-			{
+
+				case SCISSORS:
 				return GameResult.DRAW;
 			}
 			break;
+
 		}
 
 		return GameResult.UNKNOWN;
@@ -164,49 +164,49 @@ public class Game
 		switch (choice)
 		{
 			case ROCK:
-			if (result == GameResult.WIN)
+			switch (result)
 			{
+				case WIN:
 				return GameChoice.SCISSORS;
-			}
-			else if (result == GameResult.LOSS)
-			{
+
+				case LOSS:
 				return GameChoice.PAPER;
-			}
-			else if (result == GameResult.DRAW)
-			{
+
+				case DRAW:
 				return GameChoice.ROCK;
 			}
 			break;
+
 
 			case PAPER:
-			if (result == GameResult.WIN)
+			switch (result)
 			{
+				case WIN:
 				return GameChoice.ROCK;
-			}
-			else if (result == GameResult.LOSS)
-			{
+
+				case LOSS:
 				return GameChoice.SCISSORS;
-			}
-			else if (result == GameResult.DRAW)
-			{
+
+				case DRAW:
 				return GameChoice.PAPER;
 			}
 			break;
 
+
 			case SCISSORS:
-			if (result == GameResult.WIN)
+			switch (result)
 			{
+				case WIN:
 				return GameChoice.PAPER;
-			}
-			else if (result == GameResult.LOSS)
-			{
+
+				case LOSS:
 				return GameChoice.ROCK;
-			}
-			else if (result == GameResult.DRAW)
-			{
+
+				case DRAW:
 				return GameChoice.SCISSORS;
 			}
 			break;
+
 		}
 
 		return GameChoice.UNKNOWN;
