@@ -43,7 +43,7 @@ public class GameDAO
 			game.setId(id);
 			game.setCreationDate(creationDate);
 		}
-		catch (Exception e)
+		catch (SQLException e)
 		{
 			throw e;
 		}
@@ -85,7 +85,7 @@ public class GameDAO
 				game = new Game(id, user, userChoice, computerChoice, creationDate);
 			}
 		}
-		catch (Exception e)
+		catch (SQLException e)
 		{
 			throw e;
 		}
@@ -168,7 +168,7 @@ public class GameDAO
 				games.add(game);
 			}
 		}
-		catch (Exception e)
+		catch (SQLException e)
 		{
 			throw e;
 		}
@@ -198,7 +198,7 @@ public class GameDAO
 				return false;
 			}
 		}
-		catch (Exception e)
+		catch (SQLException e)
 		{
 			throw e;
 		}
@@ -222,7 +222,7 @@ public class GameDAO
 				return false;
 			}
 		}
-		catch (Exception e)
+		catch (SQLException e)
 		{
 			throw e;
 		}
@@ -230,7 +230,7 @@ public class GameDAO
 		return true;
 	}
 
-	public int getGameCount() throws Exception
+	public int getGameCount() throws SQLException
 	{
 		try (final Connection connection = connectionFactory.createConnection())
 		{
@@ -242,13 +242,13 @@ public class GameDAO
 
 			return result.getInt(1);
 		}
-		catch (Exception e)
+		catch (SQLException e)
 		{
 			throw e;
 		}
 	}
 
-	public int getGameCountByUser(User user) throws Exception
+	public int getGameCountByUser(User user) throws SQLException
 	{
 		try (final Connection connection = connectionFactory.createConnection())
 		{
@@ -263,13 +263,13 @@ public class GameDAO
 
 			return result.getInt(1);
 		}
-		catch (Exception e)
+		catch (SQLException e)
 		{
 			throw e;
 		}
 	}
 
-	public int getGameResultCount(GameResult gameResult) throws Exception
+	public int getGameResultCount(GameResult gameResult) throws SQLException
 	{
 		try (final Connection connection = connectionFactory.createConnection())
 		{
@@ -286,13 +286,13 @@ public class GameDAO
 
 			return result.getInt(1);
 		}
-		catch (Exception e)
+		catch (SQLException e)
 		{
 			throw e;
 		}
 	}
 
-	public int getGameResultCountByUser(User user, GameResult gameResult) throws Exception
+	public int getGameResultCountByUser(User user, GameResult gameResult) throws SQLException
 	{
 		try (final Connection connection = connectionFactory.createConnection())
 		{
@@ -310,13 +310,13 @@ public class GameDAO
 
 			return result.getInt(1);
 		}
-		catch (Exception e)
+		catch (SQLException e)
 		{
 			throw e;
 		}
 	}
 
-	public int getUserChoiceCount(GameChoice choice) throws Exception
+	public int getUserChoiceCount(GameChoice choice) throws SQLException
 	{
 		try (final Connection connection = connectionFactory.createConnection())
 		{
@@ -333,13 +333,13 @@ public class GameDAO
 
 			return result.getInt(1);
 		}
-		catch (Exception e)
+		catch (SQLException e)
 		{
 			throw e;
 		}
 	}
 
-	public int getUserChoiceCountByUser(User user, GameChoice choice) throws Exception
+	public int getUserChoiceCountByUser(User user, GameChoice choice) throws SQLException
 	{
 		try (final Connection connection = connectionFactory.createConnection())
 		{
@@ -357,7 +357,7 @@ public class GameDAO
 
 			return result.getInt(1);
 		}
-		catch (Exception e)
+		catch (SQLException e)
 		{
 			throw e;
 		}
