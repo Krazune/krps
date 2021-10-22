@@ -1,6 +1,7 @@
 package krazune.krps.statistics.pagecontrollers;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -59,7 +60,7 @@ public class StatisticsPageController extends HttpServlet
 				request.setAttribute("lastGames", lastGames);
 			}
 		}
-		catch (Exception e)
+		catch (SQLException e)
 		{
 			throw new ServletException(e);
 		}
