@@ -11,23 +11,23 @@
     <body class="page">
 		<%@ include file="/WEB-INF/jspf/header.jspf" %>
 		<p>Global statistics</p>
-		<p>Total games: ${totalGameCount}</p>
-		<p>Total wins: ${totalWinCount}</p>
-		<p>Total losses: ${totalLossCount}</p>
-		<p>Total draws: ${totalDrawCount}</p>
-		<p>Rock chosen: ${playerRockCount}</p>
-		<p>Paper chosen: ${playerPaperCount}</p>
-		<p>Scissors chosen: ${playerScissorsCount}</p>
+		<p>Total games: ${gameCount}</p>
+		<p>Total wins: ${winCount}</p>
+		<p>Total losses: ${lossCount}</p>
+		<p>Total draws: ${drawCount}</p>
+		<p>Rock chosen: ${userChoiceRockCount}</p>
+		<p>Paper chosen: ${userChoicePaperCount}</p>
+		<p>Scissors chosen: ${userChoiceScissorsCount}</p>
 
 		<c:if test="${sessionScope.sessionUser != null}">
 			<p>${sessionScope.sessionUser.getName()}'s statistics</p>
-			<p>Total games: ${userGameCount}</p>
-			<p>Total wins: ${userWinCount}</p>
-			<p>Total losses: ${userLossCount}</p>
-			<p>Total draws: ${userDrawCount}</p>
-			<p>Rock chosen: ${userRockCount}</p>
-			<p>Paper chosen: ${userPaperCount}</p>
-			<p>Scissors chosen: ${playerScissorsCount}</p>
+			<p>Total games: ${sessionUserGameCount}</p>
+			<p>Total wins: ${sessionUserWinCount}</p>
+			<p>Total losses: ${sessionUserLossCount}</p>
+			<p>Total draws: ${sessionUserDrawCount}</p>
+			<p>Rock chosen: ${sessionUserRockCount}</p>
+			<p>Paper chosen: ${sessionUserPaperCount}</p>
+			<p>Scissors chosen: ${sessionUserScissorsCount}</p>
 			<c:if test="${lastGames != null}">
 				Last games
 				<table>
