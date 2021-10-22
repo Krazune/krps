@@ -25,6 +25,7 @@ public class GameDAO
 		{
 			String query = "INSERT INTO games (user_id, user_choice, result) VALUES (?, ?, ?) RETURNING id, creation_date";
 			PreparedStatement selectStatement = connection.prepareStatement(query);
+
 			char userChoice = GameChoice.convertToChar(game.getUserChoice());
 			char gameResult = GameResult.convertToChar(game.getResult());
 
@@ -73,10 +74,12 @@ public class GameDAO
 				User user = new User(userId, name, passwordHash, userCreationDate);
 
 				char userChoiceCharacter = result.getString("user_choice").charAt(0);
-				GameChoice userChoice = GameChoice.convertToChoice(userChoiceCharacter);
 				char gameResultCharacter = result.getString("result").charAt(0);
+
+				GameChoice userChoice = GameChoice.convertToChoice(userChoiceCharacter);
 				GameResult gameResult = GameResult.convertToGameResult(gameResultCharacter);
 				GameChoice cpuChoice = Game.getChoiceFromResult(userChoice, gameResult);
+
 				Timestamp creationDate = result.getTimestamp("creation_date");
 
 				game = new Game(id, user, userChoice, cpuChoice, creationDate);
@@ -112,10 +115,12 @@ public class GameDAO
 
 				int id = result.getInt("id");
 				char userChoiceCharacter = result.getString("user_choice").charAt(0);
-				GameChoice userChoice = GameChoice.convertToChoice(userChoiceCharacter);
 				char gameResultCharacter = result.getString("result").charAt(0);
+
+				GameChoice userChoice = GameChoice.convertToChoice(userChoiceCharacter);
 				GameResult gameResult = GameResult.convertToGameResult(gameResultCharacter);
 				GameChoice cpuChoice = Game.getChoiceFromResult(userChoice, gameResult);
+
 				Timestamp creationDate = result.getTimestamp("creation_date");
 
 				Game game = new Game(id, user, userChoice, cpuChoice, creationDate);
@@ -148,11 +153,14 @@ public class GameDAO
 			while (result.next())
 			{
 				int id = result.getInt("id");
+
 				char userChoiceCharacter = result.getString("user_choice").charAt(0);
-				GameChoice userChoice = GameChoice.convertToChoice(userChoiceCharacter);
 				char gameResultCharacter = result.getString("result").charAt(0);
+				
+				GameChoice userChoice = GameChoice.convertToChoice(userChoiceCharacter);
 				GameResult gameResult = GameResult.convertToGameResult(gameResultCharacter);
 				GameChoice cpuChoice = Game.getChoiceFromResult(userChoice, gameResult);
+
 				Timestamp creationDate = result.getTimestamp("creation_date");
 
 				Game game = new Game(id, user, userChoice, cpuChoice, creationDate);
