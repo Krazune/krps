@@ -20,21 +20,21 @@ public class Game
 		result = GameResult.UNKNOWN;
 	}
 
-	public Game(User user, GameChoice userChoice, GameChoice cpuChoice)
+	public Game(User user, GameChoice userChoice, GameChoice computerChoice)
 	{
 		this.user = user;
 		this.userChoice = userChoice;
-		this.computerChoice = cpuChoice;
+		this.computerChoice = computerChoice;
 
 		this.result = updateResult();
 	}
 
-	public Game(int id, User user, GameChoice userChoice, GameChoice cpuChoice, Timestamp creationDate)
+	public Game(int id, User user, GameChoice userChoice, GameChoice computerChoice, Timestamp creationDate)
 	{
 		this.id = id;
 		this.user = user;
 		this.userChoice = userChoice;
-		this.computerChoice = cpuChoice;
+		this.computerChoice = computerChoice;
 		this.creationDate = creationDate;
 
 		updateResult();

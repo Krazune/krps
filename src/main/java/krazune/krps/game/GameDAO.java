@@ -78,11 +78,11 @@ public class GameDAO
 
 				GameChoice userChoice = GameChoice.convertToChoice(userChoiceCharacter);
 				GameResult gameResult = GameResult.convertToGameResult(gameResultCharacter);
-				GameChoice cpuChoice = Game.getChoiceFromResult(userChoice, gameResult);
+				GameChoice computerChoice = Game.getChoiceFromResult(userChoice, gameResult);
 
 				Timestamp creationDate = result.getTimestamp("creation_date");
 
-				game = new Game(id, user, userChoice, cpuChoice, creationDate);
+				game = new Game(id, user, userChoice, computerChoice, creationDate);
 			}
 		}
 		catch (Exception e)
@@ -119,11 +119,11 @@ public class GameDAO
 
 				GameChoice userChoice = GameChoice.convertToChoice(userChoiceCharacter);
 				GameResult gameResult = GameResult.convertToGameResult(gameResultCharacter);
-				GameChoice cpuChoice = Game.getChoiceFromResult(userChoice, gameResult);
+				GameChoice computerChoice = Game.getChoiceFromResult(userChoice, gameResult);
 
 				Timestamp creationDate = result.getTimestamp("creation_date");
 
-				Game game = new Game(id, user, userChoice, cpuChoice, creationDate);
+				Game game = new Game(id, user, userChoice, computerChoice, creationDate);
 
 				games.add(game);
 			}
@@ -156,14 +156,14 @@ public class GameDAO
 
 				char userChoiceCharacter = result.getString("user_choice").charAt(0);
 				char gameResultCharacter = result.getString("result").charAt(0);
-				
+
 				GameChoice userChoice = GameChoice.convertToChoice(userChoiceCharacter);
 				GameResult gameResult = GameResult.convertToGameResult(gameResultCharacter);
-				GameChoice cpuChoice = Game.getChoiceFromResult(userChoice, gameResult);
+				GameChoice computerChoice = Game.getChoiceFromResult(userChoice, gameResult);
 
 				Timestamp creationDate = result.getTimestamp("creation_date");
 
-				Game game = new Game(id, user, userChoice, cpuChoice, creationDate);
+				Game game = new Game(id, user, userChoice, computerChoice, creationDate);
 
 				games.add(game);
 			}
