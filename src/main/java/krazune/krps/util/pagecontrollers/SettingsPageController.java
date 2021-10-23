@@ -1,7 +1,5 @@
 package krazune.krps.util.pagecontrollers;
 
-import de.mkammerer.argon2.Argon2;
-import de.mkammerer.argon2.Argon2Factory;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +8,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import krazune.krps.user.Authentication;
 import krazune.krps.user.User;
 import krazune.krps.user.UserDAO;
@@ -56,28 +53,20 @@ public class SettingsPageController extends HttpServlet
 
 		try
 		{
-			PropertiesLoader propertiesLoader = (PropertiesLoader)request.getAttribute("propertiesLoader");
-			String jdbcUrl = propertiesLoader.getJdbcUrl();
-			String jdbcUsername = propertiesLoader.getJdbcUser();
-			String jdbcPassword = propertiesLoader.getJdbcPassword();
-
-			ConnectionFactory connectionFactory = new ConnectionFactory(jdbcUrl, jdbcUsername, jdbcPassword);
-
 			User sessionUser = Authentication.getSessionUser(request);
 
-			Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
-			char[] currentPasswordArray = currentPassword.toCharArray();
-			boolean correctPassword = argon2.verify(sessionUser.getPasswordHash(), currentPasswordArray);
-
-			argon2.wipeArray(currentPasswordArray);
-
-			if (!correctPassword)
+			if (!Authentication.validPassword(sessionUser, currentPassword))
 			{
 				request.setAttribute("accountErrorMessage", "Invalid password.");
 				request.getRequestDispatcher("/WEB-INF/jsp/settings.jsp").forward(request, response);
 
 				return;
 			}
+
+			PropertiesLoader propertiesLoader = (PropertiesLoader)request.getAttribute("propertiesLoader");
+			String jdbcUrl = propertiesLoader.getJdbcUrl();
+			String jdbcUsername = propertiesLoader.getJdbcUser();
+			String jdbcPassword = propertiesLoader.getJdbcPassword();
 
 			int argon2SaltSize = propertiesLoader.getArgon2SaltSize();
 			int argon2HashSize = propertiesLoader.getArgon2HashSize();
@@ -89,6 +78,7 @@ public class SettingsPageController extends HttpServlet
 
 			sessionUser.setPasswordHash(newPasswordHash);
 
+			ConnectionFactory connectionFactory = new ConnectionFactory(jdbcUrl, jdbcUsername, jdbcPassword);
 			UserDAO userDao = new UserDAO(connectionFactory);
 
 			userDao.update(sessionUser);

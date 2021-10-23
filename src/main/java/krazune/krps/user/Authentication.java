@@ -19,13 +19,7 @@ public class Authentication
 			return null;
 		}
 
-		Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
-		char[] passwordArray = password.toCharArray();
-		boolean validInformation = argon2.verify(user.getPasswordHash(), passwordArray);
-
-		argon2.wipeArray(passwordArray);
-
-		if (!validInformation)
+		if (!validPassword(user, password))
 		{
 			return null;
 		}
@@ -71,5 +65,16 @@ public class Authentication
 		argon2.wipeArray(passwordCharArray);
 
 		return hash;
+	}
+
+	public static boolean validPassword(User user, String password)
+	{
+		Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
+		char[] passwordArray = password.toCharArray();
+		boolean validPassword = argon2.verify(user.getPasswordHash(), passwordArray);
+
+		argon2.wipeArray(passwordArray);
+
+		return validPassword;
 	}
 }
