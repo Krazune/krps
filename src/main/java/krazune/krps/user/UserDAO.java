@@ -104,7 +104,7 @@ public class UserDAO
 		return user;
 	}
 
-	public List<User> findAll() throws Exception
+	public List<User> findAll() throws SQLException
 	{
 		List<User> users = new ArrayList<>();
 
@@ -133,7 +133,7 @@ public class UserDAO
 		return users;
 	}
 
-	public boolean update(User user) throws Exception
+	public boolean update(User user) throws SQLException
 	{
 		try (Connection connection = connectionFactory.createConnection())
 		{
@@ -159,7 +159,7 @@ public class UserDAO
 		return true;
 	}
 
-	public boolean delete(User user) throws Exception
+	public boolean delete(User user) throws SQLException
 	{
 		try (Connection connection = connectionFactory.createConnection())
 		{
