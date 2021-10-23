@@ -68,10 +68,10 @@ public class LoginPageController extends HttpServlet
 				return;
 			}
 
-			request.setAttribute("accountErrorMessage", "Invalid login information");
+			request.setAttribute("accountErrorMessage", "Invalid login information.");
 
 			request.setAttribute("previousUsernameInput", username);
-			
+
 			request.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(request, response);
 		}
 		catch (SQLException e)
