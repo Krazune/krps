@@ -21,6 +21,11 @@
 	color: #4C4C47;
 }
 
+.text--error
+{
+	color: #E63C2D;
+}
+
 .header
 {
 	padding: 10px;
@@ -196,6 +201,12 @@
 {
 	width: 400px;
 	margin: auto;
+}
+
+.login-form__error
+{
+	font-size: 1.2em;
+	margin: 5px 0;
 }
 
 .input-text

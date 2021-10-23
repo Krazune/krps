@@ -19,13 +19,13 @@
 			<input class="text input-text" type="password" id="password" name="password">
 
 			<c:forEach items="${usernameErrorMessages}" var="errorMessage">
-				<p>${errorMessage}</p>
+				<p class="text text--error login-form__error">${errorMessage}</p>
 			</c:forEach>
 			<c:forEach items="${passwordErrorMessages}" var="errorMessage">
-				<p>${errorMessage}</p>
+				<p class="text text--error login-form__error">${errorMessage}</p>
 			</c:forEach>
 			<c:if test="${accountErrorMessage != null}">
-				<p>${accountErrorMessage}</p>
+				<p class="text text--error login-form__error">${accountErrorMessage}</p>
 			</c:if>
 
 			<input class="text button login-form__button" type="submit" value="Log in">
