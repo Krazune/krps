@@ -48,7 +48,9 @@ public class SessionRedirectFilter implements Filter
 			return;
 		}
 
-		((HttpServletResponse)response).sendRedirect(redirectUrl);
+		HttpServletResponse httpResponse = (HttpServletResponse)response;
+		
+		httpResponse.sendRedirect(redirectUrl);
 	}
 
 	public void destroy()
