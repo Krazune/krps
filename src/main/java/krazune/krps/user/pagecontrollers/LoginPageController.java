@@ -1,6 +1,7 @@
 package krazune.krps.user.pagecontrollers;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -62,10 +63,10 @@ public class LoginPageController extends HttpServlet
 				return;
 			}
 
-			request.setAttribute("accountErrorMessage", "Invalid login information.");
+			request.setAttribute("accountErrorMessage", "Invalid login information");
 			request.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(request, response);
 		}
-		catch (Exception e)
+		catch (SQLException e)
 		{
 			throw new ServletException(e);
 		}
