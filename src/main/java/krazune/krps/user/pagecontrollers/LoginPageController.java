@@ -62,7 +62,7 @@ public class LoginPageController extends HttpServlet
 				return;
 			}
 
-			request.setAttribute("accountErrorMessage", "Invalid password.");
+			request.setAttribute("accountErrorMessage", "Invalid login information.");
 			request.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(request, response);
 		}
 		catch (Exception e)
@@ -78,7 +78,6 @@ public class LoginPageController extends HttpServlet
 		usernameValidator.setInput(username);
 
 		usernameValidator.setMinimumSize(1);
-		usernameValidator.setMaximumSize(32);
 
 		usernameValidator.validate();
 
@@ -92,7 +91,6 @@ public class LoginPageController extends HttpServlet
 		passwordValidator.setInput(password);
 
 		passwordValidator.setMinimumSize(1);
-		passwordValidator.setMaximumSize(128);
 
 		passwordValidator.validate();
 
@@ -105,11 +103,7 @@ public class LoginPageController extends HttpServlet
 
 		if (errorSet.contains(StringValidatorError.TOO_SHORT))
 		{
-			messages.add("Username too short.");
-		}
-		else if (errorSet.contains(StringValidatorError.TOO_LONG))
-		{
-			messages.add("Username too long.");
+			messages.add("The username field cannot be empty.");
 		}
 
 		return messages;
@@ -121,11 +115,7 @@ public class LoginPageController extends HttpServlet
 
 		if (errorSet.contains(StringValidatorError.TOO_SHORT))
 		{
-			messages.add("Password too short.");
-		}
-		else if (errorSet.contains(StringValidatorError.TOO_LONG))
-		{
-			messages.add("Password too long.");
+			messages.add("The password field cannot be empty.");
 		}
 
 		return messages;
