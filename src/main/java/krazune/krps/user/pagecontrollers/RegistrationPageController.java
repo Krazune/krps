@@ -8,7 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import krazune.krps.user.Authentication;
 import krazune.krps.user.User;
 import krazune.krps.user.UserDAO;
 import krazune.krps.util.ConnectionFactory;
@@ -80,9 +80,7 @@ public class RegistrationPageController extends HttpServlet
 
 			userDao.insert(newUser);
 
-			HttpSession session = request.getSession(true);
-
-			session.setAttribute("sessionUser", newUser);
+			Authentication.createUserSession(request, newUser);
 
 			response.sendRedirect("/");
 		}
