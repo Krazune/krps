@@ -29,6 +29,14 @@ public class Authentication
 		return user;
 	}
 
+	public static void logOut(HttpSession session)
+	{
+		if (session != null)
+		{
+			session.removeAttribute("sessionUser");
+		}
+	}
+
 	public static void createUserSession(HttpServletRequest request, User user)
 	{
 		HttpSession session = request.getSession(true);
@@ -46,14 +54,6 @@ public class Authentication
 		}
 
 		return (User)session.getAttribute("sessionUser");
-	}
-
-	public static void logOut(HttpSession session)
-	{
-		if (session != null)
-		{
-			session.removeAttribute("sessionUser");
-		}
 	}
 
 	public static String getPasswordHash(String password, int saltSize, int hashSize, int iterations, int memory, int parallelism)
