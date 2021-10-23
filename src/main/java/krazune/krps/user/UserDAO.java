@@ -185,29 +185,6 @@ public class UserDAO
 		return true;
 	}
 
-	public User findByLoginInformation(String name, String password) throws SQLException
-	{
-		User user = findByName(name);
-
-		if (user == null)
-		{
-			return null;
-		}
-
-		Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
-		char[] passwordArray = password.toCharArray();
-		boolean validInformation = argon2.verify(user.getPasswordHash(), passwordArray);
-
-		argon2.wipeArray(passwordArray);
-
-		if (!validInformation)
-		{
-			return null;
-		}
-
-		return user;
-	}
-
 	public static String getPasswordHash(String password, int saltSize, int hashSize, int iterations, int memory, int parallelism)
 	{
 		Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id, saltSize, hashSize);

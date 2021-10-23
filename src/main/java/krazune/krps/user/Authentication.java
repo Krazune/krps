@@ -1,5 +1,7 @@
 package krazune.krps.user;
 
+import de.mkammerer.argon2.Argon2;
+import de.mkammerer.argon2.Argon2Factory;
 import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -10,16 +12,27 @@ public class Authentication
 	public static User logIn(HttpServletRequest request, ConnectionFactory connectionFactory, String username, String password) throws SQLException
 	{
 		UserDAO userDao = new UserDAO(connectionFactory);
-		User loginUser = userDao.findByLoginInformation(username, password);
+		User user = userDao.findByName(username);
 
-		if (loginUser == null)
+		if (user == null)
 		{
 			return null;
 		}
 
-		createUserSession(request, loginUser);
+		Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
+		char[] passwordArray = password.toCharArray();
+		boolean validInformation = argon2.verify(user.getPasswordHash(), passwordArray);
 
-		return loginUser;
+		argon2.wipeArray(passwordArray);
+
+		if (!validInformation)
+		{
+			return null;
+		}
+
+		createUserSession(request, user);
+
+		return user;
 	}
 
 	public static void createUserSession(HttpServletRequest request, User user)
