@@ -12,6 +12,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import krazune.krps.user.Authentication;
 
 public class SessionRedirectFilter implements Filter
 {
@@ -39,7 +40,9 @@ public class SessionRedirectFilter implements Filter
 			return;
 		}
 
-		if (redirectOnUserSession != userSessionExists(httpRequest))
+		boolean userSessionExists = Authentication.getSessionUser(httpRequest) != null;
+
+		if (redirectOnUserSession != userSessionExists)
 		{
 			chain.doFilter(request, response);
 
@@ -78,22 +81,5 @@ public class SessionRedirectFilter implements Filter
 				urlList.add(token.nextToken());
 			}
 		}
-	}
-
-	private boolean userSessionExists(HttpServletRequest httpRequest)
-	{
-		HttpSession session = httpRequest.getSession(false);
-
-		if (session == null)
-		{
-			return false;
-		}
-
-		if (session.getAttribute("sessionUser") == null)
-		{
-			return false;
-		}
-
-		return true;
 	}
 }

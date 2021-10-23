@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import krazune.krps.game.Game;
 import krazune.krps.game.GameChoice;
 import krazune.krps.game.GameDAO;
+import krazune.krps.user.Authentication;
 import krazune.krps.user.User;
 import krazune.krps.util.ConnectionFactory;
 import krazune.krps.util.PropertiesLoader;
@@ -25,6 +26,13 @@ public class IndexPageController extends HttpServlet
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException
 	{
+		User sessionUser = Authentication.getSessionUser(request);
+
+		if (sessionUser == null)
+		{
+			return;
+		}
+
 		String gameDecisionString = request.getParameter("decision");
 
 		if (gameDecisionString == null)
@@ -72,9 +80,6 @@ public class IndexPageController extends HttpServlet
 			computerChoice = GameChoice.SCISSORS;
 			break;
 		}
-
-		HttpSession session = request.getSession(true);
-		User sessionUser = (User)session.getAttribute("sessionUser");
 
 		try
 		{

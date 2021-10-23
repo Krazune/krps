@@ -12,6 +12,7 @@ import krazune.krps.game.Game;
 import krazune.krps.game.GameChoice;
 import krazune.krps.game.GameDAO;
 import krazune.krps.game.GameResult;
+import krazune.krps.user.Authentication;
 import krazune.krps.user.User;
 import krazune.krps.util.ConnectionFactory;
 import krazune.krps.util.PropertiesLoader;
@@ -36,13 +37,7 @@ public class StatisticsPageController extends HttpServlet
 	private void populateStatisticsAttributes(HttpServletRequest request) throws SQLException
 	{
 		populateGlobalStatisticsAttributes(request);
-
-		HttpSession session = request.getSession(false);
-
-		if (session != null && session.getAttribute("sessionUser") != null)
-		{
-			populateUserStatisticsAttributes(request, session);
-		}
+		populateUserStatisticsAttributes(request);
 	}
 
 	private void populateGlobalStatisticsAttributes(HttpServletRequest request) throws SQLException
@@ -65,8 +60,15 @@ public class StatisticsPageController extends HttpServlet
 		request.setAttribute("userChoiceScissorsCount", gameDao.getUserChoiceCount(GameChoice.SCISSORS));
 	}
 
-	private void populateUserStatisticsAttributes(HttpServletRequest request, HttpSession session) throws SQLException
+	private void populateUserStatisticsAttributes(HttpServletRequest request) throws SQLException
 	{
+		User sessionUser = Authentication.getSessionUser(request);
+
+		if (sessionUser == null)
+		{
+			return;
+		}
+
 		PropertiesLoader propertiesLoader = (PropertiesLoader)request.getAttribute("propertiesLoader");
 		String jdbcUrl = propertiesLoader.getJdbcUrl();
 		String jdbcUsername = propertiesLoader.getJdbcUser();
@@ -74,8 +76,6 @@ public class StatisticsPageController extends HttpServlet
 
 		ConnectionFactory connectionFactory = new ConnectionFactory(jdbcUrl, jdbcUsername, jdbcPassword);
 		GameDAO gameDao = new GameDAO(connectionFactory);
-
-		User sessionUser = (User)session.getAttribute("sessionUser");
 
 		request.setAttribute("sessionUserGameCount", gameDao.getGameCountByUser(sessionUser));
 		request.setAttribute("sessionUserWinCount", gameDao.getGameResultCountByUser(sessionUser, GameResult.WIN));

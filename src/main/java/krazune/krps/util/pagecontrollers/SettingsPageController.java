@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import krazune.krps.user.Authentication;
 import krazune.krps.user.User;
 import krazune.krps.user.UserDAO;
 import krazune.krps.util.ConnectionFactory;
@@ -53,9 +54,6 @@ public class SettingsPageController extends HttpServlet
 			return;
 		}
 
-		HttpSession session = request.getSession(true);
-		User sessionUser = (User)session.getAttribute("sessionUser");
-
 		try
 		{
 			PropertiesLoader propertiesLoader = (PropertiesLoader)request.getAttribute("propertiesLoader");
@@ -64,6 +62,8 @@ public class SettingsPageController extends HttpServlet
 			String jdbcPassword = propertiesLoader.getJdbcPassword();
 
 			ConnectionFactory connectionFactory = new ConnectionFactory(jdbcUrl, jdbcUsername, jdbcPassword);
+
+			User sessionUser = Authentication.getSessionUser(request);
 
 			Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
 			char[] currentPasswordArray = currentPassword.toCharArray();
