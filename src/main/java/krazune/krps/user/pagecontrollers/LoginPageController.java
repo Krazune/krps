@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import krazune.krps.user.Authentication;
 import krazune.krps.user.User;
 import krazune.krps.user.UserDAO;
 import krazune.krps.util.ConnectionFactory;
@@ -54,22 +55,17 @@ public class LoginPageController extends HttpServlet
 			String jdbcPassword = propertiesLoader.getJdbcPassword();
 
 			ConnectionFactory connectionFactory = new ConnectionFactory(jdbcUrl, jdbcUsername, jdbcPassword);
-			UserDAO userDao = new UserDAO(connectionFactory);
-			User loginUser = userDao.findByLoginInformation(username, password);
+			User loginUser = Authentication.logIn(request, connectionFactory, username, password);
 
 			if (loginUser != null)
 			{
-				HttpSession session = request.getSession(true);
-
-				session.setAttribute("sessionUser", loginUser);
-
 				response.sendRedirect("/");
+
+				return;
 			}
-			else
-			{
-				request.setAttribute("accountErrorMessage", "Invalid password.");
-				request.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(request, response);
-			}
+
+			request.setAttribute("accountErrorMessage", "Invalid password.");
+			request.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(request, response);
 		}
 		catch (Exception e)
 		{
