@@ -13,7 +13,7 @@
 		<form class="login-form login-form--limited-width" action="/login" method="post">
 			<p class="text login-form__title">Login</p>
 			<label class="text login-form__label" for="username">Username:</label>
-			<input class="text input-text" type="text" id="username" name="username">
+			<input class="text input-text" type="text" id="username" name="username" value="${previousUsernameInput}">
 
 			<label class="text login-form__label" for="password">Password:</label>
 			<input class="text input-text" type="password" id="password" name="password">

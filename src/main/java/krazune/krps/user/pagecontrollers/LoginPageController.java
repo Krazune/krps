@@ -41,6 +41,11 @@ public class LoginPageController extends HttpServlet
 			request.setAttribute("usernameErrorMessages", usernameErrorMessages);
 			request.setAttribute("passwordErrorMessages", passwordErrorMessages);
 
+			if (username != null)
+			{
+				request.setAttribute("previousUsernameInput", username);
+			}
+
 			request.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(request, response);
 
 			return;
@@ -64,6 +69,9 @@ public class LoginPageController extends HttpServlet
 			}
 
 			request.setAttribute("accountErrorMessage", "Invalid login information");
+
+			request.setAttribute("previousUsernameInput", username);
+			
 			request.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(request, response);
 		}
 		catch (SQLException e)
@@ -102,7 +110,7 @@ public class LoginPageController extends HttpServlet
 	{
 		List<String> messages = new ArrayList<>();
 
-		if (errorSet.contains(StringValidatorError.TOO_SHORT))
+		if (errorSet.contains(StringValidatorError.NULL) || errorSet.contains(StringValidatorError.TOO_SHORT))
 		{
 			messages.add("The username field cannot be empty.");
 		}
@@ -114,7 +122,7 @@ public class LoginPageController extends HttpServlet
 	{
 		List<String> messages = new ArrayList<>();
 
-		if (errorSet.contains(StringValidatorError.TOO_SHORT))
+		if (errorSet.contains(StringValidatorError.NULL) || errorSet.contains(StringValidatorError.TOO_SHORT))
 		{
 			messages.add("The password field cannot be empty.");
 		}
