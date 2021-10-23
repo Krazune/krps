@@ -287,6 +287,12 @@
 	align-self: center;
 }
 
+.registration-form__error
+{
+	font-size: 1.2em;
+	margin: 5px 0;
+}
+
 .password-change-form
 {
 	display: flex;
