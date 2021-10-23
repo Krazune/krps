@@ -74,7 +74,7 @@ public class RegistrationPageController extends HttpServlet
 			int argon2Memory = propertiesLoader.getArgon2Memory();
 			int argon2Parallelism = propertiesLoader.getArgon2Parallelism();
 
-			String passwordHash = UserDAO.getPasswordHash(password, argon2SaltSize, argon2HashSize, argon2Iterators, argon2Memory, argon2Parallelism);
+			String passwordHash = Authentication.getPasswordHash(password, argon2SaltSize, argon2HashSize, argon2Iterators, argon2Memory, argon2Parallelism);
 
 			User newUser = new User(username, passwordHash);
 

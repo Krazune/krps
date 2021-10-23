@@ -61,4 +61,15 @@ public class Authentication
 			session.removeAttribute("sessionUser");
 		}
 	}
+
+	public static String getPasswordHash(String password, int saltSize, int hashSize, int iterations, int memory, int parallelism)
+	{
+		Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id, saltSize, hashSize);
+		char[] passwordCharArray = password.toCharArray();
+		String hash = argon2.hash(iterations, memory, parallelism, passwordCharArray);
+
+		argon2.wipeArray(passwordCharArray);
+
+		return hash;
+	}
 }

@@ -85,7 +85,7 @@ public class SettingsPageController extends HttpServlet
 			int argon2Memory = propertiesLoader.getArgon2Memory();
 			int argon2Parallelism = propertiesLoader.getArgon2Parallelism();
 
-			String newPasswordHash = UserDAO.getPasswordHash(newPassword, argon2SaltSize, argon2HashSize, argon2Iterators, argon2Memory, argon2Parallelism);
+			String newPasswordHash = Authentication.getPasswordHash(newPassword, argon2SaltSize, argon2HashSize, argon2Iterators, argon2Memory, argon2Parallelism);
 
 			sessionUser.setPasswordHash(newPasswordHash);
 
