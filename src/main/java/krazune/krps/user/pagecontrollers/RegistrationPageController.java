@@ -139,7 +139,7 @@ public class RegistrationPageController extends HttpServlet
 	{
 		List<String> messages = new ArrayList<>();
 
-		if (errorSet.contains(StringValidatorError.TOO_SHORT))
+		if (errorSet.contains(StringValidatorError.NULL) || errorSet.contains(StringValidatorError.TOO_SHORT))
 		{
 			messages.add("The username is too short.");
 		}
@@ -160,7 +160,7 @@ public class RegistrationPageController extends HttpServlet
 	{
 		List<String> messages = new ArrayList<>();
 
-		if (errorSet.contains(StringValidatorError.TOO_SHORT))
+		if (errorSet.contains(StringValidatorError.NULL) || errorSet.contains(StringValidatorError.TOO_SHORT))
 		{
 			messages.add("The password is too short.");
 		}
