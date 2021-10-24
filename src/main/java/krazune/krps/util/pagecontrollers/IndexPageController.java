@@ -1,6 +1,7 @@
 package krazune.krps.util.pagecontrollers;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Random;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -68,7 +69,7 @@ public class IndexPageController extends HttpServlet
 
 			setGameResponse(response, newGame);
 		}
-		catch (Exception e)
+		catch (SQLException e)
 		{
 			throw new ServletException(e);
 		}
