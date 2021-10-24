@@ -6,9 +6,9 @@ import java.sql.SQLException;
 
 public class ConnectionFactory
 {
-	private String url;
-	private String user;
-	private String password;
+	private final String url;
+	private final String user;
+	private final String password;
 
 	public ConnectionFactory(String url, String user, String password)
 	{
