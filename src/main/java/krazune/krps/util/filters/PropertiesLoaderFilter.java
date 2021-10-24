@@ -15,7 +15,7 @@ public class PropertiesLoaderFilter implements Filter
 
 	public void init(FilterConfig filterConfig) throws ServletException
 	{
-		propertiesLoader = new PropertiesLoader();
+		propertiesLoader = new PropertiesLoader("krps.properties");
 
 		try
 		{

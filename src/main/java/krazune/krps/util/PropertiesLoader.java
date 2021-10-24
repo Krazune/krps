@@ -7,7 +7,7 @@ import java.util.Properties;
 
 public class PropertiesLoader
 {
-	private final String propertiesPath = "krps.properties";
+	private final String propertiesPath;
 
 	private String jdbcUrl;
 	private String jdbcUser;
@@ -18,6 +18,11 @@ public class PropertiesLoader
 	private int argon2Iterations;
 	private int argon2IMemory;
 	private int argon2Parallelism;
+
+	public PropertiesLoader(String propertiesPath)
+	{
+		this.propertiesPath = propertiesPath;
+	}
 
 	public void load() throws IOException
 	{
