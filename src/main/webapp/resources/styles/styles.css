@@ -293,6 +293,11 @@
 	margin: 5px 0;
 }
 
+.registration-form__input-description
+{
+	margin: 5px 0 10px 0;
+}
+
 .password-change-form
 {
 	display: flex;

@@ -14,12 +14,15 @@
 			<p class="text registration-form__title">Registration</p>
 			<label class="text registration-form__label" for="username">Username:</label>
 			<input class="text input-text" type="text" id="username" name="username" value="${previousUsernameInput}">
+			<p class="text registration-form__input-description">The username must have a minimum of 3 characters, and a maximum of 32 characters. Only letters and numbers are allowed.</p>
 
 			<label class="text registration-form__label" for="password">Password:</label>
 			<input class="text input-text" type="password" id="password" name="password">
+			<p class="text registration-form__input-description">The password must have a minimum of 6 characters, and a maximum of 128 characters.</p>
 
 			<label class="text registration-form__label" for="password-confirmation">Password (confirmation):</label>
 			<input class="text input-text" type="password" id="password-confirmation" name="password-confirmation">
+			<p class="text registration-form__input-description">Both passwords must be equal.</p>
 
 			<c:forEach items="${usernameErrorMessages}" var="errorMessage">
 				<p class="text text--error registration-form__error">${errorMessage}</p>
