@@ -13,7 +13,7 @@
 		<form class="registration-form registration-form--limited-width" action="/registration" method="post">
 			<p class="text registration-form__title">Registration</p>
 			<label class="text registration-form__label" for="username">Username:</label>
-			<input class="text input-text" type="text" id="username" name="username">
+			<input class="text input-text" type="text" id="username" name="username" value="${previousUsernameInput}">
 
 			<label class="text registration-form__label" for="password">Password:</label>
 			<input class="text input-text" type="password" id="password" name="password">

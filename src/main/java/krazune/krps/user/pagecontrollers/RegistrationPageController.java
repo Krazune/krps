@@ -46,6 +46,11 @@ public class RegistrationPageController extends HttpServlet
 			request.setAttribute("passwordErrorMessages", passwordErrorMessages);
 			request.setAttribute("passwordConfirmationErrorMessages", passwordConfirmationErrorMessages);
 
+			if (username != null)
+			{
+				request.setAttribute("previousUsernameInput", username);
+			}
+
 			request.getRequestDispatcher("/WEB-INF/jsp/registration.jsp").forward(request, response);
 
 			return;
@@ -63,6 +68,7 @@ public class RegistrationPageController extends HttpServlet
 
 			if (userDao.findByName(username) != null)
 			{
+				request.setAttribute("previousUsernameInput", username);
 				request.setAttribute("accountErrorMessage", "The username is already in use.");
 				request.getRequestDispatcher("/WEB-INF/jsp/registration.jsp").forward(request, response);
 
