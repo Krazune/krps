@@ -29,10 +29,10 @@
 				<p class="text game__player-title">Computer</p>
 			</div>
 			<c:if test="${sessionScope.sessionUser == null}">
-			<p id="game-description" class="text game__description">Log in, or create an account to play.</p>
+				<p id="game-description" class="text game__description">Log in, or create an account to play.</p>
 			</c:if>
 			<c:if test="${sessionScope.sessionUser != null}">
-			<p id="game-description" class="text game__description">Choose your move, and confirm it.</p>
+				<p id="game-description" class="text game__description">Choose your move, and confirm it.</p>
 			</c:if>
 			<div class="game__choices">
 				<button id="game-rock-choice" class="game__choice-button"><img class="game__choice-image" src="${pageContext.request.contextPath}/resources/images/hand-rock.svg" alt="Choose rock."/></button>
@@ -40,7 +40,7 @@
 				<button id="game-scissors-choice" class="game__choice-button"><img class="game__choice-image" src="${pageContext.request.contextPath}/resources/images/hand-scissors.svg" alt="Choose scissors."/></button>
 			</div>
 			<c:if test="${sessionScope.sessionUser != null}">
-			<button id="game-confirm-button" class="button text game__confirm-button" disabled="true">Confirm</button>
+				<button id="game-confirm-button" class="button text game__confirm-button" disabled="true">Confirm</button>
 			</c:if>
 		</div>
 		<c:if test="${sessionScope.sessionUser == null}">
