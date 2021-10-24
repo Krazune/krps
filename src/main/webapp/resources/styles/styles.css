@@ -150,15 +150,19 @@
 	flex-direction: column;
 }
 
-.game__player-choice-image
+.game__player-choice-image-container
 {
-	width: 80px;
-	height: 80px;
 	padding: 60px;
 	border-radius: 100%;
 	border-style: solid;
 	border-color: #E63C2D;
 	border-width: 6px;
+}
+
+.game__player-choice-image
+{
+	width: 80px;
+	height: 80px;
 }
 
 .game__player-title

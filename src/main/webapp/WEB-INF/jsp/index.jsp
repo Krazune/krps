@@ -16,12 +16,16 @@
 		<%@ include file="/WEB-INF/jspf/header.jspf" %>
 		<div class="game game--limited-width">
 			<div class="game__player-container game__player">
-				<img id="player-choice-image" class="game__player-choice-image" src="${pageContext.request.contextPath}/resources/images/question.svg" alt="Unknown choice."/>
+				<div class="game__player-choice-image-container">
+					<img id="player-choice-image" class="game__player-choice-image" src="${pageContext.request.contextPath}/resources/images/question.svg" alt="Unknown choice."/>
+				</div>
 				<p class="text game__player-title">You</p>
 			</div>
 			<p class="text game__versus-label">VS</p>
 			<div class="game__player-container game__computer">
-				<img id="computer-choice-image" class="game__player-choice-image" src="${pageContext.request.contextPath}/resources/images/question.svg" alt="Unknown choice."/>
+				<div class="game__player-choice-image-container">
+					<img id="computer-choice-image" class="game__player-choice-image" src="${pageContext.request.contextPath}/resources/images/question.svg" alt="Unknown choice."/>
+				</div>
 				<p class="text game__player-title">Computer</p>
 			</div>
 			<c:if test="${sessionScope.sessionUser == null}">
