@@ -80,10 +80,10 @@ public class UserDAO
 
 		try (Connection connection = connectionFactory.createConnection())
 		{
-			String query = "SELECT * FROM users WHERE name = ?";
+			String query = "SELECT * FROM users WHERE LOWER(name) = ?";
 			PreparedStatement selectStatement = connection.prepareStatement(query);
 
-			selectStatement.setString(1, name);
+			selectStatement.setString(1, name.toLowerCase());
 
 			ResultSet result = selectStatement.executeQuery();
 
