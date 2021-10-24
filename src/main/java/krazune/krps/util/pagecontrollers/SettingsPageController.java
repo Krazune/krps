@@ -28,7 +28,6 @@ public class SettingsPageController extends HttpServlet
 			throws ServletException, IOException
 	{
 		String currentPassword = request.getParameter("current-password");
-		Set<StringValidatorError> currentPasswordErrors = validateCurrentPasswordInput(currentPassword);
 
 		String newPassword = request.getParameter("password");
 		Set<StringValidatorError> newPasswordErrors = validateNewPasswordInput(newPassword);
@@ -36,13 +35,11 @@ public class SettingsPageController extends HttpServlet
 		String newPasswordConfirmation = request.getParameter("password-confirmation");
 		Set<StringValidatorError> newPasswordConfirmationErrors = validateNewPasswordConfirmationInput(newPasswordConfirmation, newPassword);
 
-		if (!currentPasswordErrors.isEmpty() || !newPasswordErrors.isEmpty() || !newPasswordConfirmationErrors.isEmpty())
+		if (!newPasswordErrors.isEmpty() || !newPasswordConfirmationErrors.isEmpty())
 		{
-			List<String> currentPasswordErrorMessages = getCurrentPasswordErrorMessages(currentPasswordErrors);
 			List<String> newPasswordErrorMessages = getNewPasswordErrorMessages(newPasswordErrors);
 			List<String> newPasswordConfirmationErrorMessages = getNewPasswordConfirmationErrorMessages(newPasswordConfirmationErrors);
 
-			request.setAttribute("currentPasswordErrorMessages", currentPasswordErrorMessages);
 			request.setAttribute("newPasswordErrorMessages", newPasswordErrorMessages);
 			request.setAttribute("newPasswordConfirmationErrorMessages", newPasswordConfirmationErrorMessages);
 
@@ -57,7 +54,7 @@ public class SettingsPageController extends HttpServlet
 
 			if (!Authentication.validPassword(sessionUser, currentPassword))
 			{
-				request.setAttribute("accountErrorMessage", "Invalid password.");
+				request.setAttribute("accountErrorMessage", "The current password is invalid.");
 				request.getRequestDispatcher("/WEB-INF/jsp/settings.jsp").forward(request, response);
 
 				return;
@@ -91,20 +88,6 @@ public class SettingsPageController extends HttpServlet
 		}
 	}
 
-	private Set<StringValidatorError> validateCurrentPasswordInput(String password)
-	{
-		StringValidator passwordValidator = new StringValidator();
-
-		passwordValidator.setInput(password);
-
-		passwordValidator.setMinimumSize(1);
-		passwordValidator.setMaximumSize(128);
-
-		passwordValidator.validate();
-
-		return passwordValidator.getErrors();
-	}
-
 	private Set<StringValidatorError> validateNewPasswordInput(String password)
 	{
 		StringValidator passwordValidator = new StringValidator();
@@ -125,8 +108,6 @@ public class SettingsPageController extends HttpServlet
 
 		passwordConfirmationValidator.setInput(passwordConfirmation);
 
-		passwordConfirmationValidator.setMinimumSize(6);
-		passwordConfirmationValidator.setMaximumSize(128);
 		passwordConfirmationValidator.setPattern("\\Q" + password + "\\E"); // This is not efficient, but it's not critical.
 
 		passwordConfirmationValidator.validate();
@@ -134,33 +115,17 @@ public class SettingsPageController extends HttpServlet
 		return passwordConfirmationValidator.getErrors();
 	}
 
-	private List<String> getCurrentPasswordErrorMessages(Set<StringValidatorError> errorSet)
-	{
-		List<String> messages = new ArrayList<>();
-
-		if (errorSet.contains(StringValidatorError.TOO_SHORT))
-		{
-			messages.add("Password too short.");
-		}
-		else if (errorSet.contains(StringValidatorError.TOO_LONG))
-		{
-			messages.add("Password too long.");
-		}
-
-		return messages;
-	}
-
 	private List<String> getNewPasswordErrorMessages(Set<StringValidatorError> errorSet)
 	{
 		List<String> messages = new ArrayList<>();
 
-		if (errorSet.contains(StringValidatorError.TOO_SHORT))
+		if (errorSet.contains(StringValidatorError.NULL) || errorSet.contains(StringValidatorError.TOO_SHORT))
 		{
-			messages.add("Password too short.");
+			messages.add("The new password is too short.");
 		}
 		else if (errorSet.contains(StringValidatorError.TOO_LONG))
 		{
-			messages.add("Password too long.");
+			messages.add("The new password is too long.");
 		}
 
 		return messages;
@@ -172,7 +137,7 @@ public class SettingsPageController extends HttpServlet
 
 		if (errorSet.contains(StringValidatorError.NO_PATTERN_MATCH))
 		{
-			messages.add("Passwords aren't equal.");
+			messages.add("The passwords aren't equal.");
 		}
 
 		return messages;

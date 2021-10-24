@@ -20,10 +20,7 @@
 
 			<label class="text registration-form__label" for="password-confirmation">New password (confirmation):</label>
 			<input class="text input-text" type="password" id="password-confirmation" name="password-confirmation">
-
-			<c:forEach items="${currentPasswordErrorMessages}" var="errorMessage">
-				<p>${errorMessage}</p>
-			</c:forEach>
+			
 			<c:forEach items="${newPasswordErrorMessages}" var="errorMessage">
 				<p>${errorMessage}</p>
 			</c:forEach>
