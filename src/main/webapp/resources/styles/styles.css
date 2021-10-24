@@ -333,6 +333,12 @@
 	align-self: center;
 }
 
+.password-change-form__error
+{
+	font-size: 1.2em;
+	margin: 5px 0;
+}
+
 .navigation__list
 {
 	list-style-type: none;
