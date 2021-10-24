@@ -1,6 +1,7 @@
 package krazune.krps.util.pagecontrollers;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -82,7 +83,7 @@ public class SettingsPageController extends HttpServlet
 
 			response.sendRedirect("/");
 		}
-		catch (Exception e)
+		catch (SQLException e)
 		{
 			throw new ServletException(e);
 		}
