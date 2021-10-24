@@ -66,18 +66,7 @@ public class IndexPageController extends HttpServlet
 
 			gameDao.insert(newGame);
 
-			response.setContentType("application/json");
-			response.setCharacterEncoding("utf-8");
-
-			StringBuilder resultJsonString = new StringBuilder("{");
-
-			resultJsonString.append("\"playerChoice\":\"" + newGame.getUserChoice().toString().toLowerCase() + "\",");
-			resultJsonString.append("\"computerChoice\":\"" + newGame.getComputerChoice().toString().toLowerCase() + "\",");
-			resultJsonString.append("\"result\":\"" + newGame.getResult().toString().toLowerCase() + "\"");
-
-			resultJsonString.append("}");
-
-			response.getWriter().print(resultJsonString);
+			setGameResponse(response, newGame);
 		}
 		catch (Exception e)
 		{
@@ -102,5 +91,21 @@ public class IndexPageController extends HttpServlet
 		}
 
 		return GameChoice.UNKNOWN;
+	}
+
+	private void setGameResponse(HttpServletResponse response, Game game) throws IOException
+	{
+		response.setContentType("application/json");
+		response.setCharacterEncoding("utf-8");
+
+		StringBuilder resultJsonString = new StringBuilder("{");
+
+		resultJsonString.append("\"playerChoice\":\"" + game.getUserChoice().toString().toLowerCase() + "\",");
+		resultJsonString.append("\"computerChoice\":\"" + game.getComputerChoice().toString().toLowerCase() + "\",");
+		resultJsonString.append("\"result\":\"" + game.getResult().toString().toLowerCase() + "\"");
+
+		resultJsonString.append("}");
+
+		response.getWriter().print(resultJsonString);
 	}
 }
