@@ -41,44 +41,16 @@ public class IndexPageController extends HttpServlet
 			return;
 		}
 
-		GameChoice playerChoice;
+		GameChoice playerChoice = GameChoice.convertToChoice(gameDecisionString);
 
-		if (gameDecisionString.equalsIgnoreCase("rock"))
-		{
-			playerChoice = GameChoice.ROCK;
-		}
-		else if (gameDecisionString.equalsIgnoreCase("paper"))
-		{
-			playerChoice = GameChoice.PAPER;
-		}
-		else if (gameDecisionString.equalsIgnoreCase("scissors"))
-		{
-			playerChoice = GameChoice.SCISSORS;
-		}
-		else
+		if (playerChoice == GameChoice.UNKNOWN)
 		{
 			response.sendRedirect("/");
 
 			return;
 		}
 
-		int computerChoiceInteger = new Random().nextInt(3);
-		GameChoice computerChoice = GameChoice.UNKNOWN;
-
-		switch (computerChoiceInteger)
-		{
-			case 0:
-			computerChoice = GameChoice.ROCK;
-			break;
-
-			case 1:
-			computerChoice = GameChoice.PAPER;
-			break;
-
-			case 2:
-			computerChoice = GameChoice.SCISSORS;
-			break;
-		}
+		GameChoice computerChoice = getRandomGameChoice();
 
 		try
 		{
@@ -111,5 +83,24 @@ public class IndexPageController extends HttpServlet
 		{
 			throw new ServletException(e);
 		}
+	}
+
+	private GameChoice getRandomGameChoice()
+	{
+		int choiceNumber = new Random().nextInt(3);
+
+		switch (choiceNumber)
+		{
+			case 0:
+			return GameChoice.ROCK;
+
+			case 1:
+			return GameChoice.PAPER;
+
+			case 2:
+			return GameChoice.SCISSORS;
+		}
+
+		return GameChoice.UNKNOWN;
 	}
 }
