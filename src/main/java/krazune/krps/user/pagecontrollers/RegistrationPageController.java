@@ -63,7 +63,7 @@ public class RegistrationPageController extends HttpServlet
 
 			if (userDao.findByName(username) != null)
 			{
-				request.setAttribute("accountErrorMessage", "Username already in use.");
+				request.setAttribute("accountErrorMessage", "The username is already in use.");
 				request.getRequestDispatcher("/WEB-INF/jsp/registration.jsp").forward(request, response);
 
 				return;
@@ -141,16 +141,16 @@ public class RegistrationPageController extends HttpServlet
 
 		if (errorSet.contains(StringValidatorError.TOO_SHORT))
 		{
-			messages.add("Username too short.");
+			messages.add("The username is too short.");
 		}
 		else if (errorSet.contains(StringValidatorError.TOO_LONG))
 		{
-			messages.add("Username too long.");
+			messages.add("The username is too long.");
 		}
 
 		if (errorSet.contains(StringValidatorError.NO_PATTERN_MATCH))
 		{
-			messages.add("Username has invalid characters.");
+			messages.add("The username has invalid characters.");
 		}
 
 		return messages;
@@ -162,11 +162,11 @@ public class RegistrationPageController extends HttpServlet
 
 		if (errorSet.contains(StringValidatorError.TOO_SHORT))
 		{
-			messages.add("Password too short.");
+			messages.add("The password is too short.");
 		}
 		else if (errorSet.contains(StringValidatorError.TOO_LONG))
 		{
-			messages.add("Password too long.");
+			messages.add("The password is too long.");
 		}
 
 		return messages;
@@ -178,7 +178,7 @@ public class RegistrationPageController extends HttpServlet
 
 		if (errorSet.contains(StringValidatorError.NO_PATTERN_MATCH))
 		{
-			messages.add("Passwords aren't equal.");
+			messages.add("The passwords aren't equal.");
 		}
 
 		return messages;
