@@ -99,12 +99,14 @@ public class IndexPageController extends HttpServlet
 		response.setContentType("application/json");
 		response.setCharacterEncoding("utf-8");
 
+		String playerChoiceString = game.getUserChoice().toString().toLowerCase();
+		String computerChoiceString = game.getComputerChoice().toString().toLowerCase();
+
 		StringBuilder resultJsonString = new StringBuilder("{");
 
-		resultJsonString.append("\"playerChoice\":\"" + game.getUserChoice().toString().toLowerCase() + "\",");
-		resultJsonString.append("\"computerChoice\":\"" + game.getComputerChoice().toString().toLowerCase() + "\",");
-		resultJsonString.append("\"result\":\"" + game.getResult().toString().toLowerCase() + "\"");
-
+		resultJsonString.append("\"playerChoice\":\"").append(playerChoiceString).append("\",");
+		resultJsonString.append("\"computerChoice\":\"").append(computerChoiceString).append("\",");
+		resultJsonString.append("\"result\":\"").append(game.getResult().toString().toLowerCase()).append("\"");
 		resultJsonString.append("}");
 
 		response.getWriter().print(resultJsonString);
