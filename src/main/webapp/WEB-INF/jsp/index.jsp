@@ -13,7 +13,7 @@
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/styles/styles.css">
     </head>
     <body class="page">
-		<%@ include file="/WEB-INF/jspf/header.jspf" %>
+		<%@ include file="/WEB-INF/jsp/fragments/header.jsp" %>
 		<div class="game game--limited-width">
 			<div class="game__player-container game__player">
 				<div class="game__player-choice-image-container">

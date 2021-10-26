@@ -9,7 +9,7 @@
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/styles/styles.css">
     </head>
     <body class="page">
-		<%@ include file="/WEB-INF/jspf/header.jspf" %>
+		<%@ include file="/WEB-INF/jsp/fragments/header.jsp" %>
 		<form class="registration-form registration-form--limited-width" action="/registration" method="post">
 			<p class="text registration-form__title">Registration</p>
 			<label class="text registration-form__label" for="username">Username:</label>

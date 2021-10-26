@@ -9,7 +9,7 @@
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/styles/styles.css">
     </head>
     <body class="page">
-		<%@ include file="/WEB-INF/jspf/header.jspf" %>
+		<%@ include file="/WEB-INF/jsp/fragments/header.jsp" %>
 		<p>Global statistics</p>
 		<p>Total games: ${gameCount}</p>
 		<p>Total wins: ${winCount}</p>

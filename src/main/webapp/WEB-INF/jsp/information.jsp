@@ -9,7 +9,7 @@
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/styles/styles.css">
     </head>
     <body class="page">
-		<%@ include file="/WEB-INF/jspf/header.jspf" %>
+		<%@ include file="/WEB-INF/jsp/fragments/header.jsp" %>
 		KRPS - Krazune's Rock Paper Scissors
 		<jsp:include page="${pageContext.request.contextPath}/WEB-INF/jsp/fragments/navigation.jsp">
 			<jsp:param name="home" value="true"/>

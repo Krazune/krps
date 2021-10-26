@@ -9,7 +9,7 @@
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/styles/styles.css">
     </head>
     <body class="page">
-		<%@ include file="/WEB-INF/jspf/header.jspf" %>
+		<%@ include file="/WEB-INF/jsp/fragments/header.jsp" %>
 		<form class="password-change-form password-change-form--limited-width" action="/settings" method="post">
 			<p class="text password-change-form__title">Password settings</p>
 			<label class="text registration-form__label" for="current-password">Current password:</label>
