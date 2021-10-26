@@ -33,17 +33,11 @@
 
 			<input class="text button password-change-form__button" type="submit" value="Change password">
 		</form>
-		<nav class="navigation">
-			<ul class="navigation__list">
-				<li class="navigation__list-item"><a class="text navigation__link" href="/">Home</a></li>
-				<li class="navigation__list-item"><a class="text navigation__link" href="/statistics">Statistics</a></li>
-				<li class="navigation__list-item"><a class="text navigation__link" href="/information">Information</a></li>
-				<li class="navigation__list-item">
-					<form method="post" action="/logoutuser">
-						<input class="text navigation__link" type="submit" value="Log out">
-					</form>
-				</li>
-			</ul>
-		</nav>
+		<jsp:include page="${pageContext.request.contextPath}/WEB-INF/jsp/fragments/navigation.jsp">
+			<jsp:param name="home" value="true"/>
+			<jsp:param name="statistics" value="true"/>
+			<jsp:param name="information" value="true"/>
+			<jsp:param name="logout" value="true"/>
+		</jsp:include>
     </body>
 </html>

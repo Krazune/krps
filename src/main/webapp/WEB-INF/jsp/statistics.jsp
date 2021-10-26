@@ -56,25 +56,13 @@
 				</table>
 			</c:if>
 		</c:if>
-		<nav class="navigation">
-			<ul class="navigation__list">
-				<li class="navigation__list-item"><a class="text navigation__link" href="/">Home</a></li>
-				<c:if test="${sessionScope.sessionUser != null}">
-					<li class="navigation__list-item"><a class="text navigation__link" href="/settings">Settings</a></li>
-					<li class="navigation__list-item"><a class="text navigation__link" href="/information">Information</a></li>
-					<li class="navigation__list-item">
-						<form method="post" action="/logoutuser">
-							<input class="text navigation__link" type="submit" value="Log out">
-						</form>
-					</li>
-				</c:if>
-
-				<c:if test="${sessionScope.sessionUser == null}">
-					<li class="navigation__list-item"><a class="text navigation__link" href="/login">Log in</a></li>
-					<li class="navigation__list-item"><a class="text navigation__link" href="/registration">Register</a></li>
-					<li class="navigation__list-item"><a class="text navigation__link" href="/information">Information</a></li>
-				</c:if>
-			</ul>
-		</nav>
+		<jsp:include page="${pageContext.request.contextPath}/WEB-INF/jsp/fragments/navigation.jsp">
+			<jsp:param name="home" value="true"/>
+			<jsp:param name="settings" value="true"/>
+			<jsp:param name="information" value="true"/>
+			<jsp:param name="login" value="true"/>
+			<jsp:param name="logout" value="true"/>
+			<jsp:param name="registration" value="true"/>
+		</jsp:include>
     </body>
 </html>
