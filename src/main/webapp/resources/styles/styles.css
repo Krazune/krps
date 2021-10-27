@@ -31,7 +31,7 @@
 	padding: 10px;
 }
 
-.header-title
+.header__title
 {
 	text-align: center;
 	font-size: 3.5em;
@@ -40,7 +40,7 @@
 	line-height: 1;
 }
 
-.textheader-subtitle
+.header__subtitle
 {
 	text-align: center;
 	font-size: 1.3em;
