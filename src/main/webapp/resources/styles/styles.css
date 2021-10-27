@@ -17,11 +17,27 @@
 
 .text
 {
+	font-size: 1.2em;
 	font-family: "Dosis", Helvetica, sans-serif;
 	color: #4C4C47;
 }
 
 .text--error
+{
+	color: #E63C2D;
+}
+
+.link
+{
+	font-size: 1em;
+	background-color: transparent;
+	text-decoration: underline;
+	border: none;
+	cursor: pointer;
+	padding: 0;
+}
+
+.link:hover
 {
 	color: #E63C2D;
 }
@@ -279,17 +295,28 @@
 	margin: 5px 10px;
 }
 
-.navigation__link
+.information--limited-width
 {
-	font-size: 1em;
-	background-color: transparent;
-	text-decoration: underline;
-	border: none;
-	cursor: pointer;
-	padding: 0;
+	width: 900px;
+	margin: auto;
+	display: flex;
+	flex-flow: column;
 }
 
-.navigation__link:hover
+.information__title
 {
-	color: #E63C2D;
+	font-size: 1.4em;
+	margin: 15px 0;
+}
+
+.information__p
+{
+	margin: 10px 0;
+}
+
+.hr
+{
+	width: 100%;
+	border-style: none;
+	border-top: 2px solid #E63C2D;
 }
