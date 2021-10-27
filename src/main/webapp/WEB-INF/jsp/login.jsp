@@ -10,25 +10,25 @@
     </head>
     <body class="page">
 		<%@ include file="/WEB-INF/jsp/fragments/header.jsp" %>
-		<form class="login-form login-form--limited-width" action="/login" method="post">
-			<p class="text login-form__title">Login</p>
-			<label class="text login-form__label" for="username">Username:</label>
+		<form class="form form--limited-width" action="/login" method="post">
+			<p class="text form__title">Login</p>
+			<label class="text form__label" for="username">Username:</label>
 			<input class="text input-text" type="text" id="username" name="username" value="${previousUsernameInput}">
 
-			<label class="text login-form__label" for="password">Password:</label>
+			<label class="text form__label" for="password">Password:</label>
 			<input class="text input-text" type="password" id="password" name="password">
 
 			<c:forEach items="${usernameErrorMessages}" var="errorMessage">
-				<p class="text text--error login-form__error">${errorMessage}</p>
+				<p class="text text--error form__error">${errorMessage}</p>
 			</c:forEach>
 			<c:forEach items="${passwordErrorMessages}" var="errorMessage">
-				<p class="text text--error login-form__error">${errorMessage}</p>
+				<p class="text text--error form__error">${errorMessage}</p>
 			</c:forEach>
 			<c:if test="${accountErrorMessage != null}">
-				<p class="text text--error login-form__error">${accountErrorMessage}</p>
+				<p class="text text--error form__error">${accountErrorMessage}</p>
 			</c:if>
 
-			<input class="text button login-form__button" type="submit" value="Log in">
+			<input class="text button form__submit-button" type="submit" value="Log in">
 		</form>
 		<jsp:include page="${pageContext.request.contextPath}/WEB-INF/jsp/fragments/navigation.jsp">
 			<jsp:param name="home" value="true"/>

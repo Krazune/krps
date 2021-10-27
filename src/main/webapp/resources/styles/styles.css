@@ -183,31 +183,31 @@
 	margin: 10px;
 }
 
-.login-form
+.form
 {
 	display: flex;
 	flex-direction: column;
 }
 
-.login-form__title
+.form__title
 {
 	font-size: 2em;
 	margin: 5px 0;
 }
 
-.login-form__label
+.form__label
 {
 	font-size: 1.2em;
 	margin: 10px 0 5px 0;
 }
 
-.login-form--limited-width
+.form--limited-width
 {
 	width: 400px;
 	margin: auto;
 }
 
-.login-form__error
+.form__error
 {
 	font-size: 1.2em;
 	margin: 5px 0;
@@ -221,6 +221,11 @@
 	padding: 5px;
 	background: #E6E6E6;
 	outline: none;
+}
+
+.form__input-description
+{
+	margin: 5px 0 10px 0;
 }
 
 .input-text:focus
@@ -253,90 +258,11 @@
 	background-color: #4C4C47;
 }
 
-.login-form__button
+.form__submit-button
 {
 	width: 200px;
 	margin: 10px;
 	align-self: center;
-}
-
-.registration-form
-{
-	display: flex;
-	flex-direction: column;
-}
-
-.registration-form__title
-{
-	font-size: 2em;
-	margin: 5px 0;
-}
-
-.registration-form__label
-{
-	font-size: 1.2em;
-	margin: 10px 0 5px 0;
-}
-
-.registration-form--limited-width
-{
-	width: 400px;
-	margin: auto;
-}
-
-.registration-form__button
-{
-	width: 200px;
-	margin: 10px;
-	align-self: center;
-}
-
-.registration-form__error
-{
-	font-size: 1.2em;
-	margin: 5px 0;
-}
-
-.registration-form__input-description
-{
-	margin: 5px 0 10px 0;
-}
-
-.password-change-form
-{
-	display: flex;
-	flex-direction: column;
-}
-
-.password-change-form__title
-{
-	font-size: 2em;
-	margin: 5px 0;
-}
-
-.password-change-form__label
-{
-	font-size: 1.2em;
-	margin: 10px 0 5px 0;
-}
-
-.password-change-form--limited-width
-{
-	width: 400px;
-	margin: auto;
-}
-
-.password-change-form__button
-{
-	width: 300px;
-	margin: 10px;
-	align-self: center;
-}
-
-.password-change-form__error
-{
-	font-size: 1.2em;
-	margin: 5px 0;
 }
 
 .navigation__list
