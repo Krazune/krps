@@ -19,7 +19,7 @@ public class GameDAO
 		this.connectionFactory = connectionFactory;
 	}
 
-	public boolean insert(Game game) throws SQLException
+	public void insert(Game game) throws SQLException
 	{
 		try (Connection connection = connectionFactory.createConnection())
 		{
@@ -47,8 +47,6 @@ public class GameDAO
 		{
 			throw e;
 		}
-
-		return false;
 	}
 
 	public Game find(int id) throws SQLException
