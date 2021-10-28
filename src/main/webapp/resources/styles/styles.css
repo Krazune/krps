@@ -399,3 +399,9 @@
 	background-color: #4C4C47;
 	border: none;
 }
+
+.text--exception
+{
+	text-align: center;
+	font-size: 1.5em;
+}
