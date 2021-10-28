@@ -14,13 +14,6 @@ public class ErrorHandler extends HttpServlet
 	{
 		Throwable throwable = (Throwable)request.getAttribute(RequestDispatcher.ERROR_EXCEPTION);
 
-		if (throwable == null)
-		{
-			response.sendRedirect("/");
-
-			return;
-		}
-
 		logError(throwable);
 
 		request.getRequestDispatcher("/WEB-INF/jsp/error.jsp").forward(request, response);
@@ -31,20 +24,18 @@ public class ErrorHandler extends HttpServlet
 	{
 		Throwable throwable = (Throwable)request.getAttribute(RequestDispatcher.ERROR_EXCEPTION);
 
-		if (throwable == null)
-		{
-			response.sendRedirect("/");
-
-			return;
-		}
-
 		logError(throwable);
-		
+
 		request.getRequestDispatcher("/WEB-INF/jsp/error.jsp").forward(request, response);
 	}
 
 	private void logError(Throwable throwable)
 	{
+		if (throwable == null)
+		{
+			return;
+		}
+		
 		getServletContext().log(throwable.toString());
 
 		StackTraceElement[] elements = throwable.getStackTrace();
