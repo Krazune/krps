@@ -1,7 +1,5 @@
 package krazune.krps.user;
 
-import de.mkammerer.argon2.Argon2;
-import de.mkammerer.argon2.Argon2Factory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -82,10 +80,10 @@ public class UserDAO
 
 		try (Connection connection = connectionFactory.createConnection())
 		{
-			String query = "SELECT * FROM users WHERE name = ?";
+			String query = "SELECT * FROM users WHERE LOWER(name) = ?";
 			PreparedStatement selectStatement = connection.prepareStatement(query);
 
-			selectStatement.setString(1, name);
+			selectStatement.setString(1, name.toLowerCase());
 
 			ResultSet result = selectStatement.executeQuery();
 
@@ -106,7 +104,7 @@ public class UserDAO
 		return user;
 	}
 
-	public List<User> findAll() throws Exception
+	public List<User> findAll() throws SQLException
 	{
 		List<User> users = new ArrayList<>();
 
@@ -135,7 +133,7 @@ public class UserDAO
 		return users;
 	}
 
-	public boolean update(User user) throws Exception
+	public boolean update(User user) throws SQLException
 	{
 		try (Connection connection = connectionFactory.createConnection())
 		{
@@ -161,7 +159,7 @@ public class UserDAO
 		return true;
 	}
 
-	public boolean delete(User user) throws Exception
+	public boolean delete(User user) throws SQLException
 	{
 		try (Connection connection = connectionFactory.createConnection())
 		{
@@ -183,39 +181,5 @@ public class UserDAO
 		}
 
 		return true;
-	}
-
-	public User findByLoginInformation(String name, String password) throws SQLException
-	{
-		User user = findByName(name);
-
-		if (user == null)
-		{
-			return null;
-		}
-
-		Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
-		char[] passwordArray = password.toCharArray();
-		boolean validInformation = argon2.verify(user.getPasswordHash(), passwordArray);
-
-		argon2.wipeArray(passwordArray);
-
-		if (!validInformation)
-		{
-			return null;
-		}
-
-		return user;
-	}
-
-	public static String getPasswordHash(String password, int saltSize, int hashSize, int iterations, int memory, int parallelism)
-	{
-		Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id, saltSize, hashSize);
-		char[] passwordCharArray = password.toCharArray();
-		String hash = argon2.hash(iterations, memory, parallelism, passwordCharArray);
-
-		argon2.wipeArray(passwordCharArray);
-
-		return hash;
 	}
 }

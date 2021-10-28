@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -9,72 +10,94 @@
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/styles/styles.css">
     </head>
     <body class="page">
-		<%@ include file="/WEB-INF/jspf/header.jspf" %>
-		<p>Global statistics</p>
-		<p>Total games: ${totalGameCount}</p>
-		<p>Total wins: ${totalWinCount}</p>
-		<p>Total losses: ${totalLossCount}</p>
-		<p>Total draws: ${totalDrawCount}</p>
-		<p>Rock chosen: ${playerRockCount}</p>
-		<p>Paper chosen: ${playerPaperCount}</p>
-		<p>Scissors chosen: ${playerScissorsCount}</p>
+		<%@ include file="/WEB-INF/jsp/fragments/header.jsp" %>
+		<div class="statistics statistics--limited-width">
+			<h2 class="text statistics__title">Global statistics</h2>
+			<table class="table table--no-decorations">
+				<tr>
+					<th class="text text--left-align">Games</th>
+					<th class="text text--left-align">Wins</th>
+					<th class="text text--left-align">Losses</th>
+					<th class="text text--left-align">Draws</th>
+					<th class="text text--left-align">Rock</th>
+					<th class="text text--left-align">Paper</th>
+					<th class="text text--left-align">Scissors</th>
+				</tr>
+				<tr>
+					<td class="text">${gameCount}</td>
+					<td class="text">${winCount}</td>
+					<td class="text">${lossCount}</td>
+					<td class="text">${drawCount}</td>
+					<td class="text">${userChoiceRockCount}</td>
+					<td class="text">${userChoicePaperCount}</td>
+					<td class="text">${userChoiceScissorsCount}</td>
+				</tr>
+			</table>
 
-		<c:if test="${sessionScope.sessionUser != null}">
-			<p>${sessionScope.sessionUser.getName()}'s statistics</p>
-			<p>Total games: ${userGameCount}</p>
-			<p>Total wins: ${userWinCount}</p>
-			<p>Total losses: ${userLossCount}</p>
-			<p>Total draws: ${userDrawCount}</p>
-			<p>Rock chosen: ${userRockCount}</p>
-			<p>Paper chosen: ${userPaperCount}</p>
-			<p>Scissors chosen: ${playerScissorsCount}</p>
-			<c:if test="${lastGames != null}">
-				Last games
-				<table>
+			<c:if test="${sessionScope.sessionUser != null}">
+				<hr class="hr">
+
+				<h2 class="text statistics__title">${sessionScope.sessionUser.getName()}'s statistics</h2>
+
+				<table class="table table--no-decorations">
 					<tr>
-						<th>Player choice</th>
-						<th>Computer choice</th>
-						<th>Result</th>
-						<th>Date</th>
+						<th class="text text--left-align">Games</th>
+						<th class="text text--left-align">Wins</th>
+						<th class="text text--left-align">Losses</th>
+						<th class="text text--left-align">Draws</th>
+						<th class="text text--left-align">Rock</th>
+						<th class="text text--left-align">Paper</th>
+						<th class="text text--left-align">Scissosrs</th>
 					</tr>
-					<c:if test="${lastGames.size() == 0}">
-						<tr>
-							<td>-</td>
-							<td>-</td>
-							<td>-</td>
-							<td>-</td>
-						</tr>
-					</c:if>
-					<c:forEach items="${lastGames}" var="game">
-						<tr>
-							<td>${game.getUserChoice()}</td>
-							<td>${game.getComputerChoice()}</td>
-							<td>${game.getResult()}</td>
-							<td>${game.getCreationDate()}</td>
-						</tr>
-					</c:forEach>
+					<tr>
+						<td class="text">${sessionUserGameCount}</td>
+						<td class="text">${sessionUserWinCount}</td>
+						<td class="text">${sessionUserLossCount}</td>
+						<td class="text">${sessionUserDrawCount}</td>
+						<td class="text">${sessionUserRockCount}</td>
+						<td class="text">${sessionUserPaperCount}</td>
+						<td class="text">${sessionUserScissorsCount}</td>
+					</tr>
 				</table>
-			</c:if>
-		</c:if>
-		<nav class="navigation">
-			<ul class="navigation__list">
-				<li class="navigation__list-item"><a class="text navigation__link" href="/">Home</a></li>
-				<c:if test="${sessionScope.sessionUser != null}">
-					<li class="navigation__list-item"><a class="text navigation__link" href="/settings">Settings</a></li>
-					<li class="navigation__list-item"><a class="text navigation__link" href="/information">Information</a></li>
-					<li class="navigation__list-item">
-						<form method="post" action="/logoutuser">
-							<input class="text navigation__link" type="submit" value="Log out">
-						</form>
-					</li>
-				</c:if>
 
-				<c:if test="${sessionScope.sessionUser == null}">
-					<li class="navigation__list-item"><a class="text navigation__link" href="/login">Log in</a></li>
-					<li class="navigation__list-item"><a class="text navigation__link" href="/registration">Register</a></li>
-					<li class="navigation__list-item"><a class="text navigation__link" href="/information">Information</a></li>
+				<hr class="hr">
+
+				<c:if test="${lastGames != null}">
+					<h2 class="text statistics__title">${sessionScope.sessionUser.getName()}'s most recent game(s)</h2>
+					<table class="table">
+						<tr class="table__row table__row--header">
+							<th class="text table__data table__header">Player choice</th>
+							<th class="text table__data table__header">Computer choice</th>
+							<th class="text table__data table__header">Result</th>
+							<th class="text table__data table__header">Date</th>
+						</tr>
+						<c:if test="${lastGames.size() == 0}">
+							<tr class="table__row">
+								<td class="text table__data">-</td>
+								<td class="text table__data">-</td>
+								<td class="text table__data">-</td>
+								<td class="text table__data">-</td>
+							</tr>
+						</c:if>
+						<c:forEach items="${lastGames}" var="game">
+							<tr class="table__row">
+								<td class="text table__data">${game.getUserChoice()}</td>
+								<td class="text table__data">${game.getComputerChoice()}</td>
+								<td class="text table__data">${game.getResult()}</td>
+								<td class="text text--right-align table__data"><fmt:formatDate pattern="dd-MM-yyyy HH:mm" value="${game.getCreationDate()}"/></td>
+							</tr>
+						</c:forEach>
+					</table>
 				</c:if>
-			</ul>
-		</nav>
+			</c:if>
+		</div>
+		<jsp:include page="${pageContext.request.contextPath}/WEB-INF/jsp/fragments/navigation.jsp">
+			<jsp:param name="home" value="true"/>
+			<jsp:param name="settings" value="true"/>
+			<jsp:param name="information" value="true"/>
+			<jsp:param name="login" value="true"/>
+			<jsp:param name="logout" value="true"/>
+			<jsp:param name="registration" value="true"/>
+		</jsp:include>
     </body>
 </html>

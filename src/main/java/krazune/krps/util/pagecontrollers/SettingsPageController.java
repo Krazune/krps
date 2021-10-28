@@ -1,8 +1,7 @@
 package krazune.krps.util.pagecontrollers;
 
-import de.mkammerer.argon2.Argon2;
-import de.mkammerer.argon2.Argon2Factory;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -10,7 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import krazune.krps.user.Authentication;
 import krazune.krps.user.User;
 import krazune.krps.user.UserDAO;
 import krazune.krps.util.ConnectionFactory;
@@ -30,7 +29,6 @@ public class SettingsPageController extends HttpServlet
 			throws ServletException, IOException
 	{
 		String currentPassword = request.getParameter("current-password");
-		Set<StringValidatorError> currentPasswordErrors = validateCurrentPasswordInput(currentPassword);
 
 		String newPassword = request.getParameter("password");
 		Set<StringValidatorError> newPasswordErrors = validateNewPasswordInput(newPassword);
@@ -38,13 +36,11 @@ public class SettingsPageController extends HttpServlet
 		String newPasswordConfirmation = request.getParameter("password-confirmation");
 		Set<StringValidatorError> newPasswordConfirmationErrors = validateNewPasswordConfirmationInput(newPasswordConfirmation, newPassword);
 
-		if (!currentPasswordErrors.isEmpty() || !newPasswordErrors.isEmpty() || !newPasswordConfirmationErrors.isEmpty())
+		if (!newPasswordErrors.isEmpty() || !newPasswordConfirmationErrors.isEmpty())
 		{
-			List<String> currentPasswordErrorMessages = getCurrentPasswordErrorMessages(currentPasswordErrors);
 			List<String> newPasswordErrorMessages = getNewPasswordErrorMessages(newPasswordErrors);
 			List<String> newPasswordConfirmationErrorMessages = getNewPasswordConfirmationErrorMessages(newPasswordConfirmationErrors);
 
-			request.setAttribute("currentPasswordErrorMessages", currentPasswordErrorMessages);
 			request.setAttribute("newPasswordErrorMessages", newPasswordErrorMessages);
 			request.setAttribute("newPasswordConfirmationErrorMessages", newPasswordConfirmationErrorMessages);
 
@@ -53,31 +49,22 @@ public class SettingsPageController extends HttpServlet
 			return;
 		}
 
-		HttpSession session = request.getSession(true);
-		User sessionUser = (User)session.getAttribute("sessionUser");
-
 		try
 		{
-			PropertiesLoader propertiesLoader = (PropertiesLoader)request.getAttribute("propertiesLoader");
-			String jdbcUrl = propertiesLoader.getJdbcUrl();
-			String jdbcUsername = propertiesLoader.getJdbcUser();
-			String jdbcPassword = propertiesLoader.getJdbcPassword();
+			User sessionUser = Authentication.getSessionUser(request);
 
-			ConnectionFactory connectionFactory = new ConnectionFactory(jdbcUrl, jdbcUsername, jdbcPassword);
-
-			Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
-			char[] currentPasswordArray = currentPassword.toCharArray();
-			boolean correctPassword = argon2.verify(sessionUser.getPasswordHash(), currentPasswordArray);
-
-			argon2.wipeArray(currentPasswordArray);
-
-			if (!correctPassword)
+			if (!Authentication.validPassword(sessionUser, currentPassword))
 			{
-				request.setAttribute("accountErrorMessage", "Invalid password.");
+				request.setAttribute("accountErrorMessage", "The current password is invalid.");
 				request.getRequestDispatcher("/WEB-INF/jsp/settings.jsp").forward(request, response);
 
 				return;
 			}
+
+			PropertiesLoader propertiesLoader = (PropertiesLoader)request.getAttribute("propertiesLoader");
+			String jdbcUrl = propertiesLoader.getJdbcUrl();
+			String jdbcUsername = propertiesLoader.getJdbcUser();
+			String jdbcPassword = propertiesLoader.getJdbcPassword();
 
 			int argon2SaltSize = propertiesLoader.getArgon2SaltSize();
 			int argon2HashSize = propertiesLoader.getArgon2HashSize();
@@ -85,34 +72,21 @@ public class SettingsPageController extends HttpServlet
 			int argon2Memory = propertiesLoader.getArgon2Memory();
 			int argon2Parallelism = propertiesLoader.getArgon2Parallelism();
 
-			String newPasswordHash = UserDAO.getPasswordHash(newPassword, argon2SaltSize, argon2HashSize, argon2Iterators, argon2Memory, argon2Parallelism);
+			String newPasswordHash = Authentication.getPasswordHash(newPassword, argon2SaltSize, argon2HashSize, argon2Iterators, argon2Memory, argon2Parallelism);
 
 			sessionUser.setPasswordHash(newPasswordHash);
 
+			ConnectionFactory connectionFactory = new ConnectionFactory(jdbcUrl, jdbcUsername, jdbcPassword);
 			UserDAO userDao = new UserDAO(connectionFactory);
 
 			userDao.update(sessionUser);
 
 			response.sendRedirect("/");
 		}
-		catch (Exception e)
+		catch (SQLException e)
 		{
 			throw new ServletException(e);
 		}
-	}
-
-	private Set<StringValidatorError> validateCurrentPasswordInput(String password)
-	{
-		StringValidator passwordValidator = new StringValidator();
-
-		passwordValidator.setInput(password);
-
-		passwordValidator.setMinimumSize(1);
-		passwordValidator.setMaximumSize(128);
-
-		passwordValidator.validate();
-
-		return passwordValidator.getErrors();
 	}
 
 	private Set<StringValidatorError> validateNewPasswordInput(String password)
@@ -135,8 +109,6 @@ public class SettingsPageController extends HttpServlet
 
 		passwordConfirmationValidator.setInput(passwordConfirmation);
 
-		passwordConfirmationValidator.setMinimumSize(6);
-		passwordConfirmationValidator.setMaximumSize(128);
 		passwordConfirmationValidator.setPattern("\\Q" + password + "\\E"); // This is not efficient, but it's not critical.
 
 		passwordConfirmationValidator.validate();
@@ -144,33 +116,17 @@ public class SettingsPageController extends HttpServlet
 		return passwordConfirmationValidator.getErrors();
 	}
 
-	private List<String> getCurrentPasswordErrorMessages(Set<StringValidatorError> errorSet)
-	{
-		List<String> messages = new ArrayList<>();
-
-		if (errorSet.contains(StringValidatorError.TOO_SHORT))
-		{
-			messages.add("Password too short.");
-		}
-		else if (errorSet.contains(StringValidatorError.TOO_LONG))
-		{
-			messages.add("Password too long.");
-		}
-
-		return messages;
-	}
-
 	private List<String> getNewPasswordErrorMessages(Set<StringValidatorError> errorSet)
 	{
 		List<String> messages = new ArrayList<>();
 
-		if (errorSet.contains(StringValidatorError.TOO_SHORT))
+		if (errorSet.contains(StringValidatorError.NULL) || errorSet.contains(StringValidatorError.TOO_SHORT))
 		{
-			messages.add("Password too short.");
+			messages.add("The new password is too short.");
 		}
 		else if (errorSet.contains(StringValidatorError.TOO_LONG))
 		{
-			messages.add("Password too long.");
+			messages.add("The new password is too long.");
 		}
 
 		return messages;
@@ -182,7 +138,7 @@ public class SettingsPageController extends HttpServlet
 
 		if (errorSet.contains(StringValidatorError.NO_PATTERN_MATCH))
 		{
-			messages.add("Passwords aren't equal.");
+			messages.add("The passwords aren't equal.");
 		}
 
 		return messages;

@@ -71,7 +71,7 @@
 				gameManagerThis._playRequestStateChangeHandler(httpRequest);
 			};
 
-			httpRequest.open("POST", "/playgame");
+			httpRequest.open("POST", "/");
 			httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 			httpRequest.send("decision=" + this._playerChoice);
 

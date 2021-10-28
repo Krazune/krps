@@ -1,6 +1,7 @@
 package krazune.krps.user.pagecontrollers;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -8,7 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import krazune.krps.user.Authentication;
 import krazune.krps.user.User;
 import krazune.krps.user.UserDAO;
 import krazune.krps.util.ConnectionFactory;
@@ -45,6 +46,11 @@ public class RegistrationPageController extends HttpServlet
 			request.setAttribute("passwordErrorMessages", passwordErrorMessages);
 			request.setAttribute("passwordConfirmationErrorMessages", passwordConfirmationErrorMessages);
 
+			if (username != null)
+			{
+				request.setAttribute("previousUsernameInput", username);
+			}
+
 			request.getRequestDispatcher("/WEB-INF/jsp/registration.jsp").forward(request, response);
 
 			return;
@@ -62,7 +68,8 @@ public class RegistrationPageController extends HttpServlet
 
 			if (userDao.findByName(username) != null)
 			{
-				request.setAttribute("accountErrorMessage", "Username already in use.");
+				request.setAttribute("previousUsernameInput", username);
+				request.setAttribute("accountErrorMessage", "The username is already in use.");
 				request.getRequestDispatcher("/WEB-INF/jsp/registration.jsp").forward(request, response);
 
 				return;
@@ -74,19 +81,17 @@ public class RegistrationPageController extends HttpServlet
 			int argon2Memory = propertiesLoader.getArgon2Memory();
 			int argon2Parallelism = propertiesLoader.getArgon2Parallelism();
 
-			String passwordHash = UserDAO.getPasswordHash(password, argon2SaltSize, argon2HashSize, argon2Iterators, argon2Memory, argon2Parallelism);
+			String passwordHash = Authentication.getPasswordHash(password, argon2SaltSize, argon2HashSize, argon2Iterators, argon2Memory, argon2Parallelism);
 
 			User newUser = new User(username, passwordHash);
 
 			userDao.insert(newUser);
 
-			HttpSession session = request.getSession(true);
-
-			session.setAttribute("sessionUser", newUser);
+			Authentication.createUserSession(request, newUser);
 
 			response.sendRedirect("/");
 		}
-		catch (Exception e)
+		catch (SQLException e)
 		{
 			throw new ServletException(e);
 		}
@@ -140,18 +145,18 @@ public class RegistrationPageController extends HttpServlet
 	{
 		List<String> messages = new ArrayList<>();
 
-		if (errorSet.contains(StringValidatorError.TOO_SHORT))
+		if (errorSet.contains(StringValidatorError.NULL) || errorSet.contains(StringValidatorError.TOO_SHORT))
 		{
-			messages.add("Username too short.");
+			messages.add("The username is too short.");
 		}
 		else if (errorSet.contains(StringValidatorError.TOO_LONG))
 		{
-			messages.add("Username too long.");
+			messages.add("The username is too long.");
 		}
 
 		if (errorSet.contains(StringValidatorError.NO_PATTERN_MATCH))
 		{
-			messages.add("Username has invalid characters.");
+			messages.add("The username has invalid characters.");
 		}
 
 		return messages;
@@ -161,13 +166,13 @@ public class RegistrationPageController extends HttpServlet
 	{
 		List<String> messages = new ArrayList<>();
 
-		if (errorSet.contains(StringValidatorError.TOO_SHORT))
+		if (errorSet.contains(StringValidatorError.NULL) || errorSet.contains(StringValidatorError.TOO_SHORT))
 		{
-			messages.add("Password too short.");
+			messages.add("The password is too short.");
 		}
 		else if (errorSet.contains(StringValidatorError.TOO_LONG))
 		{
-			messages.add("Password too long.");
+			messages.add("The password is too long.");
 		}
 
 		return messages;
@@ -179,7 +184,7 @@ public class RegistrationPageController extends HttpServlet
 
 		if (errorSet.contains(StringValidatorError.NO_PATTERN_MATCH))
 		{
-			messages.add("Passwords aren't equal.");
+			messages.add("The passwords aren't equal.");
 		}
 
 		return messages;

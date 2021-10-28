@@ -17,8 +17,29 @@
 
 .text
 {
+	font-size: 1.2em;
 	font-family: "Dosis", Helvetica, sans-serif;
 	color: #4C4C47;
+}
+
+.text--error
+{
+	color: #E63C2D;
+}
+
+.link
+{
+	font-size: 1em;
+	background-color: transparent;
+	text-decoration: underline;
+	border: none;
+	cursor: pointer;
+	padding: 0;
+}
+
+.link:hover
+{
+	color: #E63C2D;
 }
 
 .header
@@ -26,7 +47,7 @@
 	padding: 10px;
 }
 
-.header-title
+.header__title
 {
 	text-align: center;
 	font-size: 3.5em;
@@ -35,7 +56,7 @@
 	line-height: 1;
 }
 
-.textheader-subtitle
+.header__subtitle
 {
 	text-align: center;
 	font-size: 1.3em;
@@ -57,7 +78,7 @@
 
 .game--limited-width
 {
-	width: 550px;
+	width: 700px;
 	margin: 5px auto;
 }
 
@@ -145,15 +166,19 @@
 	flex-direction: column;
 }
 
-.game__player-choice-image
+.game__player-choice-image-container
 {
-	width: 80px;
-	height: 80px;
 	padding: 60px;
 	border-radius: 100%;
 	border-style: solid;
 	border-color: #E63C2D;
 	border-width: 6px;
+}
+
+.game__player-choice-image
+{
+	width: 80px;
+	height: 80px;
 }
 
 .game__player-title
@@ -174,28 +199,34 @@
 	margin: 10px;
 }
 
-.login-form
+.form
 {
 	display: flex;
 	flex-direction: column;
 }
 
-.login-form__title
+.form__title
 {
 	font-size: 2em;
 	margin: 5px 0;
 }
 
-.login-form__label
+.form__label
 {
 	font-size: 1.2em;
 	margin: 10px 0 5px 0;
 }
 
-.login-form--limited-width
+.form--limited-width
 {
 	width: 400px;
 	margin: auto;
+}
+
+.form__error
+{
+	font-size: 1.2em;
+	margin: 5px 0;
 }
 
 .input-text
@@ -206,6 +237,11 @@
 	padding: 5px;
 	background: #E6E6E6;
 	outline: none;
+}
+
+.form__input-description
+{
+	margin: 5px 0 10px 0;
 }
 
 .input-text:focus
@@ -238,71 +274,9 @@
 	background-color: #4C4C47;
 }
 
-.login-form__button
+.form__submit-button
 {
 	width: 200px;
-	margin: 10px;
-	align-self: center;
-}
-
-.registration-form
-{
-	display: flex;
-	flex-direction: column;
-}
-
-.registration-form__title
-{
-	font-size: 2em;
-	margin: 5px 0;
-}
-
-.registration-form__label
-{
-	font-size: 1.2em;
-	margin: 10px 0 5px 0;
-}
-
-.registration-form--limited-width
-{
-	width: 400px;
-	margin: auto;
-}
-
-.registration-form__button
-{
-	width: 200px;
-	margin: 10px;
-	align-self: center;
-}
-
-.password-change-form
-{
-	display: flex;
-	flex-direction: column;
-}
-
-.password-change-form__title
-{
-	font-size: 2em;
-	margin: 5px 0;
-}
-
-.password-change-form__label
-{
-	font-size: 1.2em;
-	margin: 10px 0 5px 0;
-}
-
-.password-change-form--limited-width
-{
-	width: 400px;
-	margin: auto;
-}
-
-.password-change-form__button
-{
-	width: 300px;
 	margin: 10px;
 	align-self: center;
 }
@@ -321,17 +295,107 @@
 	margin: 5px 10px;
 }
 
-.navigation__link
+.information--limited-width
 {
-	font-size: 1em;
-	background-color: transparent;
-	text-decoration: underline;
-	border: none;
-	cursor: pointer;
-	padding: 0;
+	width: 900px;
+	margin: auto;
+	display: flex;
+	flex-flow: column;
 }
 
-.navigation__link:hover
+.information__title
 {
-	color: #E63C2D;
+	font-size: 1.4em;
+	margin: 15px 0;
+}
+
+.information__p
+{
+	margin: 10px 0;
+}
+
+.hr
+{
+	width: 100%;
+	border-style: none;
+	border-top: 2px solid #E63C2D;
+}
+
+.statistics
+{
+	display: flex;
+	flex-flow: column;
+}
+
+.statistics--limited-width
+{
+	width: 900px;
+	margin: auto;
+}
+
+.statistics__title
+{
+	font-size: 1.4em;
+	margin: 15px 0;
+}
+
+.statistics__p
+{
+	margin: 10px 0;
+}
+
+.table
+{
+	border-collapse: collapse;
+}
+
+.table--no-decorations
+{
+	border: none;
+}
+
+.table__header
+{
+	text-align: left;
+	color: #E6E6E6;
+	font-size: 1.3em;
+}
+
+.table__data
+{
+	padding: 5px;
+	border: none;
+	border-right: #4C4C47 1px solid;
+}
+
+.table__data:last-child
+{
+	border: none;
+}
+
+.text--right-align
+{
+	text-align: right;
+}
+
+.text--left-align
+{
+	text-align: left;
+}
+
+.table__row
+{
+	border: none;
+	border-bottom: #4C4C47 1px solid;
+}
+
+.table__row:last-child
+{
+	border: none;
+}
+
+.table__row--header
+{
+	background-color: #4C4C47;
+	border: none;
 }

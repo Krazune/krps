@@ -9,44 +9,37 @@
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/styles/styles.css">
     </head>
     <body class="page">
-		<%@ include file="/WEB-INF/jspf/header.jspf" %>
-		<form class="password-change-form password-change-form--limited-width" action="/settings" method="post">
-			<p class="text password-change-form__title">Password settings</p>
-			<label class="text registration-form__label" for="current-password">Current password:</label>
+		<%@ include file="/WEB-INF/jsp/fragments/header.jsp" %>
+		<form class="form form--limited-width" action="/settings" method="post">
+			<p class="text form__title">Password settings</p>
+			<label class="text form__label" for="current-password">Current password:</label>
 			<input class="text input-text" type="password" id="current-password" name="current-password">
 
-			<label class="text registration-form__label" for="password">New password:</label>
+			<label class="text form__label" for="password">New password:</label>
 			<input class="text input-text" type="password" id="password" name="password">
+			<p class="text form__input-description">The password must have a minimum of 6 characters, and a maximum of 128 characters.</p>
 
-			<label class="text registration-form__label" for="password-confirmation">New password (confirmation):</label>
+			<label class="text form__label" for="password-confirmation">New password (confirmation):</label>
 			<input class="text input-text" type="password" id="password-confirmation" name="password-confirmation">
+			<p class="text form__input-description">Both passwords must be equal.</p>
 
-			<c:forEach items="${currentPasswordErrorMessages}" var="errorMessage">
-				<p>${errorMessage}</p>
-			</c:forEach>
 			<c:forEach items="${newPasswordErrorMessages}" var="errorMessage">
-				<p>${errorMessage}</p>
+				<p class="text text--error form__error">${errorMessage}</p>
 			</c:forEach>
 			<c:forEach items="${newPasswordConfirmationErrorMessages}" var="errorMessage">
-				<p>${errorMessage}</p>
+				<p class="text text--error form__error">${errorMessage}</p>
 			</c:forEach>
 			<c:if test="${accountErrorMessage != null}">
-				<p>${accountErrorMessage}</p>
+				<p class="text text--error form__error">${accountErrorMessage}</p>
 			</c:if>
 
-			<input class="text button password-change-form__button" type="submit" value="Change password">
+			<input class="text button form__submit-button" type="submit" value="Confirm">
 		</form>
-		<nav class="navigation">
-			<ul class="navigation__list">
-				<li class="navigation__list-item"><a class="text navigation__link" href="/">Home</a></li>
-				<li class="navigation__list-item"><a class="text navigation__link" href="/statistics">Statistics</a></li>
-				<li class="navigation__list-item"><a class="text navigation__link" href="/information">Information</a></li>
-				<li class="navigation__list-item">
-					<form method="post" action="/logoutuser">
-						<input class="text navigation__link" type="submit" value="Log out">
-					</form>
-				</li>
-			</ul>
-		</nav>
+		<jsp:include page="${pageContext.request.contextPath}/WEB-INF/jsp/fragments/navigation.jsp">
+			<jsp:param name="home" value="true"/>
+			<jsp:param name="statistics" value="true"/>
+			<jsp:param name="information" value="true"/>
+			<jsp:param name="logout" value="true"/>
+		</jsp:include>
     </body>
 </html>

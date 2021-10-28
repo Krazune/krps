@@ -1,6 +1,7 @@
 package krazune.krps.user.pagecontrollers;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -8,9 +9,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import krazune.krps.user.Authentication;
 import krazune.krps.user.User;
-import krazune.krps.user.UserDAO;
 import krazune.krps.util.ConnectionFactory;
 import krazune.krps.util.PropertiesLoader;
 import krazune.krps.util.validators.StringValidator;
@@ -41,6 +41,11 @@ public class LoginPageController extends HttpServlet
 			request.setAttribute("usernameErrorMessages", usernameErrorMessages);
 			request.setAttribute("passwordErrorMessages", passwordErrorMessages);
 
+			if (username != null)
+			{
+				request.setAttribute("previousUsernameInput", username);
+			}
+
 			request.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(request, response);
 
 			return;
@@ -54,24 +59,22 @@ public class LoginPageController extends HttpServlet
 			String jdbcPassword = propertiesLoader.getJdbcPassword();
 
 			ConnectionFactory connectionFactory = new ConnectionFactory(jdbcUrl, jdbcUsername, jdbcPassword);
-			UserDAO userDao = new UserDAO(connectionFactory);
-			User loginUser = userDao.findByLoginInformation(username, password);
+			User loginUser = Authentication.logIn(request, connectionFactory, username, password);
 
 			if (loginUser != null)
 			{
-				HttpSession session = request.getSession(true);
-
-				session.setAttribute("sessionUser", loginUser);
-
 				response.sendRedirect("/");
+
+				return;
 			}
-			else
-			{
-				request.setAttribute("accountErrorMessage", "Invalid password.");
-				request.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(request, response);
-			}
+
+			request.setAttribute("accountErrorMessage", "Invalid login information.");
+
+			request.setAttribute("previousUsernameInput", username);
+
+			request.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(request, response);
 		}
-		catch (Exception e)
+		catch (SQLException e)
 		{
 			throw new ServletException(e);
 		}
@@ -84,7 +87,6 @@ public class LoginPageController extends HttpServlet
 		usernameValidator.setInput(username);
 
 		usernameValidator.setMinimumSize(1);
-		usernameValidator.setMaximumSize(32);
 
 		usernameValidator.validate();
 
@@ -98,7 +100,6 @@ public class LoginPageController extends HttpServlet
 		passwordValidator.setInput(password);
 
 		passwordValidator.setMinimumSize(1);
-		passwordValidator.setMaximumSize(128);
 
 		passwordValidator.validate();
 
@@ -109,13 +110,9 @@ public class LoginPageController extends HttpServlet
 	{
 		List<String> messages = new ArrayList<>();
 
-		if (errorSet.contains(StringValidatorError.TOO_SHORT))
+		if (errorSet.contains(StringValidatorError.NULL) || errorSet.contains(StringValidatorError.TOO_SHORT))
 		{
-			messages.add("Username too short.");
-		}
-		else if (errorSet.contains(StringValidatorError.TOO_LONG))
-		{
-			messages.add("Username too long.");
+			messages.add("The username field cannot be empty.");
 		}
 
 		return messages;
@@ -125,13 +122,9 @@ public class LoginPageController extends HttpServlet
 	{
 		List<String> messages = new ArrayList<>();
 
-		if (errorSet.contains(StringValidatorError.TOO_SHORT))
+		if (errorSet.contains(StringValidatorError.NULL) || errorSet.contains(StringValidatorError.TOO_SHORT))
 		{
-			messages.add("Password too short.");
-		}
-		else if (errorSet.contains(StringValidatorError.TOO_LONG))
-		{
-			messages.add("Password too long.");
+			messages.add("The password field cannot be empty.");
 		}
 
 		return messages;

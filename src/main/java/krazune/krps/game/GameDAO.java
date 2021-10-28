@@ -25,6 +25,7 @@ public class GameDAO
 		{
 			String query = "INSERT INTO games (user_id, user_choice, result) VALUES (?, ?, ?) RETURNING id, creation_date";
 			PreparedStatement selectStatement = connection.prepareStatement(query);
+
 			char userChoice = GameChoice.convertToChar(game.getUserChoice());
 			char gameResult = GameResult.convertToChar(game.getResult());
 
@@ -42,7 +43,7 @@ public class GameDAO
 			game.setId(id);
 			game.setCreationDate(creationDate);
 		}
-		catch (Exception e)
+		catch (SQLException e)
 		{
 			throw e;
 		}
@@ -73,16 +74,18 @@ public class GameDAO
 				User user = new User(userId, name, passwordHash, userCreationDate);
 
 				char userChoiceCharacter = result.getString("user_choice").charAt(0);
-				GameChoice userChoice = GameChoice.convertToChoice(userChoiceCharacter);
 				char gameResultCharacter = result.getString("result").charAt(0);
+
+				GameChoice userChoice = GameChoice.convertToChoice(userChoiceCharacter);
 				GameResult gameResult = GameResult.convertToGameResult(gameResultCharacter);
-				GameChoice cpuChoice = Game.getChoiceFromResult(userChoice, gameResult);
+				GameChoice computerChoice = Game.getChoiceFromResult(userChoice, gameResult);
+
 				Timestamp creationDate = result.getTimestamp("creation_date");
 
-				game = new Game(id, user, userChoice, cpuChoice, creationDate);
+				game = new Game(id, user, userChoice, computerChoice, creationDate);
 			}
 		}
-		catch (Exception e)
+		catch (SQLException e)
 		{
 			throw e;
 		}
@@ -112,13 +115,15 @@ public class GameDAO
 
 				int id = result.getInt("id");
 				char userChoiceCharacter = result.getString("user_choice").charAt(0);
-				GameChoice userChoice = GameChoice.convertToChoice(userChoiceCharacter);
 				char gameResultCharacter = result.getString("result").charAt(0);
+
+				GameChoice userChoice = GameChoice.convertToChoice(userChoiceCharacter);
 				GameResult gameResult = GameResult.convertToGameResult(gameResultCharacter);
-				GameChoice cpuChoice = Game.getChoiceFromResult(userChoice, gameResult);
+				GameChoice computerChoice = Game.getChoiceFromResult(userChoice, gameResult);
+
 				Timestamp creationDate = result.getTimestamp("creation_date");
 
-				Game game = new Game(id, user, userChoice, cpuChoice, creationDate);
+				Game game = new Game(id, user, userChoice, computerChoice, creationDate);
 
 				games.add(game);
 			}
@@ -148,19 +153,22 @@ public class GameDAO
 			while (result.next())
 			{
 				int id = result.getInt("id");
+
 				char userChoiceCharacter = result.getString("user_choice").charAt(0);
-				GameChoice userChoice = GameChoice.convertToChoice(userChoiceCharacter);
 				char gameResultCharacter = result.getString("result").charAt(0);
+
+				GameChoice userChoice = GameChoice.convertToChoice(userChoiceCharacter);
 				GameResult gameResult = GameResult.convertToGameResult(gameResultCharacter);
-				GameChoice cpuChoice = Game.getChoiceFromResult(userChoice, gameResult);
+				GameChoice computerChoice = Game.getChoiceFromResult(userChoice, gameResult);
+
 				Timestamp creationDate = result.getTimestamp("creation_date");
 
-				Game game = new Game(id, user, userChoice, cpuChoice, creationDate);
+				Game game = new Game(id, user, userChoice, computerChoice, creationDate);
 
 				games.add(game);
 			}
 		}
-		catch (Exception e)
+		catch (SQLException e)
 		{
 			throw e;
 		}
@@ -190,7 +198,7 @@ public class GameDAO
 				return false;
 			}
 		}
-		catch (Exception e)
+		catch (SQLException e)
 		{
 			throw e;
 		}
@@ -214,7 +222,7 @@ public class GameDAO
 				return false;
 			}
 		}
-		catch (Exception e)
+		catch (SQLException e)
 		{
 			throw e;
 		}
@@ -222,32 +230,11 @@ public class GameDAO
 		return true;
 	}
 
-	public int getPlayerPaperCountByUser(User user) throws Exception
+	public int getGameCount() throws SQLException
 	{
 		try (final Connection connection = connectionFactory.createConnection())
 		{
-			String query = "SELECT COUNT(id) FROM games WHERE user_choice = 'p' AND user_id = ?";
-			PreparedStatement selectStatement = connection.prepareStatement(query);
-
-			selectStatement.setInt(1, user.getId());
-
-			ResultSet result = selectStatement.executeQuery();
-
-			result.next();
-
-			return result.getInt(1);
-		}
-		catch (Exception e)
-		{
-			throw e;
-		}
-	}
-
-	public int getPlayerRockCount() throws Exception
-	{
-		try (final Connection connection = connectionFactory.createConnection())
-		{
-			String query = "SELECT COUNT(id) FROM games WHERE user_choice = 'r'";
+			String query = "SELECT COUNT(id) FROM games";
 			PreparedStatement selectStatement = connection.prepareStatement(query);
 			ResultSet result = selectStatement.executeQuery();
 
@@ -255,91 +242,13 @@ public class GameDAO
 
 			return result.getInt(1);
 		}
-		catch (Exception e)
+		catch (SQLException e)
 		{
 			throw e;
 		}
 	}
 
-	public int getPlayerPaperCount() throws Exception
-	{
-		try (final Connection connection = connectionFactory.createConnection())
-		{
-			String query = "SELECT COUNT(id) FROM games WHERE user_choice = 'p'";
-			PreparedStatement selectStatement = connection.prepareStatement(query);
-			ResultSet result = selectStatement.executeQuery();
-
-			result.next();
-
-			return result.getInt(1);
-		}
-		catch (Exception e)
-		{
-			throw e;
-		}
-	}
-
-	public int getPlayerScissorsCountByUser(User user) throws Exception
-	{
-		try (final Connection connection = connectionFactory.createConnection())
-		{
-			String query = "SELECT COUNT(id) FROM games WHERE user_choice = 's' AND user_id = ?";
-			PreparedStatement selectStatement = connection.prepareStatement(query);
-
-			selectStatement.setInt(1, user.getId());
-
-			ResultSet result = selectStatement.executeQuery();
-
-			result.next();
-
-			return result.getInt(1);
-		}
-		catch (Exception e)
-		{
-			throw e;
-		}
-	}
-
-	public int getTotalDrawCount() throws Exception
-	{
-		try (final Connection connection = connectionFactory.createConnection())
-		{
-			String query = "SELECT COUNT(id) FROM games WHERE result = 'd'";
-			PreparedStatement selectStatement = connection.prepareStatement(query);
-			ResultSet result = selectStatement.executeQuery();
-
-			result.next();
-
-			return result.getInt(1);
-		}
-		catch (Exception e)
-		{
-			throw e;
-		}
-	}
-
-	public int getPlayerRockCountByUser(User user) throws Exception
-	{
-		try (final Connection connection = connectionFactory.createConnection())
-		{
-			String query = "SELECT COUNT(id) FROM games WHERE user_choice = 'r' AND user_id = ?";
-			PreparedStatement selectStatement = connection.prepareStatement(query);
-
-			selectStatement.setInt(1, user.getId());
-
-			ResultSet result = selectStatement.executeQuery();
-
-			result.next();
-
-			return result.getInt(1);
-		}
-		catch (Exception e)
-		{
-			throw e;
-		}
-	}
-
-	public int getTotalGameCountByUser(User user) throws Exception
+	public int getGameCountByUser(User user) throws SQLException
 	{
 		try (final Connection connection = connectionFactory.createConnection())
 		{
@@ -354,38 +263,22 @@ public class GameDAO
 
 			return result.getInt(1);
 		}
-		catch (Exception e)
+		catch (SQLException e)
 		{
 			throw e;
 		}
 	}
 
-	public int getTotalWinCount() throws Exception
+	public int getGameResultCount(GameResult gameResult) throws SQLException
 	{
 		try (final Connection connection = connectionFactory.createConnection())
 		{
-			String query = "SELECT COUNT(id) FROM games WHERE result = 'w'";
-			PreparedStatement selectStatement = connection.prepareStatement(query);
-			ResultSet result = selectStatement.executeQuery();
-
-			result.next();
-
-			return result.getInt(1);
-		}
-		catch (Exception e)
-		{
-			throw e;
-		}
-	}
-
-	public int getTotalLossCountByUser(User user) throws Exception
-	{
-		try (final Connection connection = connectionFactory.createConnection())
-		{
-			String query = "SELECT COUNT(id) FROM games WHERE result = 'l' AND user_id = ?";
+			String query = "SELECT COUNT(id) FROM games WHERE result = ?";
 			PreparedStatement selectStatement = connection.prepareStatement(query);
 
-			selectStatement.setInt(1, user.getId());
+			String gameResultCharString = Character.toString(GameResult.convertToChar(gameResult));
+
+			selectStatement.setString(1, gameResultCharString);
 
 			ResultSet result = selectStatement.executeQuery();
 
@@ -393,56 +286,23 @@ public class GameDAO
 
 			return result.getInt(1);
 		}
-		catch (Exception e)
+		catch (SQLException e)
 		{
 			throw e;
 		}
 	}
 
-	public int getTotalGameCount() throws Exception
+	public int getGameResultCountByUser(User user, GameResult gameResult) throws SQLException
 	{
 		try (final Connection connection = connectionFactory.createConnection())
 		{
-			String query = "SELECT COUNT(id) FROM games";
-			PreparedStatement selectStatement = connection.prepareStatement(query);
-			ResultSet result = selectStatement.executeQuery();
-
-			result.next();
-
-			return result.getInt(1);
-		}
-		catch (Exception e)
-		{
-			throw e;
-		}
-	}
-
-	public int getPlayerScissorsCount() throws Exception
-	{
-		try (final Connection connection = connectionFactory.createConnection())
-		{
-			String query = "SELECT COUNT(id) FROM games WHERE user_choice = 's'";
-			PreparedStatement selectStatement = connection.prepareStatement(query);
-			ResultSet result = selectStatement.executeQuery();
-
-			result.next();
-
-			return result.getInt(1);
-		}
-		catch (Exception e)
-		{
-			throw e;
-		}
-	}
-
-	public int getTotalDrawCountByUser(User user) throws Exception
-	{
-		try (final Connection connection = connectionFactory.createConnection())
-		{
-			String query = "SELECT COUNT(id) FROM games WHERE result = 'd' AND user_id = ?";
+			String query = "SELECT COUNT(id) FROM games WHERE result = ? AND user_id = ?";
 			PreparedStatement selectStatement = connection.prepareStatement(query);
 
-			selectStatement.setInt(1, user.getId());
+			String gameResultCharString = Character.toString(GameResult.convertToChar(gameResult));
+
+			selectStatement.setString(1, gameResultCharString);
+			selectStatement.setInt(2, user.getId());
 
 			ResultSet result = selectStatement.executeQuery();
 
@@ -450,38 +310,22 @@ public class GameDAO
 
 			return result.getInt(1);
 		}
-		catch (Exception e)
+		catch (SQLException e)
 		{
 			throw e;
 		}
 	}
 
-	public int getTotalLossCount() throws Exception
+	public int getUserChoiceCount(GameChoice choice) throws SQLException
 	{
 		try (final Connection connection = connectionFactory.createConnection())
 		{
-			String query = "SELECT COUNT(id) FROM games WHERE result = 'l'";
-			PreparedStatement selectStatement = connection.prepareStatement(query);
-			ResultSet result = selectStatement.executeQuery();
-
-			result.next();
-
-			return result.getInt(1);
-		}
-		catch (Exception e)
-		{
-			throw e;
-		}
-	}
-
-	public int getTotalWinCountByUser(User user) throws Exception
-	{
-		try (final Connection connection = connectionFactory.createConnection())
-		{
-			String query = "SELECT COUNT(id) FROM games WHERE result = 'w' AND user_id = ?";
+			String query = "SELECT COUNT(id) FROM games WHERE user_choice = ?";
 			PreparedStatement selectStatement = connection.prepareStatement(query);
 
-			selectStatement.setInt(1, user.getId());
+			String gameChoiceCharString = Character.toString(GameChoice.convertToChar(choice));
+
+			selectStatement.setString(1, gameChoiceCharString);
 
 			ResultSet result = selectStatement.executeQuery();
 
@@ -489,7 +333,31 @@ public class GameDAO
 
 			return result.getInt(1);
 		}
-		catch (Exception e)
+		catch (SQLException e)
+		{
+			throw e;
+		}
+	}
+
+	public int getUserChoiceCountByUser(User user, GameChoice choice) throws SQLException
+	{
+		try (final Connection connection = connectionFactory.createConnection())
+		{
+			String query = "SELECT COUNT(id) FROM games WHERE user_choice = ? AND user_id = ?";
+			PreparedStatement selectStatement = connection.prepareStatement(query);
+
+			String gameChoiceCharString = Character.toString(GameChoice.convertToChar(choice));
+
+			selectStatement.setString(1, gameChoiceCharString);
+			selectStatement.setInt(2, user.getId());
+
+			ResultSet result = selectStatement.executeQuery();
+
+			result.next();
+
+			return result.getInt(1);
+		}
+		catch (SQLException e)
 		{
 			throw e;
 		}
