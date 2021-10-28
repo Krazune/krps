@@ -56,6 +56,10 @@
         <servlet-name>InformationPageController</servlet-name>
         <servlet-class>krazune.krps.util.pagecontrollers.InformationPageController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ErrorHandler</servlet-name>
+        <servlet-class>krazune.krps.util.ErrorHandler</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>default</servlet-name>
         <url-pattern>*.css</url-pattern>
@@ -128,6 +132,13 @@
         <servlet-name>InformationPageController</servlet-name>
         <url-pattern>/information</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ErrorHandler</servlet-name>
+        <url-pattern>/error</url-pattern>
+    </servlet-mapping>
+    <error-page>
+		<location>/error</location>
+    </error-page>
     <session-config>
         <session-timeout>
             30
