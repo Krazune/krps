@@ -36,7 +36,8 @@
             <param-value>/logoutuser,/settings</param-value>
         </init-param>
     </filter>
-    <filter-mapping>
+
+	<filter-mapping>
         <filter-name>PropertiesLoaderFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
@@ -48,6 +49,7 @@
         <filter-name>RedirectOnNoSessionFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+
     <servlet>
         <servlet-name>StatisticsPageController</servlet-name>
         <servlet-class>krazune.krps.statistics.pagecontrollers.StatisticsPageController</servlet-class>
@@ -60,6 +62,27 @@
         <servlet-name>ErrorHandler</servlet-name>
         <servlet-class>krazune.krps.util.ErrorHandler</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>IndexPageController</servlet-name>
+        <servlet-class>krazune.krps.util.pagecontrollers.IndexPageController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoginPageController</servlet-name>
+        <servlet-class>krazune.krps.user.pagecontrollers.LoginPageController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LogoutUser</servlet-name>
+        <servlet-class>krazune.krps.user.actions.LogoutUser</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RegistrationPageController</servlet-name>
+        <servlet-class>krazune.krps.user.pagecontrollers.RegistrationPageController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SettingsPageController</servlet-name>
+        <servlet-class>krazune.krps.util.pagecontrollers.SettingsPageController</servlet-class>
+    </servlet>
+
     <servlet-mapping>
         <servlet-name>default</servlet-name>
         <url-pattern>*.css</url-pattern>
@@ -84,26 +107,7 @@
         <servlet-name>default</servlet-name>
         <url-pattern>*.svg</url-pattern>
     </servlet-mapping>
-    <servlet>
-        <servlet-name>IndexPageController</servlet-name>
-        <servlet-class>krazune.krps.util.pagecontrollers.IndexPageController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>LoginPageController</servlet-name>
-        <servlet-class>krazune.krps.user.pagecontrollers.LoginPageController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>LogoutUser</servlet-name>
-        <servlet-class>krazune.krps.user.actions.LogoutUser</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>RegistrationPageController</servlet-name>
-        <servlet-class>krazune.krps.user.pagecontrollers.RegistrationPageController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>SettingsPageController</servlet-name>
-        <servlet-class>krazune.krps.util.pagecontrollers.SettingsPageController</servlet-class>
-    </servlet>
+	
     <servlet-mapping>
         <servlet-name>IndexPageController</servlet-name>
         <url-pattern>/</url-pattern>
@@ -136,10 +140,12 @@
         <servlet-name>ErrorHandler</servlet-name>
         <url-pattern>/error</url-pattern>
     </servlet-mapping>
-    <error-page>
+
+	<error-page>
 		<location>/error</location>
     </error-page>
-    <session-config>
+
+	<session-config>
         <session-timeout>
             30
         </session-timeout>
