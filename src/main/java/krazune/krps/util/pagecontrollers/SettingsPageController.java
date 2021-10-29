@@ -19,12 +19,14 @@ import krazune.krps.util.validators.StringValidatorError;
 
 public class SettingsPageController extends HttpServlet
 {
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException
 	{
 		request.getRequestDispatcher("/WEB-INF/jsp/settings.jsp").forward(request, response);
 	}
 
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException
 	{

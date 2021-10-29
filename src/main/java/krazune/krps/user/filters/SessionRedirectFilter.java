@@ -19,6 +19,7 @@ public class SessionRedirectFilter implements Filter
 	private boolean redirectOnUserSession = false;
 	private ArrayList<String> urlList = new ArrayList<>();
 
+	@Override
 	public void init(FilterConfig filterConfig) throws ServletException
 	{
 		redirectUrl = filterConfig.getInitParameter("redirect-url");
@@ -27,6 +28,7 @@ public class SessionRedirectFilter implements Filter
 		loadUrlListParameter(filterConfig);
 	}
 
+	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException
 	{
@@ -49,10 +51,11 @@ public class SessionRedirectFilter implements Filter
 		}
 
 		HttpServletResponse httpResponse = (HttpServletResponse)response;
-		
+
 		httpResponse.sendRedirect(redirectUrl);
 	}
 
+	@Override
 	public void destroy()
 	{
 	}

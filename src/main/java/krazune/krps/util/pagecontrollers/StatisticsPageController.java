@@ -1,4 +1,4 @@
-package krazune.krps.statistics.pagecontrollers;
+package krazune.krps.util.pagecontrollers;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -7,7 +7,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import krazune.krps.game.Game;
 import krazune.krps.game.GameChoice;
 import krazune.krps.game.GameDAO;
@@ -19,6 +18,7 @@ import krazune.krps.util.PropertiesLoader;
 
 public class StatisticsPageController extends HttpServlet
 {
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException
 	{

@@ -9,42 +9,35 @@ import javax.servlet.http.HttpServletResponse;
 
 public class ErrorHandler extends HttpServlet
 {
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException
 	{
 		Throwable throwable = (Throwable)request.getAttribute(RequestDispatcher.ERROR_EXCEPTION);
 
-		if (throwable == null)
-		{
-			response.sendRedirect("/");
-
-			return;
-		}
-
 		logError(throwable);
 
 		request.getRequestDispatcher("/WEB-INF/jsp/error.jsp").forward(request, response);
 	}
 
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException
 	{
 		Throwable throwable = (Throwable)request.getAttribute(RequestDispatcher.ERROR_EXCEPTION);
 
-		if (throwable == null)
-		{
-			response.sendRedirect("/");
-
-			return;
-		}
-
 		logError(throwable);
-		
+
 		request.getRequestDispatcher("/WEB-INF/jsp/error.jsp").forward(request, response);
 	}
 
 	private void logError(Throwable throwable)
 	{
+		if (throwable == null)
+		{
+			return;
+		}
+
 		getServletContext().log(throwable.toString());
 
 		StackTraceElement[] elements = throwable.getStackTrace();

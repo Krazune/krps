@@ -1,4 +1,4 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -37,7 +37,7 @@
 			<c:if test="${sessionScope.sessionUser != null}">
 				<hr class="hr">
 
-				<h2 class="text statistics__title">${sessionScope.sessionUser.getName()}'s statistics</h2>
+				<h2 class="text statistics__title"><c:out value="${sessionScope.sessionUser.getName()}"/>'s statistics</h2>
 
 				<table class="table table--no-decorations">
 					<tr>
@@ -63,7 +63,7 @@
 				<hr class="hr">
 
 				<c:if test="${lastGames != null}">
-					<h2 class="text statistics__title">${sessionScope.sessionUser.getName()}'s most recent game(s)</h2>
+					<h2 class="text statistics__title"><c:out value="${sessionScope.sessionUser.getName()}"/>'s most recent game(s)</h2>
 					<table class="table">
 						<tr class="table__row table__row--header">
 							<th class="text table__data table__header">Player choice</th>

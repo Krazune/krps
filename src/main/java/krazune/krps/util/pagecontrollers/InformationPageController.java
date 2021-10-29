@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class InformationPageController extends HttpServlet
 {
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException
 	{

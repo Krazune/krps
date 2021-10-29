@@ -9,6 +9,7 @@ import krazune.krps.user.Authentication;
 
 public class LogoutUser extends HttpServlet
 {
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException
 	{
