@@ -1,4 +1,4 @@
-package krazune.krps.statistics.pagecontrollers;
+package krazune.krps.util.pagecontrollers;
 
 import java.io.IOException;
 import java.sql.SQLException;
