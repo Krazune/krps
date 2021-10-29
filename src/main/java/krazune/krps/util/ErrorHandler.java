@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class ErrorHandler extends HttpServlet
 {
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException
 	{
@@ -19,6 +20,7 @@ public class ErrorHandler extends HttpServlet
 		request.getRequestDispatcher("/WEB-INF/jsp/error.jsp").forward(request, response);
 	}
 
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException
 	{
@@ -35,7 +37,7 @@ public class ErrorHandler extends HttpServlet
 		{
 			return;
 		}
-		
+
 		getServletContext().log(throwable.toString());
 
 		StackTraceElement[] elements = throwable.getStackTrace();
