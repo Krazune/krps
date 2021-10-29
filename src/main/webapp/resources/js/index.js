@@ -2,161 +2,161 @@
 {
 	"use strict";
 
-	let playerChoiceImage;
-	let computerChoiceImage;
+	let _playerChoiceImage;
+	let _computerChoiceImage;
 
-	let gameDescriptionLabel;
+	let _gameDescriptionLabel;
 
-	let gameRockChoice;
-	let gamePaperChoice;
-	let gameScissorsChoice;
+	let _gameRockChoice;
+	let _gamePaperChoice;
+	let _gameScissorsChoice;
 
-	let gameConfirmButton;
+	let _gameConfirmButton;
 
-	let game;
+	let _game;
 
 	document.addEventListener("DOMContentLoaded", start);
 
 	function start()
 	{
-		playerChoiceImage = document.getElementById("player-choice-image");
-		computerChoiceImage = document.getElementById("computer-choice-image");
+		_playerChoiceImage = document.getElementById("player-choice-image");
+		_computerChoiceImage = document.getElementById("computer-choice-image");
 
-		gameDescriptionLabel = document.getElementById("game-description");
+		_gameDescriptionLabel = document.getElementById("game-description");
 
-		gameRockChoice = document.getElementById("game-rock-choice");
-		gamePaperChoice = document.getElementById("game-paper-choice");
-		gameScissorsChoice = document.getElementById("game-scissors-choice");
+		_gameRockChoice = document.getElementById("game-rock-choice");
+		_gamePaperChoice = document.getElementById("game-paper-choice");
+		_gameScissorsChoice = document.getElementById("game-scissors-choice");
 
-		gameConfirmButton = document.getElementById("game-confirm-button");
+		_gameConfirmButton = document.getElementById("game-confirm-button");
 
-		game = new KRPS.GameManager();
+		_game = new KRPS.GameManager();
 
-		game.setResetCallback(gameResetHandler);
-		game.setGameFinishedCallback(gameFinishedHandler);
+		_game.setResetCallback(gameResetHandler);
+		_game.setGameFinishedCallback(gameFinishedHandler);
 
-		gameRockChoice.addEventListener("click", function()
+		_gameRockChoice.addEventListener("click", function()
 		{
-			if (game.isWaitingForComputer())
+			if (_game.isWaitingForComputer())
 			{
 				return;
 			}
 
-			game.chooseRock();
+			_game.chooseRock();
 
-			gameRockChoice.classList.add("game__choice-button--selected");
-			gamePaperChoice.classList.remove("game__choice-button--selected");
-			gameScissorsChoice.classList.remove("game__choice-button--selected");
+			_gameRockChoice.classList.add("game__choice-button--selected");
+			_gamePaperChoice.classList.remove("game__choice-button--selected");
+			_gameScissorsChoice.classList.remove("game__choice-button--selected");
 
-			playerChoiceImage.src = "/resources/images/hand-rock.svg";
-			playerChoiceImage.alt = "Rock chosen.";
+			_playerChoiceImage.src = "/resources/images/hand-rock.svg";
+			_playerChoiceImage.alt = "Rock chosen.";
 
-			gameConfirmButton.disabled = false;
+			_gameConfirmButton.disabled = false;
 		});
 
-		gamePaperChoice.addEventListener("click", function()
+		_gamePaperChoice.addEventListener("click", function()
 		{
-			if (game.isWaitingForComputer())
+			if (_game.isWaitingForComputer())
 			{
 				return;
 			}
 
-			game.choosePaper();
+			_game.choosePaper();
 
-			gameRockChoice.classList.remove("game__choice-button--selected");
-			gamePaperChoice.classList.add("game__choice-button--selected");
-			gameScissorsChoice.classList.remove("game__choice-button--selected");
+			_gameRockChoice.classList.remove("game__choice-button--selected");
+			_gamePaperChoice.classList.add("game__choice-button--selected");
+			_gameScissorsChoice.classList.remove("game__choice-button--selected");
 
-			playerChoiceImage.src = "/resources/images/hand-paper.svg";
-			playerChoiceImage.alt = "Paper chosen.";
+			_playerChoiceImage.src = "/resources/images/hand-paper.svg";
+			_playerChoiceImage.alt = "Paper chosen.";
 
-			gameConfirmButton.disabled = false;
+			_gameConfirmButton.disabled = false;
 		});
 
-		gameScissorsChoice.addEventListener("click", function()
+		_gameScissorsChoice.addEventListener("click", function()
 		{
-			if (game.isWaitingForComputer())
+			if (_game.isWaitingForComputer())
 			{
 				return;
 			}
 
-			game.chooseScissors();
+			_game.chooseScissors();
 
-			gameRockChoice.classList.remove("game__choice-button--selected");
-			gamePaperChoice.classList.remove("game__choice-button--selected");
-			gameScissorsChoice.classList.add("game__choice-button--selected");
+			_gameRockChoice.classList.remove("game__choice-button--selected");
+			_gamePaperChoice.classList.remove("game__choice-button--selected");
+			_gameScissorsChoice.classList.add("game__choice-button--selected");
 
-			playerChoiceImage.src = "/resources/images/hand-scissors.svg";
-			playerChoiceImage.alt = "Scissors chosen.";
+			_playerChoiceImage.src = "/resources/images/hand-scissors.svg";
+			_playerChoiceImage.alt = "Scissors chosen.";
 
-			gameConfirmButton.disabled = false;
+			_gameConfirmButton.disabled = false;
 		});
 
-		gameConfirmButton.addEventListener("click", function()
+		_gameConfirmButton.addEventListener("click", function()
 		{
-			gameConfirmButton.disabled = true;
-			gameDescriptionLabel.innerHTML = "...";
+			_gameConfirmButton.disabled = true;
+			_gameDescriptionLabel.innerHTML = "...";
 
-			game.play();
+			_game.play();
 		});
 	}
 
 	function gameResetHandler()
 	{
-		playerChoiceImage.src = "/resources/images/question.svg";
-		playerChoiceImage.alt = "Unknown choice.";
+		_playerChoiceImage.src = "/resources/images/question.svg";
+		_playerChoiceImage.alt = "Unknown choice.";
 
-		computerChoiceImage.src = "/resources/images/question.svg";
-		computerChoiceImage.alt = "Unknown choice.";
+		_computerChoiceImage.src = "/resources/images/question.svg";
+		_computerChoiceImage.alt = "Unknown choice.";
 
-		gameDescriptionLabel.innerHTML = "Choose your move, and confirm it.";
+		_gameDescriptionLabel.innerHTML = "Choose your move, and confirm it.";
 
-		gameRockChoice.classList.remove("game__choice-button--selected");
-		gamePaperChoice.classList.remove("game__choice-button--selected");
-		gameScissorsChoice.classList.remove("game__choice-button--selected");
+		_gameRockChoice.classList.remove("game__choice-button--selected");
+		_gamePaperChoice.classList.remove("game__choice-button--selected");
+		_gameScissorsChoice.classList.remove("game__choice-button--selected");
 
-		gameConfirmButton.disabled = true;
+		_gameConfirmButton.disabled = true;
 	}
 
 	function gameFinishedHandler()
 	{
-		let computerChoice = game.getComputerChoice();
+		let computerChoice = _game.getComputerChoice();
 
 		switch (computerChoice)
 		{
 			case "rock":
-			computerChoiceImage.src = "/resources/images/hand-rock.svg";
-			computerChoiceImage.alt = "Rock chosen.";
+			_computerChoiceImage.src = "/resources/images/hand-rock.svg";
+			_computerChoiceImage.alt = "Rock chosen.";
 			break;
 
 			case "paper":
-			computerChoiceImage.src = "/resources/images/hand-paper.svg";
-			computerChoiceImage.alt = "Paper chosen.";
+			_computerChoiceImage.src = "/resources/images/hand-paper.svg";
+			_computerChoiceImage.alt = "Paper chosen.";
 			break;
 
 			case "scissors":
-			computerChoiceImage.src = "/resources/images/hand-scissors.svg";
-			computerChoiceImage.alt = "Scissors chosen.";
+			_computerChoiceImage.src = "/resources/images/hand-scissors.svg";
+			_computerChoiceImage.alt = "Scissors chosen.";
 			break;
 		}
 
-		let result = game.getResult();
+		let result = _game.getResult();
 
 		switch (result)
 		{
 			case "win":
-			gameDescriptionLabel.innerHTML = "You win!";
+			_gameDescriptionLabel.innerHTML = "You win!";
 			break;
 
 			case "loss":
-			gameDescriptionLabel.innerHTML = "You lose!";
+			_gameDescriptionLabel.innerHTML = "You lose!";
 			break;
 
 			case "draw":
-			gameDescriptionLabel.innerHTML = "Draw!";
+			_gameDescriptionLabel.innerHTML = "Draw!";
 			break;
 		}
 
-		gameConfirmButton.disabled = false;
+		_gameConfirmButton.disabled = false;
 	}
 })();
