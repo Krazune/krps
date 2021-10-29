@@ -15,9 +15,9 @@
 
 	let _game;
 
-	document.addEventListener("DOMContentLoaded", start);
+	document.addEventListener("DOMContentLoaded", _start);
 
-	function start()
+	function _start()
 	{
 		_playerChoiceImage = document.getElementById("player-choice-image");
 		_computerChoiceImage = document.getElementById("computer-choice-image");
@@ -32,8 +32,8 @@
 
 		_game = new KRPS.GameManager();
 
-		_game.setResetCallback(gameResetHandler);
-		_game.setGameFinishedCallback(gameFinishedHandler);
+		_game.setResetCallback(_gameResetHandler);
+		_game.setGameFinishedCallback(_gameFinishedHandler);
 
 		_gameRockChoice.addEventListener("click", function()
 		{
@@ -101,7 +101,7 @@
 		});
 	}
 
-	function gameResetHandler()
+	function _gameResetHandler()
 	{
 		_playerChoiceImage.src = "/resources/images/question.svg";
 		_playerChoiceImage.alt = "Unknown choice.";
@@ -118,7 +118,7 @@
 		_gameConfirmButton.disabled = true;
 	}
 
-	function gameFinishedHandler()
+	function _gameFinishedHandler()
 	{
 		let computerChoice = _game.getComputerChoice();
 
