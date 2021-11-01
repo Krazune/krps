@@ -1,0 +1,407 @@
+/* dosis-regular - latin */
+@font-face
+{
+	font-family: "Dosis";
+	font-style: normal;
+	font-weight: 200;
+	src:
+		url("../fonts/dosis-v19-latin-200.woff2") format("woff2"),	/* Chrome 26+, Opera 23+, Firefox 39+ */
+		url("../fonts/dosis-v19-latin-200.woff") format("woff");		/* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+.page
+{
+	margin: 0;
+	background-color: #F1EBDE;
+}
+
+.text
+{
+	font-size: 1.2em;
+	font-family: "Dosis", Helvetica, sans-serif;
+	color: #4C4C47;
+}
+
+.text--error
+{
+	color: #E63C2D;
+}
+
+.link
+{
+	font-size: 1em;
+	background-color: transparent;
+	text-decoration: underline;
+	border: none;
+	cursor: pointer;
+	padding: 0;
+}
+
+.link:hover
+{
+	color: #E63C2D;
+}
+
+.header
+{
+	padding: 10px;
+}
+
+.header__title
+{
+	text-align: center;
+	font-size: 3.5em;
+	color: #E63C2D;
+	margin: 5px auto;
+	line-height: 1;
+}
+
+.header__subtitle
+{
+	text-align: center;
+	font-size: 1.3em;
+	margin: 5px auto;
+	line-height: 1;
+}
+
+.game
+{
+	display: grid;
+	grid-gap: 10px;
+	justify-items: center;
+	grid-template-areas:
+		"game-player game-versus-label game-computer"
+		"game-description game-description game-description"
+		"game-choices game-choices game-choices"
+		"game-confirm-button game-confirm-button game-confirm-button";
+}
+
+.game--limited-width
+{
+	width: 700px;
+	margin: 5px auto;
+}
+
+.game__player
+{
+	grid-area: game-player;
+}
+
+.game__versus-label
+{
+	font-size: 3em;
+	line-height: 1;
+	text-align: center;
+	align-self: center;
+	grid-area: game-versus-label;
+}
+
+.game__computer
+{
+	grid-area: game-computer;
+}
+
+.game__player-title
+{
+	margin: 10px auto;
+}
+
+.game__description
+{
+	font-size: 1.7em;
+	margin: 5px auto;
+	grid-area: game-description;
+}
+
+.game__choices
+{
+	display: flex;
+	grid-area: game-choices;
+}
+
+.game__choice-button
+{
+	width: 100px;
+	height: 100px;
+	padding: 20px;
+	margin: 20px;
+	border-radius: 100%;
+	border-style: solid;
+	border-width: 3px;
+	border-color: #4C4C47;
+	cursor: pointer;
+}
+
+.game__choice-image
+{
+	width: 50px;
+	height: 50px;
+}
+
+.game__choice-button:hover
+{
+	border-color: #F05E4A;
+}
+
+.game__choice-button--selected
+{
+	border-color: #E63C2D;
+}
+
+.game__choice-button--selected:hover
+{
+	border-color: #E63C2D;
+}
+
+.game__confirm-button
+{
+	width: 200px;
+    padding: 10px;
+	grid-area: game-confirm-button;
+}
+
+.game__player-container
+{
+	display: flex;
+	flex-direction: column;
+}
+
+.game__player-choice-image-container
+{
+	padding: 60px;
+	border-radius: 100%;
+	border-style: solid;
+	border-color: #E63C2D;
+	border-width: 6px;
+}
+
+.game__player-choice-image
+{
+	width: 80px;
+	height: 80px;
+}
+
+.game__player-title
+{
+	text-align: center;
+	font-size: 1.5em;
+}
+
+.account-buttons
+{
+	display: flex;
+	justify-content: center;
+}
+
+.account-buttons__button
+{
+	width: 100px;
+	margin: 10px;
+}
+
+.form
+{
+	display: flex;
+	flex-direction: column;
+}
+
+.form__title
+{
+	font-size: 2em;
+	margin: 5px 0;
+}
+
+.form__label
+{
+	font-size: 1.2em;
+	margin: 10px 0 5px 0;
+}
+
+.form--limited-width
+{
+	width: 400px;
+	margin: auto;
+}
+
+.form__error
+{
+	font-size: 1.2em;
+	margin: 5px 0;
+}
+
+.input-text
+{
+	font-size: 1.4em;
+	border-style: none none solid none;
+	border-color: #4C4C47;
+	padding: 5px;
+	background: #E6E6E6;
+	outline: none;
+}
+
+.form__input-description
+{
+	margin: 5px 0 10px 0;
+}
+
+.input-text:focus
+{
+	border-color: #E63C2D;
+}
+
+.button
+{
+    font-size: 2em;
+    font-weight: bold;
+    background-color: #F05E4A;
+    color: #F1EBDE;
+    border-style: none;
+    border-radius: 4px;
+    padding: 10px;
+    line-height: 1;
+    cursor: pointer;
+	text-decoration: none;
+	text-align: center;
+}
+
+.button:hover
+{
+	background-color: #E63C2D;
+}
+
+.button:disabled
+{
+	background-color: #4C4C47;
+}
+
+.form__submit-button
+{
+	width: 200px;
+	margin: 10px;
+	align-self: center;
+}
+
+.navigation__list
+{
+	list-style-type: none;
+	display: flex;
+	justify-content: center;
+	padding: 0;
+	margin: 5px;
+}
+
+.navigation__list-item
+{
+	margin: 5px 10px;
+}
+
+.information--limited-width
+{
+	width: 900px;
+	margin: auto;
+	display: flex;
+	flex-flow: column;
+}
+
+.information__title
+{
+	font-size: 1.4em;
+	margin: 15px 0;
+}
+
+.information__p
+{
+	margin: 10px 0;
+}
+
+.hr
+{
+	width: 100%;
+	border-style: none;
+	border-top: 2px solid #E63C2D;
+}
+
+.statistics
+{
+	display: flex;
+	flex-flow: column;
+}
+
+.statistics--limited-width
+{
+	width: 900px;
+	margin: auto;
+}
+
+.statistics__title
+{
+	font-size: 1.4em;
+	margin: 15px 0;
+}
+
+.statistics__p
+{
+	margin: 10px 0;
+}
+
+.table
+{
+	border-collapse: collapse;
+}
+
+.table--no-decorations
+{
+	border: none;
+}
+
+.table__header
+{
+	text-align: left;
+	color: #E6E6E6;
+	font-size: 1.3em;
+}
+
+.table__data
+{
+	padding: 5px;
+	border: none;
+	border-right: #4C4C47 1px solid;
+}
+
+.table__data:last-child
+{
+	border: none;
+}
+
+.text--right-align
+{
+	text-align: right;
+}
+
+.text--left-align
+{
+	text-align: left;
+}
+
+.table__row
+{
+	border: none;
+	border-bottom: #4C4C47 1px solid;
+}
+
+.table__row:last-child
+{
+	border: none;
+}
+
+.table__row--header
+{
+	background-color: #4C4C47;
+	border: none;
+}
+
+.text--exception
+{
+	text-align: center;
+	font-size: 1.5em;
+}
