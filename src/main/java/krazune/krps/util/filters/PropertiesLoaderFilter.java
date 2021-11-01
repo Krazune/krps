@@ -16,16 +16,9 @@ public class PropertiesLoaderFilter implements Filter
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException
 	{
-		propertiesLoader = new PropertiesLoader("krps.properties");
-
-		try
-		{
-			propertiesLoader.load();
-		}
-		catch (IOException e)
-		{
-			throw new ServletException(e);
-		}
+		propertiesLoader = new PropertiesLoader();
+		
+		propertiesLoader.load();
 	}
 
 	@Override
