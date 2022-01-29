@@ -6,11 +6,27 @@
 	<h1 class="text text--special header__title">Rock Paper Scissors</h1>
 	<nav class="navigation">
 		<ul class="list navigation__list">
-			<li><a class="text link navigation__link" href="#">Home</a></li>
-			<li><a class="text link navigation__link" href="#">Login</a></li>
-			<li><a class="text link navigation__link" href="#">Registration</a></li>
-			<li><a class="text link navigation__link" href="#">Statistics</a></li>
-			<li><a class="text link navigation__link" href="#">Information</a></li>
+			<c:if test="${showHomeLink}">
+				<li><a class="text link navigation__link" href="/">Home</a></li>
+			</c:if>
+			<c:if test="${showLoginLink}">
+				<li><a class="text link navigation__link" href="/login">Login</a></li>
+			</c:if>
+			<c:if test="${showRegistrationLink}">
+				<li><a class="text link navigation__link" href="/registration">Registration</a></li>
+			</c:if>
+			<c:if test="${showStatisticsLink}">
+				<li><a class="text link navigation__link" href="/statistics">Statistics</a></li>
+			</c:if>
+			<c:if test="${showInformationLink}">
+				<li><a class="text link navigation__link" href="/information">Information</a></li>
+			</c:if>
+			<c:if test="${showSettingsLink}">
+				<li><a class="text link navigation__link" href="/settings">Settings</a></li>
+			</c:if>
+			<c:if test="${showLogoutLink}">
+				<li><a class="text link navigation__link" href="/logout">Logout</a></li>
+			</c:if>
 		</ul>
 	</nav>
 </header>
