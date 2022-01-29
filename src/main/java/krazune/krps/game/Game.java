@@ -129,6 +129,16 @@ public class Game
 		this.user = user;
 	}
 
+	public GameChoice getUserChoice()
+	{
+		return userChoice;
+	}
+
+	public GameChoice getComputerChoice()
+	{
+		return computerChoice;
+	}
+
 	public GameOutcome getOutcome()
 	{
 		return outcome;
