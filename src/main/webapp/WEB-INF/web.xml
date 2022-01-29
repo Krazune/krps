@@ -20,6 +20,10 @@
 		<servlet-name>Information</servlet-name>
 		<servlet-class>krazune.krps.servlet.InformationPageServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>Settings</servlet-name>
+		<servlet-class>krazune.krps.servlet.SettingsPageServlet</servlet-class>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>Game</servlet-name>
@@ -40,6 +44,10 @@
 	<servlet-mapping>
 		<servlet-name>Information</servlet-name>
 		<url-pattern>/information</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Settings</servlet-name>
+		<url-pattern>/settings</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>default</servlet-name>
