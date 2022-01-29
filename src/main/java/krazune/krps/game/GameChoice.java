@@ -13,6 +13,11 @@ public enum GameChoice
 		this.symbol = symbol;
 	}
 
+	public static GameChoice getGameChoice(String symbolString)
+	{
+		return getGameChoice(symbolString.charAt(0));
+	}
+
 	public static GameChoice getGameChoice(char symbol)
 	{
 		switch (symbol)
