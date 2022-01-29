@@ -16,6 +16,10 @@
 		<servlet-name>Statistics</servlet-name>
 		<servlet-class>krazune.krps.servlet.StatisticsPageServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>Information</servlet-name>
+		<servlet-class>krazune.krps.servlet.InformationPageServlet</servlet-class>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>Game</servlet-name>
@@ -32,6 +36,10 @@
 	<servlet-mapping>
 		<servlet-name>Statistics</servlet-name>
 		<url-pattern>/statistics</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Information</servlet-name>
+		<url-pattern>/information</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>default</servlet-name>
