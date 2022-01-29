@@ -25,7 +25,11 @@
 				<li><a class="text link navigation__link" href="/settings">Settings</a></li>
 			</c:if>
 			<c:if test="${showLogoutLink}">
-				<li><a class="text link navigation__link" href="/logout">Logout</a></li>
+				<li>
+					<form method="post" action="/logout">
+						<input class="text link navigation__link navigation__link--fake" type="submit" value="Logout">
+					</form>
+				</li>
 			</c:if>
 		</ul>
 	</nav>

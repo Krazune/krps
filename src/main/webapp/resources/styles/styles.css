@@ -35,6 +35,8 @@
 
 .link
 {
+	text-decoration: underline;
+	cursor: pointer;
 }
 
 .link:hover
@@ -80,4 +82,12 @@
 .navigation__link
 {
 	font-size: 1.3em;
+}
+
+.navigation__link--fake
+{
+	border: none;
+	background-color: transparent;
+	display: inline;
+	padding: 0;
 }

@@ -24,6 +24,10 @@
 		<servlet-name>Settings</servlet-name>
 		<servlet-class>krazune.krps.servlet.SettingsPageServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>Logout</servlet-name>
+		<servlet-class>krazune.krps.user.servlet.LogoutPageServlet</servlet-class>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>Game</servlet-name>
@@ -48,6 +52,10 @@
 	<servlet-mapping>
 		<servlet-name>Settings</servlet-name>
 		<url-pattern>/settings</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Logout</servlet-name>
+		<url-pattern>/logout</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>default</servlet-name>
