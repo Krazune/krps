@@ -17,6 +17,10 @@ public class User
 		this.creationDate = creationDate;
 	}
 
+	public User()
+	{
+	}
+
 	public User(String username, String passwordHash)
 	{
 		this.username = username;
