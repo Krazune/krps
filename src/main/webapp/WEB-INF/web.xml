@@ -9,4 +9,8 @@
 		<servlet-name>HelloWorld</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+
+	<listener>
+		<listener-class>krazune.krps.MainServletContextListeneter</listener-class>
+	</listener>
 </web-app>
