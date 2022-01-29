@@ -1,0 +1,93 @@
+@font-face
+{
+	font-family: "Dosis";
+	font-style: normal;
+	font-weight: 200;
+	src:
+		url("/resources/fonts/dosis-v19-latin-200.woff2") format("woff2"),  /* Chrome 26+, Opera 23+, Firefox 39+ */
+		url("/resources/fonts/dosis-v19-latin-200.woff") format("woff");    /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+.page
+{
+	margin: 0 auto;
+	width: 1000px;
+	background-color: #1c1c1c;
+}
+
+.text
+{
+	font-family: 'Dosis', sans-serif;
+	color: #ebebeb;
+}
+
+.text--special
+{
+	color: #f75c03;
+}
+
+.list
+{
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.link
+{
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.link:hover
+{
+	color: #f75c03;
+}
+
+.header
+{
+	padding: 10px;
+}
+
+.header__author
+{
+	text-transform: uppercase;
+	font-size: 1em;
+	text-align: center;
+	margin: 5px auto;
+	line-height: 1em;
+}
+
+.header__title
+{
+	text-transform: uppercase;
+	font-size: 3em;
+	text-align: center;
+	margin: 5px auto;
+	line-height: 1em;
+}
+
+.navigation
+{
+}
+
+.navigation__list
+{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	gap: 20px;
+}
+
+.navigation__link
+{
+	font-size: 1.3em;
+}
+
+.navigation__link--fake
+{
+	border: none;
+	background-color: transparent;
+	display: inline;
+	padding: 0;
+}
