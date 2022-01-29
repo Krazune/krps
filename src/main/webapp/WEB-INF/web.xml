@@ -12,6 +12,10 @@
 		<servlet-name>Login</servlet-name>
 		<servlet-class>krazune.krps.user.servlet.LoginPageServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>Statistics</servlet-name>
+		<servlet-class>krazune.krps.servlet.StatisticsPageServlet</servlet-class>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>Game</servlet-name>
@@ -24,6 +28,10 @@
 	<servlet-mapping>
 		<servlet-name>Login</servlet-name>
 		<url-pattern>/login</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Statistics</servlet-name>
+		<url-pattern>/statistics</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>default</servlet-name>
