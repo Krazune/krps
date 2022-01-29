@@ -6,6 +6,6 @@
 		<link rel="stylesheet" type="text/css" href="/resources/styles/styles.css">
 	</head>
 	<body class="page">
-	    <%@ include file="/WEB-INF/jsp/fragments/header.jsp" %>
+		<%@ include file="/WEB-INF/jsp/fragments/header.jsp" %>
 	</body>
 </html>
