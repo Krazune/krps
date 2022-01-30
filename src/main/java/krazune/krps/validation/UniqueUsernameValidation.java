@@ -1,8 +1,8 @@
 package krazune.krps.validation;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import krazune.krps.dao.DaoException;
 import krazune.krps.user.User;
 import krazune.krps.user.dao.UserDao;
 
@@ -30,7 +30,7 @@ public class UniqueUsernameValidation implements Validation<String>
 
 			return errors;
 		}
-		catch (SQLException e)
+		catch (DaoException e)
 		{
 			throw new ValidationException(e);
 		}
