@@ -20,6 +20,7 @@ public class StringSizeValidationTest
 		assertEquals(1, errors.size());
 		assertEquals(StringSizeValidationError.STRING_TOO_SHORT, errors.get(0));
 	}
+
 	@Test
 	public void maxSizeTest()
 	{
