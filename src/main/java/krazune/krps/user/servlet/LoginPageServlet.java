@@ -2,6 +2,7 @@ package krazune.krps.user.servlet;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +13,8 @@ import krazune.krps.hash.HashGenerator;
 import krazune.krps.user.Authentication;
 import krazune.krps.user.User;
 import krazune.krps.user.dao.UserDao;
+import krazune.krps.validation.EmptyStringValidatorManager;
+import krazune.krps.validation.ValidationException;
 
 public class LoginPageServlet extends HttpServlet
 {
@@ -41,7 +44,12 @@ public class LoginPageServlet extends HttpServlet
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 
-		// Validate input.
+		if (!validate(request, username, password))
+		{
+			invalidLoginRefresh(request, response);
+
+			return;
+		}
 
 		if (authenticateUser(request.getSession(), username, password) == null)
 		{
@@ -66,6 +74,28 @@ public class LoginPageServlet extends HttpServlet
 		request.setAttribute("showInformationLink", true);
 		request.setAttribute("showSettingsLink", authenticated);
 		request.setAttribute("showLogoutLink", authenticated);
+	}
+
+	private boolean validate(HttpServletRequest request, String username, String password) throws ServletException
+	{
+		try
+		{
+			EmptyStringValidatorManager usernameValidatorManager = new EmptyStringValidatorManager("username");
+			List<String> usernameErrorMessages = usernameValidatorManager.validate(username);
+
+			request.setAttribute("usernameErrorMessages", usernameErrorMessages);
+
+			EmptyStringValidatorManager passwordValidatorManager = new EmptyStringValidatorManager("password");
+			List<String> passwordErrorMessages = passwordValidatorManager.validate(password);
+
+			request.setAttribute("passwordErrorMessages", passwordErrorMessages);
+
+			return usernameErrorMessages.isEmpty() && passwordErrorMessages.isEmpty();
+		}
+		catch (ValidationException e)
+		{
+			throw new ServletException(e);
+		}
 	}
 
 	private User authenticateUser(HttpSession session, String username, String password) throws ServletException
