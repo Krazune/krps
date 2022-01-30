@@ -14,6 +14,7 @@
 		<label for="password">Password</label>
 		<input id="password" type="password" name="password">
 
+		<c:out value="${loginErrorMessage}"/>
 		<input type="submit" name="login-submit" value="Log in">
 		</form>
 	</body>
