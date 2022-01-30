@@ -5,11 +5,11 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class StringRegexValidation implements Validation<String>
+public class RegexValidation implements Validation<String>
 {
 	private String patternString;
 
-	public StringRegexValidation(String patternString)
+	public RegexValidation(String patternString)
 	{
 		this.patternString = patternString;
 	}
@@ -21,7 +21,7 @@ public class StringRegexValidation implements Validation<String>
 
 		if (!validMatch(input))
 		{
-			errors.add(StringRegexValidationError.FAILED_PATTERN_MATCH);
+			errors.add(RegexValidationError.FAILED_PATTERN_MATCH);
 		}
 
 		return errors;

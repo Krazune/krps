@@ -1,12 +1,12 @@
 package krazune.krps.validation;
 
-public enum StringRegexValidationError implements ValidationError
+public enum RegexValidationError implements ValidationError
 {
 	FAILED_PATTERN_MATCH("String failed pattern match.");
 
 	private final String description;
 
-	StringRegexValidationError(String description)
+	RegexValidationError(String description)
 	{
 		this.description = description;
 	}

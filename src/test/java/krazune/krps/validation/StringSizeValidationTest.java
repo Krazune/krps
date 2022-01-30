@@ -10,12 +10,12 @@ public class StringSizeValidationTest
 	@Test
 	public void minSizeTest()
 	{
-		StringSizeValidation validationAction = new StringSizeValidation(3, -1);
-		List<ValidationError> errors = validationAction.execute("123");
+		StringSizeValidation validation = new StringSizeValidation(3, -1);
+		List<ValidationError> errors = validation.execute("123");
 
 		assertEquals(0, errors.size());
 
-		errors = validationAction.execute("12");
+		errors = validation.execute("12");
 
 		assertEquals(1, errors.size());
 		assertEquals(StringSizeValidationError.STRING_TOO_SHORT, errors.get(0));
@@ -24,12 +24,12 @@ public class StringSizeValidationTest
 	@Test
 	public void maxSizeTest()
 	{
-		StringSizeValidation validationAction = new StringSizeValidation(-1, 3);
-		List<ValidationError> errors = validationAction.execute("123");
+		StringSizeValidation validation = new StringSizeValidation(-1, 3);
+		List<ValidationError> errors = validation.execute("123");
 
 		assertEquals(0, errors.size());
 
-		errors = validationAction.execute("1234");
+		errors = validation.execute("1234");
 
 		assertEquals(1, errors.size());
 		assertEquals(StringSizeValidationError.STRING_TOO_LONG, errors.get(0));

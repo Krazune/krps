@@ -10,8 +10,8 @@ public class EmptyStringValidationTest
 	@Test
 	public void emptyStringTest()
 	{
-		EmptyStringValidation validationAction = new EmptyStringValidation();
-		List<ValidationError> errors = validationAction.execute("");
+		EmptyStringValidation validation = new EmptyStringValidation();
+		List<ValidationError> errors = validation.execute("");
 
 		assertEquals(1, errors.size());
 		assertEquals(EmptyStringValidationError.EMPTY_STRING, errors.get(0));
@@ -20,8 +20,8 @@ public class EmptyStringValidationTest
 	@Test
 	public void nonEmptyStringTest()
 	{
-		StringSizeValidation validationAction = new StringSizeValidation(-1, 3);
-		List<ValidationError> errors = validationAction.execute("123");
+		StringSizeValidation validation = new StringSizeValidation(-1, 3);
+		List<ValidationError> errors = validation.execute("123");
 
 		assertEquals(0, errors.size());
 	}
