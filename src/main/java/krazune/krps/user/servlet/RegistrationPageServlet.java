@@ -1,6 +1,7 @@
 package krazune.krps.user.servlet;
 
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +12,10 @@ import krazune.krps.hash.HashGenerator;
 import krazune.krps.user.Authentication;
 import krazune.krps.user.User;
 import krazune.krps.user.dao.UserDao;
+import krazune.krps.user.validation.PasswordConfirmationValidatorManager;
+import krazune.krps.user.validation.PasswordValidatorManager;
+import krazune.krps.user.validation.UsernameValidatorManager;
+import krazune.krps.validation.ValidationException;
 
 public class RegistrationPageServlet extends HttpServlet
 {
@@ -41,7 +46,12 @@ public class RegistrationPageServlet extends HttpServlet
 		String password = request.getParameter("password");
 		String passwordConfirmation = request.getParameter("password-confirmation");
 
-		// Validate input.
+		if (!validate(request, username, password, passwordConfirmation))
+		{
+			invalidLoginRefresh(request, response);
+
+			return;
+		}
 
 		User newUser = new User(username, hashGenerator.generate(password));
 
@@ -69,6 +79,33 @@ public class RegistrationPageServlet extends HttpServlet
 		request.setAttribute("showInformationLink", true);
 		request.setAttribute("showSettingsLink", authenticated);
 		request.setAttribute("showLogoutLink", authenticated);
+	}
+
+	private boolean validate(HttpServletRequest request, String username, String password, String passwordConfirmation) throws ServletException
+	{
+		try
+		{
+			UsernameValidatorManager usernameValidatorManager = new UsernameValidatorManager(userDao);
+			List<String> usernameErrorMessages = usernameValidatorManager.validate(username);
+
+			request.setAttribute("usernameErrorMessages", usernameErrorMessages);
+
+			PasswordValidatorManager passwordValidatorManager = new PasswordValidatorManager();
+			List<String> passwordErrorMessages = passwordValidatorManager.validate(password);
+
+			request.setAttribute("passwordErrorMessages", passwordErrorMessages);
+
+			PasswordConfirmationValidatorManager passwordConfirmationValidatorManager = new PasswordConfirmationValidatorManager(password);
+			List<String> passwordConfirmationErrorMessages = passwordConfirmationValidatorManager.validate(passwordConfirmation);
+
+			request.setAttribute("passwordConfirmationErrorMessages", passwordConfirmationErrorMessages);
+
+			return usernameErrorMessages.isEmpty() && passwordErrorMessages.isEmpty() && passwordConfirmationErrorMessages.isEmpty();
+		}
+		catch (ValidationException e)
+		{
+			throw new ServletException(e);
+		}
 	}
 
 	private void invalidLoginRefresh(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
