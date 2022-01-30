@@ -20,7 +20,7 @@ public class EmptyStringValidationTest
 	@Test
 	public void nonEmptyStringTest()
 	{
-		StringSizeValidation validation = new StringSizeValidation(-1, 3);
+		EmptyStringValidation validation = new EmptyStringValidation();
 		List<ValidationError> errors = validation.execute("123");
 
 		assertEquals(0, errors.size());
