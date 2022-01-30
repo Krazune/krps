@@ -45,6 +45,8 @@ public class LoginPageServlet extends HttpServlet
 
 		if (authenticateUser(request.getSession(), username, password) == null)
 		{
+			request.setAttribute("loginErrorMessage", "Invalid account information.");
+
 			invalidLoginRefresh(request, response);
 
 			return;
