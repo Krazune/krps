@@ -2,6 +2,7 @@ package krazune.krps.user;
 
 import java.sql.SQLException;
 import javax.servlet.http.HttpSession;
+import krazune.krps.dao.DaoException;
 import krazune.krps.hash.HashGenerator;
 import krazune.krps.user.dao.UserDao;
 
@@ -9,7 +10,15 @@ public class Authentication
 {
 	public static User authenticateUser(HttpSession session, UserDao userDao, HashGenerator hashGenerator, String username, String password) throws SQLException
 	{
-		User user = userDao.get(username);
+		User user = null;
+		try
+		{
+			user = userDao.get(username);
+		}
+		catch (DaoException e)
+		{
+			throw new SQLException(e);
+		}
 
 		if (user == null)
 		{

@@ -8,6 +8,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import javax.sql.DataSource;
+import krazune.krps.dao.DaoException;
 import krazune.krps.user.User;
 
 public class PostgreSqlUserDao implements UserDao
@@ -29,7 +30,7 @@ public class PostgreSqlUserDao implements UserDao
 	}
 
 	@Override
-	public boolean insert(User user) throws SQLException
+	public boolean insert(User user) throws DaoException
 	{
 		if (user == null)
 		{
@@ -57,12 +58,12 @@ public class PostgreSqlUserDao implements UserDao
 		}
 		catch (SQLException e)
 		{
-			throw e;
+			throw new DaoException(e);
 		}
 	}
 
 	@Override
-	public User get(int id) throws SQLException
+	public User get(int id) throws DaoException
 	{
 		try (Connection connection = dataSource.getConnection())
 		{
@@ -81,12 +82,12 @@ public class PostgreSqlUserDao implements UserDao
 		}
 		catch (SQLException e)
 		{
-			throw e;
+			throw new DaoException(e);
 		}
 	}
 
 	@Override
-	public User get(String username) throws SQLException
+	public User get(String username) throws DaoException
 	{
 		try (Connection connection = dataSource.getConnection())
 		{
@@ -105,12 +106,12 @@ public class PostgreSqlUserDao implements UserDao
 		}
 		catch (SQLException e)
 		{
-			throw e;
+			throw new DaoException(e);
 		}
 	}
 
 	@Override
-	public List<User> getUsers() throws SQLException
+	public List<User> getUsers() throws DaoException
 	{
 		try (Connection connection = dataSource.getConnection())
 		{
@@ -127,12 +128,12 @@ public class PostgreSqlUserDao implements UserDao
 		}
 		catch (SQLException e)
 		{
-			throw e;
+			throw new DaoException(e);
 		}
 	}
 
 	@Override
-	public List<User> getUsers(int start, int size) throws SQLException
+	public List<User> getUsers(int start, int size) throws DaoException
 	{
 		try (Connection connection = dataSource.getConnection())
 		{
@@ -153,12 +154,12 @@ public class PostgreSqlUserDao implements UserDao
 		}
 		catch (SQLException e)
 		{
-			throw e;
+			throw new DaoException(e);
 		}
 	}
 
 	@Override
-	public boolean update(User user) throws SQLException
+	public boolean update(User user) throws DaoException
 	{
 		if (user == null)
 		{
@@ -177,12 +178,12 @@ public class PostgreSqlUserDao implements UserDao
 		}
 		catch (SQLException e)
 		{
-			throw e;
+			throw new DaoException(e);
 		}
 	}
 
 	@Override
-	public boolean delete(int id) throws SQLException
+	public boolean delete(int id) throws DaoException
 	{
 		try (Connection connection = dataSource.getConnection())
 		{
@@ -194,12 +195,12 @@ public class PostgreSqlUserDao implements UserDao
 		}
 		catch (SQLException e)
 		{
-			throw e;
+			throw new DaoException(e);
 		}
 	}
 
 	@Override
-	public boolean delete(User user) throws SQLException
+	public boolean delete(User user) throws DaoException
 	{
 		if (user == null)
 		{
@@ -216,12 +217,12 @@ public class PostgreSqlUserDao implements UserDao
 		}
 		catch (SQLException e)
 		{
-			throw e;
+			throw new DaoException(e);
 		}
 	}
 
 	@Override
-	public int getUserCount() throws SQLException
+	public int getUserCount() throws DaoException
 	{
 		try (Connection connection = dataSource.getConnection())
 		{
@@ -234,7 +235,7 @@ public class PostgreSqlUserDao implements UserDao
 		}
 		catch (SQLException e)
 		{
-			throw e;
+			throw new DaoException(e);
 		}
 	}
 

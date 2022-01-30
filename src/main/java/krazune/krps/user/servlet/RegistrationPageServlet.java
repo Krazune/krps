@@ -1,11 +1,11 @@
 package krazune.krps.user.servlet;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import krazune.krps.dao.DaoException;
 import krazune.krps.dao.DaoFactory;
 import krazune.krps.hash.HashGenerator;
 import krazune.krps.user.Authentication;
@@ -49,7 +49,7 @@ public class RegistrationPageServlet extends HttpServlet
 		{
 			userDao.insert(newUser);
 		}
-		catch (SQLException e)
+		catch (DaoException e)
 		{
 			throw new ServletException(e);
 		}
