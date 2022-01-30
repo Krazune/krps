@@ -1,22 +1,22 @@
 package krazune.krps.user.dao;
 
-import java.sql.SQLException;
 import java.util.List;
+import krazune.krps.dao.DaoException;
 import krazune.krps.user.User;
 
 public interface UserDao
 {
-	boolean insert(User user) throws SQLException;
+	boolean insert(User user) throws DaoException;
 
-	User get(int id) throws SQLException;
-	User get(String username) throws SQLException;
-	List<User> getUsers() throws SQLException;
-	List<User> getUsers(int start, int size) throws SQLException;
+	User get(int id) throws DaoException;
+	User get(String username) throws DaoException;
+	List<User> getUsers() throws DaoException;
+	List<User> getUsers(int start, int size) throws DaoException;
 
-	boolean update(User user) throws SQLException;
+	boolean update(User user) throws DaoException;
 
-	boolean delete(int id) throws SQLException;
-	boolean delete(User user) throws SQLException;
+	boolean delete(int id) throws DaoException;
+	boolean delete(User user) throws DaoException;
 
-	int getUserCount() throws SQLException;
+	int getUserCount() throws DaoException;
 }

@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.sql.DataSource;
+import krazune.krps.dao.DaoException;
 import krazune.krps.game.Game;
 import krazune.krps.game.GameChoice;
 import krazune.krps.game.GameOutcome;
@@ -40,7 +41,7 @@ public class PostgreSqlGameDao implements GameDao
 	}
 
 	@Override
-	public boolean insert(Game game) throws SQLException
+	public boolean insert(Game game) throws DaoException
 	{
 		if (game == null)
 		{
@@ -77,12 +78,12 @@ public class PostgreSqlGameDao implements GameDao
 		}
 		catch (SQLException e)
 		{
-			throw e;
+			throw new DaoException(e);
 		}
 	}
 
 	@Override
-	public Game get(int id) throws SQLException
+	public Game get(int id) throws DaoException
 	{
 		try (Connection connection = dataSource.getConnection())
 		{
@@ -101,12 +102,12 @@ public class PostgreSqlGameDao implements GameDao
 		}
 		catch (SQLException e)
 		{
-			throw e;
+			throw new DaoException(e);
 		}
 	}
 
 	@Override
-	public List<Game> getGames() throws SQLException
+	public List<Game> getGames() throws DaoException
 	{
 		try (Connection connection = dataSource.getConnection())
 		{
@@ -124,12 +125,12 @@ public class PostgreSqlGameDao implements GameDao
 		}
 		catch (SQLException e)
 		{
-			throw e;
+			throw new DaoException(e);
 		}
 	}
 
 	@Override
-	public List<Game> getGames(int start, int size) throws SQLException
+	public List<Game> getGames(int start, int size) throws DaoException
 	{
 		try (Connection connection = dataSource.getConnection())
 		{
@@ -151,12 +152,12 @@ public class PostgreSqlGameDao implements GameDao
 		}
 		catch (SQLException e)
 		{
-			throw e;
+			throw new DaoException(e);
 		}
 	}
 
 	@Override
-	public List<Game> getUserGames(int id) throws SQLException
+	public List<Game> getUserGames(int id) throws DaoException
 	{
 		try (Connection connection = dataSource.getConnection())
 		{
@@ -177,12 +178,12 @@ public class PostgreSqlGameDao implements GameDao
 		}
 		catch (SQLException e)
 		{
-			throw e;
+			throw new DaoException(e);
 		}
 	}
 
 	@Override
-	public List<Game> getUserGames(int id, int start, int size) throws SQLException
+	public List<Game> getUserGames(int id, int start, int size) throws DaoException
 	{
 		try (Connection connection = dataSource.getConnection())
 		{
@@ -205,12 +206,12 @@ public class PostgreSqlGameDao implements GameDao
 		}
 		catch (SQLException e)
 		{
-			throw e;
+			throw new DaoException(e);
 		}
 	}
 
 	@Override
-	public List<Game> getUserGames(User user) throws SQLException
+	public List<Game> getUserGames(User user) throws DaoException
 	{
 		if (user == null)
 		{
@@ -238,12 +239,12 @@ public class PostgreSqlGameDao implements GameDao
 		}
 		catch (SQLException e)
 		{
-			throw e;
+			throw new DaoException(e);
 		}
 	}
 
 	@Override
-	public List<Game> getUserGames(User user, int start, int size) throws SQLException
+	public List<Game> getUserGames(User user, int start, int size) throws DaoException
 	{
 		if (user == null)
 		{
@@ -273,12 +274,12 @@ public class PostgreSqlGameDao implements GameDao
 		}
 		catch (SQLException e)
 		{
-			throw e;
+			throw new DaoException(e);
 		}
 	}
 
 	@Override
-	public boolean update(Game game) throws SQLException
+	public boolean update(Game game) throws DaoException
 	{
 		if (game == null)
 		{
@@ -306,12 +307,12 @@ public class PostgreSqlGameDao implements GameDao
 		}
 		catch (SQLException e)
 		{
-			throw e;
+			throw new DaoException(e);
 		}
 	}
 
 	@Override
-	public boolean delete(int id) throws SQLException
+	public boolean delete(int id) throws DaoException
 	{
 		try (Connection connection = dataSource.getConnection())
 		{
@@ -323,12 +324,12 @@ public class PostgreSqlGameDao implements GameDao
 		}
 		catch (SQLException e)
 		{
-			throw e;
+			throw new DaoException(e);
 		}
 	}
 
 	@Override
-	public boolean delete(Game game) throws SQLException
+	public boolean delete(Game game) throws DaoException
 	{
 		if (game == null)
 		{
@@ -339,7 +340,7 @@ public class PostgreSqlGameDao implements GameDao
 	}
 
 	@Override
-	public int getGameCount() throws SQLException
+	public int getGameCount() throws DaoException
 	{
 		try (Connection connection = dataSource.getConnection())
 		{
@@ -352,12 +353,12 @@ public class PostgreSqlGameDao implements GameDao
 		}
 		catch (SQLException e)
 		{
-			throw e;
+			throw new DaoException(e);
 		}
 	}
 
 	@Override
-	public int getUserGameCount(int id) throws SQLException
+	public int getUserGameCount(int id) throws DaoException
 	{
 		try (Connection connection = dataSource.getConnection())
 		{
@@ -373,12 +374,12 @@ public class PostgreSqlGameDao implements GameDao
 		}
 		catch (SQLException e)
 		{
-			throw e;
+			throw new DaoException(e);
 		}
 	}
 
 	@Override
-	public int getUserGameCount(User user) throws SQLException
+	public int getUserGameCount(User user) throws DaoException
 	{
 		if (user == null)
 		{
@@ -389,7 +390,7 @@ public class PostgreSqlGameDao implements GameDao
 	}
 
 	@Override
-	public int getOutcomeCount(GameOutcome outcome) throws SQLException
+	public int getOutcomeCount(GameOutcome outcome) throws DaoException
 	{
 		try (Connection connection = dataSource.getConnection())
 		{
@@ -405,12 +406,12 @@ public class PostgreSqlGameDao implements GameDao
 		}
 		catch (SQLException e)
 		{
-			throw e;
+			throw new DaoException(e);
 		}
 	}
 
 	@Override
-	public int getUserChoiceCount(GameChoice userChoice) throws SQLException
+	public int getUserChoiceCount(GameChoice userChoice) throws DaoException
 	{
 		try (Connection connection = dataSource.getConnection())
 		{
@@ -426,12 +427,12 @@ public class PostgreSqlGameDao implements GameDao
 		}
 		catch (SQLException e)
 		{
-			throw e;
+			throw new DaoException(e);
 		}
 	}
 
 	@Override
-	public int getComputerChoiceCount(GameChoice computerChoice) throws SQLException
+	public int getComputerChoiceCount(GameChoice computerChoice) throws DaoException
 	{
 		try (Connection connection = dataSource.getConnection())
 		{
@@ -447,13 +448,20 @@ public class PostgreSqlGameDao implements GameDao
 		}
 		catch (SQLException e)
 		{
-			throw e;
+			throw new DaoException(e);
 		}
 	}
 
-	private Game createGameFromResultSet(ResultSet resultSet) throws SQLException
+	private Game createGameFromResultSet(ResultSet resultSet) throws DaoException
 	{
-		return createGameFromResultSet(resultSet, new HashMap<>());
+		try
+		{
+			return createGameFromResultSet(resultSet, new HashMap<>());
+		}
+		catch (SQLException e)
+		{
+			throw new DaoException(e);
+		}
 	}
 
 	private Game createGameFromResultSet(ResultSet resultSet, Map<Integer, User> userIds) throws SQLException
