@@ -14,6 +14,7 @@ public interface GameDao
 	Game get(int id) throws DaoException;
 	List<Game> getGames() throws DaoException;
 	List<Game> getGames(int start, int size) throws DaoException;
+	List<Game> getLastGames(User user, int size) throws DaoException;
 	List<Game> getUserGames(int id) throws DaoException;
 	List<Game> getUserGames(int id, int start, int size) throws DaoException;
 	List<Game> getUserGames(User user) throws DaoException;
@@ -28,6 +29,8 @@ public interface GameDao
 	int getUserGameCount(int id) throws DaoException;
 	int getUserGameCount(User user) throws DaoException;
 	int getOutcomeCount(GameOutcome outcome) throws DaoException;
+	int getOutcomeCount(GameOutcome outcome, User user) throws DaoException;
 	int getUserChoiceCount(GameChoice userChoice) throws DaoException;
+	int getUserChoiceCount(GameChoice userChoice, User user) throws DaoException;
 	int getComputerChoiceCount(GameChoice computerChoice) throws DaoException;
 }
