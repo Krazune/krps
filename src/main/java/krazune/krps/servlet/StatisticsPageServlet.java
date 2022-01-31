@@ -39,7 +39,11 @@ public class StatisticsPageServlet extends HttpServlet
 	private static final String USER_PAPERS = "userPapers";
 	private static final String USER_SCISSORS = "userScissors";
 
+	private static final String LAST_GAMES = "lastGames";
+
 	private static final Duration DURATION_BETWEEN_UPDATES = Duration.ofSeconds(120);
+
+	private static final int LAST_GAMES_COUNT = 10;
 
 	private Map<String, Integer> statistics;
 	private Instant statisticsUpdateInstant;
@@ -107,6 +111,9 @@ public class StatisticsPageServlet extends HttpServlet
 			{
 				request.setAttribute("showUserStatistics", true);
 				setupUserStatisticsAttributes(request, sessionUser);
+
+				request.setAttribute("showLastGames", true);
+				setupLastGamesAttribute(request, sessionUser);
 			}
 			catch (DaoException e)
 			{
@@ -115,6 +122,13 @@ public class StatisticsPageServlet extends HttpServlet
 		}
 
 		request.getRequestDispatcher("/WEB-INF/jsp/statistics.jsp").forward(request, response);
+	}
+
+	private void setupLastGamesAttribute(HttpServletRequest request, User sessionUser) throws DaoException
+	{
+		GameDao gameDao = daoFactory.createGameDao();
+
+		request.setAttribute(LAST_GAMES, gameDao.getLastGames(sessionUser, LAST_GAMES_COUNT));
 	}
 
 	private void setupNavigationLinks(HttpServletRequest request)

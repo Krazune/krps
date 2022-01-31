@@ -1,3 +1,6 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 <!doctype html>
 <html>
 	<head>
@@ -48,6 +51,32 @@
 					<td class="text">${userPapers}</td>
 					<td class="text">${userScissors}</td>
 				</tr>
+			</table>
+		</c:if>
+		<c:if test="${showLastGames}">
+			<table>
+				<tr>
+					<th class="text">Player choice</th>
+					<th class="text">Computer choice</th>
+					<th class="text">Result</th>
+					<th class="text">Date</th>
+				</tr>
+				<c:if test="${lastGames.size() == 0}">
+					<tr>
+						<td class="text">-</td>
+						<td class="text">-</td>
+						<td class="text">-</td>
+						<td class="text">-</td>
+					</tr>
+				</c:if>
+				<c:forEach items="${lastGames}" var="game">
+					<tr>
+						<td class="text">${game.getUserChoice()}</td>
+						<td class="text">${game.getComputerChoice()}</td>
+						<td class="text">${game.getOutcome()}</td>
+						<td class="text"><fmt:formatDate pattern="dd-MM-yyyy HH:mm" value="${game.getCreationDate()}"/></td>
+					</tr>
+				</c:forEach>
 			</table>
 		</c:if>
 	</body>

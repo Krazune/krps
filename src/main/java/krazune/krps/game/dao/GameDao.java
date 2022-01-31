@@ -14,6 +14,7 @@ public interface GameDao
 	Game get(int id) throws DaoException;
 	List<Game> getGames() throws DaoException;
 	List<Game> getGames(int start, int size) throws DaoException;
+	List<Game> getLastGames(User user, int size) throws DaoException;
 	List<Game> getUserGames(int id) throws DaoException;
 	List<Game> getUserGames(int id, int start, int size) throws DaoException;
 	List<Game> getUserGames(User user) throws DaoException;
