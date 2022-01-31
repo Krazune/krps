@@ -1,18 +1,92 @@
 package krazune.krps.servlet;
 
 import java.io.IOException;
+import java.time.Duration;
+import java.time.Instant;
+import java.util.HashMap;
+import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import krazune.krps.dao.DaoException;
+import krazune.krps.dao.DaoFactory;
+import krazune.krps.game.GameChoice;
+import krazune.krps.game.GameOutcome;
+import krazune.krps.game.dao.GameDao;
 import krazune.krps.user.Authentication;
 
 public class StatisticsPageServlet extends HttpServlet
 {
+	private static final String TOTAL_GAME_COUNT = "gameCount";
+
+	private static final String TOTAL_GAME_WINS = "gameWins";
+	private static final String TOTAL_GAME_LOSSES = "gameLosses";
+	private static final String TOTAL_GAME_DRAWS = "gameDraws";
+
+	private static final String TOTAL_ROCKS = "totalRocks";
+	private static final String TOTAL_PAPERS = "totalPapers";
+	private static final String TOTAL_SCISSORS = "totalScissors";
+
+	private static final Duration DURATION_BETWEEN_UPDATES = Duration.ofSeconds(120);
+
+	private Map<String, Integer> statistics;
+	private Instant statisticsUpdateInstant;
+	private DaoFactory daoFactory;
+
+	@Override
+	public void init() throws ServletException
+	{
+		daoFactory = (DaoFactory) getServletContext().getAttribute("mainDaoFactory");
+
+		try
+		{
+			statistics = getGlobalStatistics();
+			statisticsUpdateInstant = Instant.now();
+		}
+		catch (DaoException e)
+		{
+			throw new ServletException(e);
+		}
+	}
+
+	private Map<String, Integer> getGlobalStatistics() throws DaoException
+	{
+		Map<String, Integer> newStatistics = new HashMap<>();
+		GameDao gameDao = daoFactory.createGameDao();
+
+		newStatistics.put(TOTAL_GAME_COUNT, gameDao.getGameCount());
+
+		newStatistics.put(TOTAL_GAME_WINS, gameDao.getOutcomeCount(GameOutcome.WIN));
+		newStatistics.put(TOTAL_GAME_LOSSES, gameDao.getOutcomeCount(GameOutcome.LOSS));
+		newStatistics.put(TOTAL_GAME_DRAWS, gameDao.getOutcomeCount(GameOutcome.DRAW));
+
+		newStatistics.put(TOTAL_ROCKS, gameDao.getUserChoiceCount(GameChoice.ROCK));
+		newStatistics.put(TOTAL_PAPERS, gameDao.getUserChoiceCount(GameChoice.PAPER));
+		newStatistics.put(TOTAL_SCISSORS, gameDao.getUserChoiceCount(GameChoice.SCISSORS));
+
+		return newStatistics;
+	}
+
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		setupNavigationLinks(request);
+
+		if (Instant.now().isAfter(statisticsUpdateInstant.plus(DURATION_BETWEEN_UPDATES)))
+		{
+			try
+			{
+				statistics = getGlobalStatistics();
+				statisticsUpdateInstant = Instant.now();
+			}
+			catch (DaoException e)
+			{
+				throw new ServletException(e);
+			}
+		}
+
+		setupGlobalStatisticsAttributes(request);
 
 		request.getRequestDispatcher("/WEB-INF/jsp/statistics.jsp").forward(request, response);
 	}
@@ -28,5 +102,18 @@ public class StatisticsPageServlet extends HttpServlet
 		request.setAttribute("showInformationLink", true);
 		request.setAttribute("showSettingsLink", authenticated);
 		request.setAttribute("showLogoutLink", authenticated);
+	}
+
+	private void setupGlobalStatisticsAttributes(HttpServletRequest request)
+	{
+		request.setAttribute(TOTAL_GAME_COUNT, statistics.get(TOTAL_GAME_COUNT));
+
+		request.setAttribute(TOTAL_GAME_WINS, statistics.get(TOTAL_GAME_WINS));
+		request.setAttribute(TOTAL_GAME_LOSSES, statistics.get(TOTAL_GAME_LOSSES));
+		request.setAttribute(TOTAL_GAME_DRAWS, statistics.get(TOTAL_GAME_DRAWS));
+
+		request.setAttribute(TOTAL_ROCKS, statistics.get(TOTAL_ROCKS));
+		request.setAttribute(TOTAL_PAPERS, statistics.get(TOTAL_PAPERS));
+		request.setAttribute(TOTAL_SCISSORS, statistics.get(TOTAL_SCISSORS));
 	}
 }
