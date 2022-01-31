@@ -15,6 +15,7 @@ import krazune.krps.game.GameChoice;
 import krazune.krps.game.GameOutcome;
 import krazune.krps.game.dao.GameDao;
 import krazune.krps.user.Authentication;
+import krazune.krps.user.User;
 
 public class StatisticsPageServlet extends HttpServlet
 {
@@ -27,6 +28,16 @@ public class StatisticsPageServlet extends HttpServlet
 	private static final String TOTAL_ROCKS = "totalRocks";
 	private static final String TOTAL_PAPERS = "totalPapers";
 	private static final String TOTAL_SCISSORS = "totalScissors";
+
+	private static final String USER_GAME_COUNT = "userGameCount";
+
+	private static final String USER_GAME_WINS = "userWins";
+	private static final String USER_GAME_LOSSES = "userLosses";
+	private static final String USER_GAME_DRAWS = "userDraws";
+
+	private static final String USER_ROCKS = "userRocks";
+	private static final String USER_PAPERS = "userPapers";
+	private static final String USER_SCISSORS = "userScissors";
 
 	private static final Duration DURATION_BETWEEN_UPDATES = Duration.ofSeconds(120);
 
@@ -88,6 +99,21 @@ public class StatisticsPageServlet extends HttpServlet
 
 		setupGlobalStatisticsAttributes(request);
 
+		User sessionUser = Authentication.getSessionUser(request.getSession(false));
+
+		if (sessionUser != null)
+		{
+			try
+			{
+				request.setAttribute("showUserStatistics", true);
+				setupUserStatisticsAttributes(request, sessionUser);
+			}
+			catch (DaoException e)
+			{
+				throw new ServletException(e);
+			}
+		}
+
 		request.getRequestDispatcher("/WEB-INF/jsp/statistics.jsp").forward(request, response);
 	}
 
@@ -115,5 +141,20 @@ public class StatisticsPageServlet extends HttpServlet
 		request.setAttribute(TOTAL_ROCKS, statistics.get(TOTAL_ROCKS));
 		request.setAttribute(TOTAL_PAPERS, statistics.get(TOTAL_PAPERS));
 		request.setAttribute(TOTAL_SCISSORS, statistics.get(TOTAL_SCISSORS));
+	}
+
+	private void setupUserStatisticsAttributes(HttpServletRequest request, User user) throws DaoException
+	{
+		GameDao gameDao = daoFactory.createGameDao();
+
+		request.setAttribute(USER_GAME_COUNT, gameDao.getUserGameCount(user));
+
+		request.setAttribute(USER_GAME_WINS, gameDao.getOutcomeCount(GameOutcome.WIN, user));
+		request.setAttribute(USER_GAME_LOSSES, gameDao.getOutcomeCount(GameOutcome.LOSS, user));
+		request.setAttribute(USER_GAME_DRAWS, gameDao.getOutcomeCount(GameOutcome.DRAW, user));
+
+		request.setAttribute(USER_ROCKS, gameDao.getUserChoiceCount(GameChoice.ROCK, user));
+		request.setAttribute(USER_PAPERS, gameDao.getUserChoiceCount(GameChoice.PAPER, user));
+		request.setAttribute(USER_SCISSORS, gameDao.getUserChoiceCount(GameChoice.SCISSORS, user));
 	}
 }

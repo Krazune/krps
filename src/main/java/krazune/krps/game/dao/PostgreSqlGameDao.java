@@ -30,7 +30,9 @@ public class PostgreSqlGameDao implements GameDao
 	private static final String COUNT_QUERY = "SELECT COUNT(id) FROM games";
 	private static final String COUNT_BY_USER_QUERY = "SELECT COUNT(id) FROM games WHERE user_id = ?";
 	private static final String COUNT_BY_OUTCOME_QUERY = "SELECT COUNT(id) FROM games WHERE outcome = ?";
+	private static final String COUNT_BY_OUTCOME_BY_USER_QUERY = "SELECT COUNT(id) FROM games WHERE outcome = ? AND user_id = ?";
 	private static final String COUNT_BY_USER_CHOICE_QUERY = "SELECT COUNT(id) FROM games WHERE user_choice = ?";
+	private static final String COUNT_BY_USER_CHOICE_BY_USER_QUERY = "SELECT COUNT(id) FROM games WHERE user_choice = ? AND user_id = ?";
 	private static final String COUNT_BY_COMPUTER_CHOICE_QUERY = "SELECT COUNT(id) FROM games WHERE computer_choice = ?";
 
 	private DataSource dataSource;
@@ -411,6 +413,28 @@ public class PostgreSqlGameDao implements GameDao
 	}
 
 	@Override
+	public int getOutcomeCount(GameOutcome outcome, User user) throws DaoException
+	{
+		try (Connection connection = dataSource.getConnection())
+		{
+			PreparedStatement statement = connection.prepareStatement(COUNT_BY_OUTCOME_BY_USER_QUERY);
+
+			statement.setString(1, String.valueOf(outcome.getSymbol()));
+			statement.setInt(2, user.getId());
+
+			ResultSet result = statement.executeQuery();
+
+			result.next();
+
+			return result.getInt(1);
+		}
+		catch (SQLException e)
+		{
+			throw new DaoException(e);
+		}
+	}
+
+	@Override
 	public int getUserChoiceCount(GameChoice userChoice) throws DaoException
 	{
 		try (Connection connection = dataSource.getConnection())
@@ -418,6 +442,28 @@ public class PostgreSqlGameDao implements GameDao
 			PreparedStatement statement = connection.prepareStatement(COUNT_BY_USER_CHOICE_QUERY);
 
 			statement.setString(1, String.valueOf(userChoice.getSymbol()));
+
+			ResultSet result = statement.executeQuery();
+
+			result.next();
+
+			return result.getInt(1);
+		}
+		catch (SQLException e)
+		{
+			throw new DaoException(e);
+		}
+	}
+
+	@Override
+	public int getUserChoiceCount(GameChoice userChoice, User user) throws DaoException
+	{
+		try (Connection connection = dataSource.getConnection())
+		{
+			PreparedStatement statement = connection.prepareStatement(COUNT_BY_USER_CHOICE_BY_USER_QUERY);
+
+			statement.setString(1, String.valueOf(userChoice.getSymbol()));
+			statement.setInt(2, user.getId());
 
 			ResultSet result = statement.executeQuery();
 

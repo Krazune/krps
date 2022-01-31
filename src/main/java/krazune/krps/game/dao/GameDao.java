@@ -28,6 +28,8 @@ public interface GameDao
 	int getUserGameCount(int id) throws DaoException;
 	int getUserGameCount(User user) throws DaoException;
 	int getOutcomeCount(GameOutcome outcome) throws DaoException;
+	int getOutcomeCount(GameOutcome outcome, User user) throws DaoException;
 	int getUserChoiceCount(GameChoice userChoice) throws DaoException;
+	int getUserChoiceCount(GameChoice userChoice, User user) throws DaoException;
 	int getComputerChoiceCount(GameChoice computerChoice) throws DaoException;
 }
