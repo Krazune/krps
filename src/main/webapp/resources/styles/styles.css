@@ -91,3 +91,121 @@
 	display: inline;
 	padding: 0;
 }
+
+.game
+{
+	padding: 10px;
+	display: grid;
+	place-items: center;
+	grid-template-areas:
+		"user-profile vs-label computer-profile"
+		"game-status game-status game-status"
+		"game-choices game-choices game-choices"
+		"confirm-button confirm-button confirm-button"
+		"account-warning account-warning account-warning";
+}
+
+.game--limited-width
+{
+	width: 800px;
+	margin: auto;
+}
+
+.game__player-profile
+{
+	margin: auto;
+}
+
+.game__player-profile--user
+{
+	grid-area: user-profile;
+}
+
+.game__player-profile--computer
+{
+	grid-area: computer-profile;
+}
+
+.game__player-choice-container
+{
+	padding: 50px;
+	border-radius: 100%;
+	border-style: solid;
+	border-color: #f75c03;
+	border-width: 4px;
+}
+
+.game__player-choice
+{
+	width:  80px;
+	height:  80px;
+	display: block;
+}
+
+.game__player-name
+{
+	font-size: 2em;
+	margin: 5px;
+	text-align: center;
+}
+
+.game__vs-label
+{
+	font-size: 1.6em;
+	text-align: center;
+	grid-area: vs-label;
+}
+
+.game__status
+{
+	text-align: center;
+	font-size: 2em;
+	margin: 10px;
+	grid-area: game-status;
+}
+
+.game__choices
+{
+	display: flex;
+	grid-area: game-choices;
+}
+
+.game__choice-button
+{
+	background-color: transparent;
+	padding: 20px;
+	margin: 20px;
+	border-radius: 100%;
+	border: solid 3px #ebebeb;
+	cursor: pointer;
+}
+
+.game__choice-button:hover
+{
+	border-color: #f75c03;
+}
+
+.game__choice-button--selected
+{
+	background-color: #f75c03;
+	border-color: #f75c03;
+}
+
+.game__choice-image
+{
+	width:  50px;
+	height:  50px;
+	display: block;
+}
+
+.game__confirm-button
+{
+	grid-area: confirm-button;
+}
+
+.game__account-warning
+{
+	font-size: 1.2em;
+	margin: 10px;
+	grid-area: account-warning;
+}
