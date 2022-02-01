@@ -12,13 +12,13 @@
 {
 	margin: 0 auto;
 	width: 1000px;
-	background-color: #1c1c1c;
+	background-color: #282828;
 }
 
 .hr
 {
 	border: none;
-	border-top: 3px solid #f75c03;
+	border-top: 3px solid #679436;
 }
 
 .button
@@ -27,17 +27,18 @@
 	padding: 10px 45px;
 	border: none;
 	border-radius: 5px;
-	background-color: #f75c03;
+	background-color: #679436;
+	cursor: pointer;
 }
 
 .button:hover
 {
-	background-color: blue;
+	background-color: #87a330;
 }
 
 .button:disabled
 {
-	background-color: red;
+	background-color: #343434;
 }
 
 .form
@@ -62,15 +63,15 @@
 {
 	font-size: 1.4em;
 	border-style: none none solid none;
-	border-color: red;
+	border-color: #e5e5e5;
 	padding: 5px;
-	background: blue;
+	background-color: #343434;
 	outline: none;
  }
 
 .text-input:focus
 {
-	border-color: #f75c03;
+	border-color: #679436;
 }
 
 .table
@@ -88,7 +89,7 @@
 {
 	font-size: 1.2rem;
 	font-family: 'Dosis', sans-serif;
-	color: #ebebeb;
+	color: #e5e5e5;
 }
 
 .text--left-align
@@ -98,12 +99,12 @@
 
 .text--special
 {
-	color: #f75c03;
+	color: #679436;
 }
 
 .text--error
 {
-	color: red;
+	color: #ac3737;
 }
 
 .list
@@ -121,7 +122,7 @@
 
 .link:hover
 {
-	color: #f75c03;
+	color: #679436;
 }
 
 .header
@@ -210,7 +211,7 @@
 	padding: 50px;
 	border-radius: 100%;
 	border-style: solid;
-	border-color: #f75c03;
+	border-color: #679436;
 	border-width: 4px;
 }
 
@@ -255,19 +256,18 @@
 	padding: 20px;
 	margin: 20px;
 	border-radius: 100%;
-	border: solid 3px #ebebeb;
+	border: solid 3px #e5e5e5;
 	cursor: pointer;
-}
-
-.game__choice-button:hover
-{
-	border-color: #f75c03;
 }
 
 .game__choice-button--selected
 {
-	background-color: #f75c03;
-	border-color: #f75c03;
+	border-color: #679436;
+}
+
+.game__choice-button:hover
+{
+	border-color: #87a330;
 }
 
 .game__choice-image

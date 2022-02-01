@@ -33,7 +33,7 @@
 			<c:if test="${changePasswordSuccessMessage != null && !changePasswordSuccessMessage.isEmpty()}">
 				<p class="text"><c:out value="${changePasswordSuccessMessage}"/></p>
 			</c:if>
-			<input class="button" type="submit" name="change-password-submit" value="Change password">
+			<input class="text button" type="submit" name="change-password-submit" value="Change password">
 		</form>
 	</body>
 </html>

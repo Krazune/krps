@@ -30,7 +30,7 @@
 			<c:forEach items="${passwordConfirmationErrorMessages}" var="passwordConfirmationErrorMessage">
 				<p class="text text--error"><c:out value="${passwordConfirmationErrorMessage}"/></p>
 			</c:forEach>
-			<input class="button" type="submit" name="registration-submit" value="Register">
+			<input class="text button" type="submit" name="registration-submit" value="Register">
 		</form>
 	</body>
 </html>

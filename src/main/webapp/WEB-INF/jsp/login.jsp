@@ -24,7 +24,7 @@
 			<c:if test="${loginErrorMessage != null && !loginErrorMessage.isEmpty()}">
 				<p class="text text--error"><c:out value="${loginErrorMessage}"/></p>
 			</c:if>
-			<input class="button" type="submit" name="login-submit" value="Log in">
+			<input class="text button" type="submit" name="login-submit" value="Log in">
 		</form>
 	</body>
 </html>
