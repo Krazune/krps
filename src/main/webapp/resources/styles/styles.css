@@ -104,7 +104,8 @@
 
 .text--error
 {
-	color: #ac3737;
+	color: #ea3838;
+	text-decoration: underline;
 }
 
 .list
