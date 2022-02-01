@@ -8,11 +8,11 @@
 	<body class="page">
 		<%@ include file="/WEB-INF/jsp/fragments/header.jsp" %>
 		<form class="form form--limited-width" method="post" action="/login">
-			<h3 class="text form__title">Registration</h3>
+			<h3 class="text form__title">Login</h3>
 			<label class="text" for="username">Username</label>
 			<input class="text text-input" id="username" type="text" name="username" value="${previousUsername}">
 
-			<label class="text"  for="password">Password</label>
+			<label class="text" for="password">Password</label>
 			<input class="text text-input" id="password" type="password" name="password">
 
 			<c:forEach items="${usernameErrorMessages}" var="usernameErrorMessage">

@@ -31,7 +31,7 @@
 			</div>
 			<button id="game-confirm-button" class="button text game__confirm-button" disabled="true">Confirm</button>
 			<c:if test="${showAccountWarning}">
-				<p class="text game__account-warning">Register your account to keep track of your statistics.</p>
+				<p class="text game__account-warning">Register your account to keep track of your games.</p>
 			</c:if>
 		</main>
 	</body>
