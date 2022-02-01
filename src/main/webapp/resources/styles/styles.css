@@ -73,11 +73,27 @@
 	border-color: #f75c03;
 }
 
+.table
+{
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.table--no-decoration
+{
+	border: none;
+}
+
 .text
 {
 	font-size: 1.2rem;
 	font-family: 'Dosis', sans-serif;
 	color: #ebebeb;
+}
+
+.text--left-align
+{
+	text-align: left;
 }
 
 .text--special
@@ -270,6 +286,11 @@
 {
 	margin: 10px;
 	grid-area: account-warning;
+}
+
+.article
+{
+	margin: 10px;
 }
 
 .article__title
