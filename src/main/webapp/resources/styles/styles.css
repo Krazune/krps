@@ -15,9 +15,15 @@
 	background-color: #1c1c1c;
 }
 
+.hr
+{
+	border: none;
+	border-top: 3px solid #f75c03;
+}
+
 .button
 {
-	font-size: 1.5em;
+	font-size: 1.5rem;
 	padding: 10px 45px;
 	border: none;
 	border-radius: 5px;
@@ -36,6 +42,7 @@
 
 .text
 {
+	font-size: 1.2rem;
 	font-family: 'Dosis', sans-serif;
 	color: #ebebeb;
 }
@@ -65,25 +72,25 @@
 
 .header
 {
-	padding: 10px;
+	padding: 5px;
 }
 
 .header__author
 {
 	text-transform: uppercase;
-	font-size: 1em;
+	font-size: 1rem;
 	text-align: center;
-	margin: 5px auto;
-	line-height: 1em;
+	margin: 2px;
+	line-height: 1;
 }
 
 .header__title
 {
 	text-transform: uppercase;
-	font-size: 3em;
+	font-size: 3rem;
 	text-align: center;
-	margin: 5px auto;
-	line-height: 1em;
+	margin: 2px;
+	line-height: 1;
 }
 
 .navigation
@@ -100,7 +107,6 @@
 
 .navigation__link
 {
-	font-size: 1.3em;
 }
 
 .navigation__link--fake
@@ -163,14 +169,14 @@
 
 .game__player-name
 {
-	font-size: 2em;
+	font-size: 2rem;
 	margin: 5px;
 	text-align: center;
 }
 
 .game__vs-label
 {
-	font-size: 1.6em;
+	font-size: 1.6rem;
 	text-align: center;
 	grid-area: vs-label;
 }
@@ -178,7 +184,7 @@
 .game__status
 {
 	text-align: center;
-	font-size: 2em;
+	font-size: 2rem;
 	margin: 10px;
 	grid-area: game-status;
 }
@@ -224,7 +230,15 @@
 
 .game__account-warning
 {
-	font-size: 1.2em;
 	margin: 10px;
 	grid-area: account-warning;
+}
+
+.article__title
+{
+	font-size: 1.3em;
+}
+
+.article__paragraph
+{
 }
