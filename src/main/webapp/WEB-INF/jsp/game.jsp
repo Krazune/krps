@@ -10,14 +10,14 @@
 	<body class="page">
 		<%@ include file="/WEB-INF/jsp/fragments/header.jsp" %>
 		<main class="game game--limited-width">
-			<div class="game__player-profile">
+			<div class="game__player-profile game__player-profile--user">
 				<div class="game__player-choice-container">
 					<img id="user-choice-image" class="game__player-choice" src="${pageContext.request.contextPath}/resources/images/question.svg" alt="Unknown choice."/>
 				</div>
 				<p class="text game__player-name"><c:out value="${gameUsername}"/></p>
 			</div>
 			<p class="text game__vs-label">VS</p>
-			<div class="game__player-profile">
+			<div class="game__player-profile game__player-profile--computer">
 				<div class="game__player-choice-container">
 					<img id="computer-choice-image" class="game__player-choice" src="${pageContext.request.contextPath}/resources/images/question.svg" alt="Unknown choice."/>
 				</div>
