@@ -7,26 +7,30 @@
 	</head>
 	<body class="page">
 		<%@ include file="/WEB-INF/jsp/fragments/header.jsp" %>
-		<form method="post" action="registration">
-		<label for="username">Username</label>
-		<input id="username" type="text" name="username" value="${previousUsername}">
-		<c:forEach items="${usernameErrorMessages}" var="usernameErrorMessage">
-			<c:out value="${usernameErrorMessage}"/>
-		</c:forEach>
+		<form class="form form--limited-width" method="post" action="registration">
+			<h3 class="text form__title">Registration</h3>
+			<label class="text" for="username">Username</label>
+			<input class="text text-input" id="username" type="text" name="username" value="${previousUsername}">
+			<p class="text">The username must have a minimum of 6 characters, and a maximum of 16 characters. Only letters and numbers are allowed.</p>
 
-		<label for="password">Password</label>
-		<input id="password" type="password" name="password">
-		<c:forEach items="${passwordErrorMessages}" var="passwordErrorMessage">
-			<c:out value="${passwordErrorMessage}"/>
-		</c:forEach>
+			<label class="text" for="password">Password</label>
+			<input class="text text-input" id="password" type="password" name="password">
+			<p class="text">The password must have a minimum of 6 characters, and a maximum of 64 characters.</p>
 
-		<label for="password-confirmation">Password confirmation</label>
-		<input id="password-confirmation" type="password" name="password-confirmation">
-		<c:forEach items="${passwordConfirmationErrorMessages}" var="passwordConfirmationErrorMessage">
-			<c:out value="${passwordConfirmationErrorMessage}"/>
-		</c:forEach>
+			<label class="text" for="password-confirmation">Password confirmation</label>
+			<input class="text text-input" id="password-confirmation" type="password" name="password-confirmation">
+			<p class="text">Both passwords must be equal.</p>
 
-		<input type="submit" name="registration-submit" value="Register">
+			<c:forEach items="${usernameErrorMessages}" var="usernameErrorMessage">
+				<p class="text text--error"><c:out value="${usernameErrorMessage}"/></p>
+			</c:forEach>
+			<c:forEach items="${passwordErrorMessages}" var="passwordErrorMessage">
+				<p class="text text--error"><c:out value="${passwordErrorMessage}"/></p>
+			</c:forEach>
+			<c:forEach items="${passwordConfirmationErrorMessages}" var="passwordConfirmationErrorMessage">
+				<p class="text text--error"><c:out value="${passwordConfirmationErrorMessage}"/></p>
+			</c:forEach>
+			<input class="button" type="submit" name="registration-submit" value="Register">
 		</form>
 	</body>
 </html>
