@@ -40,6 +40,39 @@
 	background-color: red;
 }
 
+.form
+{
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+}
+
+.form--limited-width
+{
+	width: 500px;
+	margin: auto;
+}
+
+.form__title
+{
+	font-size: 1.5rem;
+}
+
+.text-input
+{
+	font-size: 1.4em;
+	border-style: none none solid none;
+	border-color: red;
+	padding: 5px;
+	background: blue;
+	outline: none;
+ }
+
+.text-input:focus
+{
+	border-color: #f75c03;
+}
+
 .text
 {
 	font-size: 1.2rem;
@@ -50,6 +83,11 @@
 .text--special
 {
 	color: #f75c03;
+}
+
+.text--error
+{
+	color: red;
 }
 
 .list
