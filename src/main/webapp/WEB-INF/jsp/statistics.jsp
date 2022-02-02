@@ -1,103 +1,89 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<!doctype html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Statistics | KRSP</title>
-		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/styles/styles.css">
-    </head>
-    <body class="page">
+	<head>
+		<meta charset="utf-8">
+		<title>Statistics - KRPS</title>
+		<link rel="stylesheet" type="text/css" href="/resources/styles/styles.css">
+	</head>
+	<body class="page">
 		<%@ include file="/WEB-INF/jsp/fragments/header.jsp" %>
-		<div class="statistics statistics--limited-width">
-			<h2 class="text statistics__title">Global statistics</h2>
-			<table class="table table--no-decorations">
+		<main class="article article--centered-text">
+			<h2 class="text article__title">Global statistics</h2>
+			<table class="table table--no-decoration table--centered-text">
 				<tr>
-					<th class="text text--left-align">Games</th>
-					<th class="text text--left-align">Wins</th>
-					<th class="text text--left-align">Losses</th>
-					<th class="text text--left-align">Draws</th>
-					<th class="text text--left-align">Rock</th>
-					<th class="text text--left-align">Paper</th>
-					<th class="text text--left-align">Scissors</th>
+					<th class="text">Games</th>
+					<th class="text">Wins</th>
+					<th class="text">Losses</th>
+					<th class="text">Draws</th>
+					<th class="text">Rock</th>
+					<th class="text">Paper</th>
+					<th class="text">Scissors</th>
 				</tr>
 				<tr>
 					<td class="text">${gameCount}</td>
-					<td class="text">${winCount}</td>
-					<td class="text">${lossCount}</td>
-					<td class="text">${drawCount}</td>
-					<td class="text">${userChoiceRockCount}</td>
-					<td class="text">${userChoicePaperCount}</td>
-					<td class="text">${userChoiceScissorsCount}</td>
+					<td class="text">${gameWins}</td>
+					<td class="text">${gameLosses}</td>
+					<td class="text">${gameDraws}</td>
+					<td class="text">${totalRocks}</td>
+					<td class="text">${totalPapers}</td>
+					<td class="text">${totalScissors}</td>
 				</tr>
 			</table>
 
-			<c:if test="${sessionScope.sessionUser != null}">
+			<c:if test="${showUserStatistics}">
 				<hr class="hr">
-
-				<h2 class="text statistics__title"><c:out value="${sessionScope.sessionUser.getName()}"/>'s statistics</h2>
-
-				<table class="table table--no-decorations">
+				<h2 class="text article__title">User statistics</h2>
+				<table class="table table--no-decoration table--centered-text">
 					<tr>
-						<th class="text text--left-align">Games</th>
-						<th class="text text--left-align">Wins</th>
-						<th class="text text--left-align">Losses</th>
-						<th class="text text--left-align">Draws</th>
-						<th class="text text--left-align">Rock</th>
-						<th class="text text--left-align">Paper</th>
-						<th class="text text--left-align">Scissosrs</th>
+						<th class="text">Games</th>
+						<th class="text">Wins</th>
+						<th class="text">Losses</th>
+						<th class="text">Draws</th>
+						<th class="text">Rock</th>
+						<th class="text">Paper</th>
+						<th class="text">Scissosrs</th>
 					</tr>
 					<tr>
-						<td class="text">${sessionUserGameCount}</td>
-						<td class="text">${sessionUserWinCount}</td>
-						<td class="text">${sessionUserLossCount}</td>
-						<td class="text">${sessionUserDrawCount}</td>
-						<td class="text">${sessionUserRockCount}</td>
-						<td class="text">${sessionUserPaperCount}</td>
-						<td class="text">${sessionUserScissorsCount}</td>
+						<td class="text">${userGameCount}</td>
+						<td class="text">${userWins}</td>
+						<td class="text">${userLosses}</td>
+						<td class="text">${userDraws}</td>
+						<td class="text">${userRocks}</td>
+						<td class="text">${userPapers}</td>
+						<td class="text">${userScissors}</td>
 					</tr>
 				</table>
-
-				<hr class="hr">
-
-				<c:if test="${lastGames != null}">
-					<h2 class="text statistics__title"><c:out value="${sessionScope.sessionUser.getName()}"/>'s most recent game(s)</h2>
-					<table class="table">
-						<tr class="table__row table__row--header">
-							<th class="text table__data table__header">Player choice</th>
-							<th class="text table__data table__header">Computer choice</th>
-							<th class="text table__data table__header">Result</th>
-							<th class="text table__data table__header">Date</th>
-						</tr>
-						<c:if test="${lastGames.size() == 0}">
-							<tr class="table__row">
-								<td class="text table__data">-</td>
-								<td class="text table__data">-</td>
-								<td class="text table__data">-</td>
-								<td class="text table__data">-</td>
-							</tr>
-						</c:if>
-						<c:forEach items="${lastGames}" var="game">
-							<tr class="table__row">
-								<td class="text table__data">${game.getUserChoice()}</td>
-								<td class="text table__data">${game.getComputerChoice()}</td>
-								<td class="text table__data">${game.getResult()}</td>
-								<td class="text text--right-align table__data"><fmt:formatDate pattern="dd-MM-yyyy HH:mm" value="${game.getCreationDate()}"/></td>
-							</tr>
-						</c:forEach>
-					</table>
-				</c:if>
 			</c:if>
-		</div>
-		<jsp:include page="${pageContext.request.contextPath}/WEB-INF/jsp/fragments/navigation.jsp">
-			<jsp:param name="home" value="true"/>
-			<jsp:param name="settings" value="true"/>
-			<jsp:param name="information" value="true"/>
-			<jsp:param name="login" value="true"/>
-			<jsp:param name="logout" value="true"/>
-			<jsp:param name="registration" value="true"/>
-		</jsp:include>
-    </body>
+			<c:if test="${showLastGames}">
+				<hr class="hr">
+				<h2 class="text article__title">Last games</h2>
+				<table class="table table--no-decoration table--centered-text">
+					<tr>
+						<th class="text">Player choice</th>
+						<th class="text">Computer choice</th>
+						<th class="text">Result</th>
+						<th class="text">Date</th>
+					</tr>
+					<c:if test="${lastGames.size() == 0}">
+						<tr>
+							<td class="text">-</td>
+							<td class="text">-</td>
+							<td class="text">-</td>
+							<td class="text">-</td>
+						</tr>
+					</c:if>
+					<c:forEach items="${lastGames}" var="game">
+						<tr>
+							<td class="text">${game.getUserChoice()}</td>
+							<td class="text">${game.getComputerChoice()}</td>
+							<td class="text">${game.getOutcome()}</td>
+							<td class="text"><fmt:formatDate pattern="dd-MM-yyyy HH:mm" value="${game.getCreationDate()}"/></td>
+						</tr>
+					</c:forEach>
+				</table>
+			</c:if>
+	</body>
 </html>

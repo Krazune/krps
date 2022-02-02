@@ -1,116 +1,295 @@
-/* dosis-regular - latin */
+/* TODO: Re-do styles, and reorganizar classes. */
 @font-face
 {
 	font-family: "Dosis";
 	font-style: normal;
 	font-weight: 200;
 	src:
-		url("../fonts/dosis-v19-latin-200.woff2") format("woff2"),	/* Chrome 26+, Opera 23+, Firefox 39+ */
-		url("../fonts/dosis-v19-latin-200.woff") format("woff");		/* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+		url("/resources/fonts/dosis-v19-latin-200.woff2") format("woff2"),  /* Chrome 26+, Opera 23+, Firefox 39+ */
+		url("/resources/fonts/dosis-v19-latin-200.woff") format("woff");    /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 
 .page
 {
-	margin: 0;
-	background-color: #F1EBDE;
+	margin: 0 auto;
+	width: 1000px;
+	background-color: #282828;
+}
+
+.hr
+{
+	border: none;
+	border-top: 3px solid #679436;
+}
+
+.hr--short
+{
+	width: 300px;
+	border: none;
+	border-top: 3px solid #679436;
+}
+
+.button
+{
+	font-size: 1.5rem;
+	padding: 10px 45px;
+	border: none;
+	border-radius: 5px;
+	background-color: #679436;
+	cursor: pointer;
+}
+
+.button:hover
+{
+	background-color: #87a330;
+}
+
+.button:disabled
+{
+	background-color: #343434;
 }
 
 .text
 {
-	font-size: 1.2em;
-	font-family: "Dosis", Helvetica, sans-serif;
-	color: #4C4C47;
+	font-size: 1.2rem;
+	font-family: 'Dosis', sans-serif;
+	color: #e5e5e5;
+}
+
+.text--special
+{
+	color: #679436;
 }
 
 .text--error
 {
-	color: #E63C2D;
-}
-
-.link
-{
-	font-size: 1em;
-	background-color: transparent;
+	color: #ea3838;
 	text-decoration: underline;
-	border: none;
-	cursor: pointer;
-	padding: 0;
 }
 
-.link:hover
+.text--big-error
 {
-	color: #E63C2D;
+	font-weight: bold;
+	margin-top: 20px;
+	margin-bottom: 10px;
+	font-size: 2rem;
+	color: #ea3838;
 }
 
-.header
-{
-	padding: 10px;
-}
-
-.header__title
+.text--centered
 {
 	text-align: center;
-	font-size: 3.5em;
-	color: #E63C2D;
-	margin: 5px auto;
-	line-height: 1;
+	display: block;
 }
 
-.header__subtitle
+.form
 {
-	text-align: center;
-	font-size: 1.3em;
-	margin: 5px auto;
-	line-height: 1;
+	display: flex;
+	padding: 20px;
+	flex-direction: column;
+	gap: 5px;
 }
 
-.game
+.form--limited-width
 {
-	display: grid;
-	grid-gap: 10px;
-	justify-items: center;
-	grid-template-areas:
-		"game-player game-versus-label game-computer"
-		"game-description game-description game-description"
-		"game-choices game-choices game-choices"
-		"game-confirm-button game-confirm-button game-confirm-button";
+	width: 450px;
+	margin: auto;
 }
 
-.game--limited-width
+.form__title
 {
-	width: 700px;
-	margin: 5px auto;
+	font-size: 1.3rem;
+	margin-bottom: 4px;
 }
 
-.game__player
+.form__label
 {
-	grid-area: game-player;
+	font-size: 1.25em;
 }
 
-.game__versus-label
-{
-	font-size: 3em;
-	line-height: 1;
-	text-align: center;
-	align-self: center;
-	grid-area: game-versus-label;
-}
-
-.game__computer
-{
-	grid-area: game-computer;
-}
-
-.game__player-title
+.form__button
 {
 	margin: 10px auto;
 }
 
-.game__description
+.form__text
 {
-	font-size: 1.7em;
+	margin-top: 2px;
+	margin-bottom: 8px;
+}
+
+.text-input
+{
+	font-size: 1.4rem;
+	border-style: none none solid none;
+	border-color: #e5e5e5;
+	padding: 5px;
+	background-color: #343434;
+	outline: none;
+ }
+
+.text-input:focus
+{
+	border-color: #679436;
+}
+
+.table
+{
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.table--no-decoration
+{
+	border: none;
+}
+
+.table--centered-text
+{
+	text-align: center;
+}
+
+.list
+{
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.link
+{
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.link:hover
+{
+	color: #679436;
+}
+
+.header
+{
+	padding: 5px;
+}
+
+.header__author
+{
+	text-transform: uppercase;
+	font-size: 1rem;
+	text-align: center;
+	margin: 2px;
+	line-height: 1;
+}
+
+.header__title
+{
+	text-transform: uppercase;
+	font-size: 3rem;
+	text-align: center;
+	margin: 2px;
+	line-height: 1;
+}
+
+.navigation
+{
+}
+
+.navigation__list
+{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	gap: 20px;
+}
+
+.navigation__link
+{
+}
+
+.navigation__link--fake
+{
+	border: none;
+	background-color: transparent;
+	display: inline;
+	padding: 0;
+}
+
+.game
+{
+	padding: 30px;
+	display: grid;
+	place-items: center;
+	grid-template-columns: 1.25fr 0.5fr 1.25fr;
+	grid-template-areas:
+		"user-profile vs-label computer-profile"
+		"game-status game-status game-status"
+		"game-choices game-choices game-choices"
+		"confirm-button confirm-button confirm-button"
+		"account-warning account-warning account-warning";
+}
+
+.game--limited-width
+{
+	width: 800px;
+	margin: auto;
+}
+
+.game__player-profile
+{
+	margin: auto;
+}
+
+.game__player-profile--user
+{
+	grid-area: user-profile;
+	margin-right: 50px;
+}
+
+.game__player-profile--computer
+{
+	grid-area: computer-profile;
+	margin-left: 50px;
+}
+
+.game__player-choice-container
+{
+	padding: 50px;
+	border-radius: 100%;
+	border-style: solid;
+	border-color: #679436;
+	border-width: 4px;
+}
+
+.game__player-choice
+{
+	width:  80px;
+	height:  80px;
+	display: block;
+}
+
+.game__player-name
+{
+	font-size: 1.5rem;
 	margin: 5px auto;
-	grid-area: game-description;
+	text-align: center;
+	overflow: hidden;
+	max-width: 150px;
+	text-overflow: ellipsis;
+}
+
+.game__vs-label
+{
+	font-size: 1.6rem;
+	text-align: center;
+	grid-area: vs-label;
+}
+
+.game__status
+{
+	text-align: center;
+	font-size: 2rem;
+	margin: 10px;
+	grid-area: game-status;
 }
 
 .game__choices
@@ -121,287 +300,63 @@
 
 .game__choice-button
 {
-	width: 100px;
-	height: 100px;
+	background-color: transparent;
 	padding: 20px;
 	margin: 20px;
 	border-radius: 100%;
-	border-style: solid;
-	border-width: 3px;
-	border-color: #4C4C47;
+	border: solid 3px #e5e5e5;
 	cursor: pointer;
-}
-
-.game__choice-image
-{
-	width: 50px;
-	height: 50px;
-}
-
-.game__choice-button:hover
-{
-	border-color: #F05E4A;
 }
 
 .game__choice-button--selected
 {
-	border-color: #E63C2D;
+	border-color: #679436;
 }
 
-.game__choice-button--selected:hover
+.game__choice-button:hover
 {
-	border-color: #E63C2D;
+	border-color: #87a330;
+}
+
+.game__choice-image
+{
+	width:  50px;
+	height:  50px;
+	display: block;
 }
 
 .game__confirm-button
 {
-	width: 200px;
-    padding: 10px;
-	grid-area: game-confirm-button;
+	grid-area: confirm-button;
 }
 
-.game__player-container
+.game__account-warning
 {
-	display: flex;
-	flex-direction: column;
-}
-
-.game__player-choice-image-container
-{
-	padding: 60px;
-	border-radius: 100%;
-	border-style: solid;
-	border-color: #E63C2D;
-	border-width: 6px;
-}
-
-.game__player-choice-image
-{
-	width: 80px;
-	height: 80px;
-}
-
-.game__player-title
-{
-	text-align: center;
-	font-size: 1.5em;
-}
-
-.account-buttons
-{
-	display: flex;
-	justify-content: center;
-}
-
-.account-buttons__button
-{
-	width: 100px;
 	margin: 10px;
+	grid-area: account-warning;
 }
 
-.form
+.article
 {
-	display: flex;
-	flex-direction: column;
+	padding: 20px;
 }
 
-.form__title
-{
-	font-size: 2em;
-	margin: 5px 0;
-}
-
-.form__label
-{
-	font-size: 1.2em;
-	margin: 10px 0 5px 0;
-}
-
-.form--limited-width
-{
-	width: 400px;
-	margin: auto;
-}
-
-.form__error
-{
-	font-size: 1.2em;
-	margin: 5px 0;
-}
-
-.input-text
-{
-	font-size: 1.4em;
-	border-style: none none solid none;
-	border-color: #4C4C47;
-	padding: 5px;
-	background: #E6E6E6;
-	outline: none;
-}
-
-.form__input-description
-{
-	margin: 5px 0 10px 0;
-}
-
-.input-text:focus
-{
-	border-color: #E63C2D;
-}
-
-.button
-{
-    font-size: 2em;
-    font-weight: bold;
-    background-color: #F05E4A;
-    color: #F1EBDE;
-    border-style: none;
-    border-radius: 4px;
-    padding: 10px;
-    line-height: 1;
-    cursor: pointer;
-	text-decoration: none;
-	text-align: center;
-}
-
-.button:hover
-{
-	background-color: #E63C2D;
-}
-
-.button:disabled
-{
-	background-color: #4C4C47;
-}
-
-.form__submit-button
-{
-	width: 200px;
-	margin: 10px;
-	align-self: center;
-}
-
-.navigation__list
-{
-	list-style-type: none;
-	display: flex;
-	justify-content: center;
-	padding: 0;
-	margin: 5px;
-}
-
-.navigation__list-item
-{
-	margin: 5px 10px;
-}
-
-.information--limited-width
-{
-	width: 900px;
-	margin: auto;
-	display: flex;
-	flex-flow: column;
-}
-
-.information__title
-{
-	font-size: 1.4em;
-	margin: 15px 0;
-}
-
-.information__p
-{
-	margin: 10px 0;
-}
-
-.hr
-{
-	width: 100%;
-	border-style: none;
-	border-top: 2px solid #E63C2D;
-}
-
-.statistics
-{
-	display: flex;
-	flex-flow: column;
-}
-
-.statistics--limited-width
-{
-	width: 900px;
-	margin: auto;
-}
-
-.statistics__title
-{
-	font-size: 1.4em;
-	margin: 15px 0;
-}
-
-.statistics__p
-{
-	margin: 10px 0;
-}
-
-.table
-{
-	border-collapse: collapse;
-}
-
-.table--no-decorations
-{
-	border: none;
-}
-
-.table__header
-{
-	text-align: left;
-	color: #E6E6E6;
-	font-size: 1.3em;
-}
-
-.table__data
-{
-	padding: 5px;
-	border: none;
-	border-right: #4C4C47 1px solid;
-}
-
-.table__data:last-child
-{
-	border: none;
-}
-
-.text--right-align
-{
-	text-align: right;
-}
-
-.text--left-align
-{
-	text-align: left;
-}
-
-.table__row
-{
-	border: none;
-	border-bottom: #4C4C47 1px solid;
-}
-
-.table__row:last-child
-{
-	border: none;
-}
-
-.table__row--header
-{
-	background-color: #4C4C47;
-	border: none;
-}
-
-.text--exception
+.article--centered-text
 {
 	text-align: center;
-	font-size: 1.5em;
+}
+
+.article--limited-width
+{
+	width: 800px;
+	margin: auto;
+}
+
+.article__title
+{
+	font-size: 1.3rem;
+}
+
+.article__paragraph
+{
 }

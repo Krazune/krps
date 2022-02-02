@@ -1,45 +1,39 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<!doctype html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Settings | KRSP</title>
-		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/styles/styles.css">
-    </head>
-    <body class="page">
+	<head>
+		<meta charset="utf-8">
+		<title>Settings - KRPS</title>
+		<link rel="stylesheet" type="text/css" href="/resources/styles/styles.css">
+	</head>
+	<body class="page">
 		<%@ include file="/WEB-INF/jsp/fragments/header.jsp" %>
-		<form class="form form--limited-width" action="/settings" method="post">
-			<p class="text form__title">Password settings</p>
-			<label class="text form__label" for="current-password">Current password:</label>
-			<input class="text input-text" type="password" id="current-password" name="current-password">
+		<form class="form form--limited-width" method="post" action="settings">
+			<h3 class="text form__title">Change password</h3>
+			<label class="text form__label" for="current-password">Current password</label>
+			<input class="text text-input" id="current-password" type="password" name="current-password">
 
-			<label class="text form__label" for="password">New password:</label>
-			<input class="text input-text" type="password" id="password" name="password">
-			<p class="text form__input-description">The password must have a minimum of 6 characters, and a maximum of 128 characters.</p>
+			<label class="text form__label" for="new-password">New password</label>
+			<input class="text text-input" id="new-password" type="password" name="new-password">
 
-			<label class="text form__label" for="password-confirmation">New password (confirmation):</label>
-			<input class="text input-text" type="password" id="password-confirmation" name="password-confirmation">
-			<p class="text form__input-description">Both passwords must be equal.</p>
+			<label class="text form__label" for="new-password-confirmation">New password confirmation</label>
+			<input class="text text-input" id="new-password-confirmation" type="password" name="new-password-confirmation">
 
-			<c:forEach items="${newPasswordErrorMessages}" var="errorMessage">
-				<p class="text text--error form__error">${errorMessage}</p>
+			<c:forEach items="${currentPasswordErrorMessages}" var="currentPasswordErrorMessage">
+				<p class="text text--error form__text"><c:out value="${currentPasswordErrorMessage}"/></p>
 			</c:forEach>
-			<c:forEach items="${newPasswordConfirmationErrorMessages}" var="errorMessage">
-				<p class="text text--error form__error">${errorMessage}</p>
+			<c:forEach items="${newPasswordErrorMessages}" var="newPasswordErrorMessage">
+				<p class="text text--error form__text"><c:out value="${newPasswordErrorMessage}"/></p>
 			</c:forEach>
-			<c:if test="${accountErrorMessage != null}">
-				<p class="text text--error form__error">${accountErrorMessage}</p>
+			<c:forEach items="${newPasswordConfirmationErrorMessages}" var="newPasswordConfirmationErrorMessage">
+				<p class="text text--error form__text"><c:out value="${newPasswordConfirmationErrorMessage}"/></p>
+			</c:forEach>
+			<c:if test="${changePasswordErrorMessage != null && !changePasswordErrorMessage.isEmpty()}">
+				<p class="text text--error form__text"><c:out value="${changePasswordErrorMessage}"/></p>
 			</c:if>
-
-			<input class="text button form__submit-button" type="submit" value="Confirm">
+			<c:if test="${changePasswordSuccessMessage != null && !changePasswordSuccessMessage.isEmpty()}">
+				<p class="text form__text"><c:out value="${changePasswordSuccessMessage}"/></p>
+			</c:if>
+			<input class="text button form__button" type="submit" name="change-password-submit" value="Change password">
 		</form>
-		<jsp:include page="${pageContext.request.contextPath}/WEB-INF/jsp/fragments/navigation.jsp">
-			<jsp:param name="home" value="true"/>
-			<jsp:param name="statistics" value="true"/>
-			<jsp:param name="information" value="true"/>
-			<jsp:param name="logout" value="true"/>
-		</jsp:include>
-    </body>
+	</body>
 </html>
