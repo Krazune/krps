@@ -4,7 +4,7 @@
 
 	<groupId>krazune</groupId>
 	<artifactId>krps</artifactId>
-	<version>2022.01.1</version>
+	<version>2022.02.1</version>
 	<packaging>war</packaging>
 
 	<properties>
