@@ -33,7 +33,8 @@ public class Authentication
 {
 	public static User authenticateUser(HttpSession session, UserDao userDao, HashGenerator hashGenerator, String username, String password) throws SQLException
 	{
-		User user = null;
+		User user;
+
 		try
 		{
 			user = userDao.get(username);
