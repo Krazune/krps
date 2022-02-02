@@ -31,7 +31,7 @@ public class SimpleValidator<T> implements Validator<T>
 	private final List<Validation<T>> validations = new ArrayList<>();
 
 	@Override
-	public Validator<T> addValidation(Validation newValidation)
+	public Validator<T> addValidation(Validation<T> newValidation)
 	{
 		validations.add(newValidation);
 
