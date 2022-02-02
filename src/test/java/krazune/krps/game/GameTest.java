@@ -26,6 +26,7 @@ package krazune.krps.game;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class GameTest
 {
@@ -56,9 +57,9 @@ public class GameTest
 	@Test
 	public void computeGameNullTest()
 	{
-		assertEquals(null, Game.computeOutcome(null, GameChoice.ROCK));
-		assertEquals(null, Game.computeOutcome(GameChoice.ROCK, null));
-		assertEquals(null, Game.computeOutcome(null, null));
+		assertNull(Game.computeOutcome(null, GameChoice.ROCK));
+		assertNull(Game.computeOutcome(GameChoice.ROCK, null));
+		assertNull(Game.computeOutcome(null, null));
 	}
 
 	@Test
