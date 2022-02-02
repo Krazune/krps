@@ -141,12 +141,10 @@ public class GamePageServlet extends HttpServlet
 		char computerChoiceChar = newGame.getComputerChoice().getSymbol();
 		char gameOutcomeChar = newGame.getOutcome().getSymbol();
 
-		StringBuilder resultJsonString = new StringBuilder("{");
-
-		resultJsonString.append("\"userChoice\":\"").append(userChoiceChar).append("\",");
-		resultJsonString.append("\"computerChoice\":\"").append(computerChoiceChar).append("\",");
-		resultJsonString.append("\"outcome\":\"").append(gameOutcomeChar).append("\"");
-		resultJsonString.append("}");
+		String resultJsonString = "{" + "\"userChoice\":\"" + userChoiceChar + "\"," +
+			"\"computerChoice\":\"" + computerChoiceChar + "\"," +
+			"\"outcome\":\"" + gameOutcomeChar + "\"" +
+			"}";
 
 		response.getWriter().print(resultJsonString);
 	}
