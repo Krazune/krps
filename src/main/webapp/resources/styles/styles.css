@@ -69,7 +69,7 @@
 
 .text-input
 {
-	font-size: 1.4em;
+	font-size: 1.4rem;
 	border-style: none none solid none;
 	border-color: #e5e5e5;
 	padding: 5px;
@@ -93,16 +93,16 @@
 	border: none;
 }
 
+.table--centered-text
+{
+	text-align: center;
+}
+
 .text
 {
 	font-size: 1.2rem;
 	font-family: 'Dosis', sans-serif;
 	color: #e5e5e5;
-}
-
-.text--left-align
-{
-	text-align: left;
 }
 
 .text--special
@@ -321,7 +321,7 @@
 
 .article__title
 {
-	font-size: 1.3em;
+	font-size: 1.3rem;
 }
 
 .article__paragraph

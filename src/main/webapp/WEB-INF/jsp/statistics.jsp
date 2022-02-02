@@ -10,17 +10,17 @@
 	</head>
 	<body class="page">
 		<%@ include file="/WEB-INF/jsp/fragments/header.jsp" %>
-		<main class="article">
+		<main class="article article--centered-text">
 			<h2 class="text article__title">Global statistics</h2>
-			<table class="table table--no-decoration">
+			<table class="table table--no-decoration table--centered-text">
 				<tr>
-					<th class="text text--left-align">Games</th>
-					<th class="text text--left-align">Wins</th>
-					<th class="text text--left-align">Losses</th>
-					<th class="text text--left-align">Draws</th>
-					<th class="text text--left-align">Rock</th>
-					<th class="text text--left-align">Paper</th>
-					<th class="text text--left-align">Scissors</th>
+					<th class="text">Games</th>
+					<th class="text">Wins</th>
+					<th class="text">Losses</th>
+					<th class="text">Draws</th>
+					<th class="text">Rock</th>
+					<th class="text">Paper</th>
+					<th class="text">Scissors</th>
 				</tr>
 				<tr>
 					<td class="text">${gameCount}</td>
@@ -36,15 +36,15 @@
 			<c:if test="${showUserStatistics}">
 				<hr class="hr">
 				<h2 class="text article__title">User statistics</h2>
-				<table class="table table--no-decoration">
+				<table class="table table--no-decoration table--centered-text">
 					<tr>
-						<th class="text text--left-align">Games</th>
-						<th class="text text--left-align">Wins</th>
-						<th class="text text--left-align">Losses</th>
-						<th class="text text--left-align">Draws</th>
-						<th class="text text--left-align">Rock</th>
-						<th class="text text--left-align">Paper</th>
-						<th class="text text--left-align">Scissosrs</th>
+						<th class="text">Games</th>
+						<th class="text">Wins</th>
+						<th class="text">Losses</th>
+						<th class="text">Draws</th>
+						<th class="text">Rock</th>
+						<th class="text">Paper</th>
+						<th class="text">Scissosrs</th>
 					</tr>
 					<tr>
 						<td class="text">${userGameCount}</td>
@@ -60,12 +60,12 @@
 			<c:if test="${showLastGames}">
 				<hr class="hr">
 				<h2 class="text article__title">Last games</h2>
-				<table class="table table--no-decoration">
+				<table class="table table--no-decoration table--centered-text">
 					<tr>
-						<th class="text text--left-align">Player choice</th>
-						<th class="text text--left-align">Computer choice</th>
-						<th class="text text--left-align">Result</th>
-						<th class="text text--left-align">Date</th>
+						<th class="text">Player choice</th>
+						<th class="text">Computer choice</th>
+						<th class="text">Result</th>
+						<th class="text">Date</th>
 					</tr>
 					<c:if test="${lastGames.size() == 0}">
 						<tr>
