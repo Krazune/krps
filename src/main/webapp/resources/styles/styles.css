@@ -1,3 +1,4 @@
+/* TODO: Re-do styles, and reorganizar classes. */
 @font-face
 {
 	font-family: "Dosis";
@@ -48,6 +49,24 @@
 	background-color: #343434;
 }
 
+.text
+{
+	font-size: 1.2rem;
+	font-family: 'Dosis', sans-serif;
+	color: #e5e5e5;
+}
+
+.text--special
+{
+	color: #679436;
+}
+
+.text--error
+{
+	color: #ea3838;
+	text-decoration: underline;
+}
+
 .form
 {
 	display: flex;
@@ -58,13 +77,30 @@
 
 .form--limited-width
 {
-	width: 500px;
+	width: 450px;
 	margin: auto;
 }
 
 .form__title
 {
-	font-size: 1.5rem;
+	font-size: 1.3rem;
+	margin-bottom: 4px;
+}
+
+.form__label
+{
+	font-size: 1.25em;
+}
+
+.form__button
+{
+	margin: 10px auto;
+}
+
+.form__text
+{
+	margin-top: 2px;
+	margin-bottom: 8px;
 }
 
 .text-input
@@ -96,24 +132,6 @@
 .table--centered-text
 {
 	text-align: center;
-}
-
-.text
-{
-	font-size: 1.2rem;
-	font-family: 'Dosis', sans-serif;
-	color: #e5e5e5;
-}
-
-.text--special
-{
-	color: #679436;
-}
-
-.text--error
-{
-	color: #ea3838;
-	text-decoration: underline;
 }
 
 .list
