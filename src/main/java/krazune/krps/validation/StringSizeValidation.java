@@ -28,8 +28,8 @@ import java.util.List;
 
 public class StringSizeValidation implements Validation<String>
 {
-	private int minSize = -1;
-	private int maxSize = -1;
+	private int minSize;
+	private int maxSize;
 
 	public StringSizeValidation(int minSize, int maxSize)
 	{
