@@ -7,21 +7,24 @@
 	</head>
 	<body class="page">
 		<%@ include file="/WEB-INF/jsp/fragments/header.jsp" %>
-		<form method="post" action="/login">
-		<label for="username">Username</label>
-		<input id="username" type="text" name="username" value="${previousUsername}">
-		<c:forEach items="${usernameErrorMessages}" var="usernameErrorMessage">
-			<c:out value="${usernameErrorMessage}"/>
-		</c:forEach>
+		<form class="form form--limited-width" method="post" action="/login">
+			<h3 class="text form__title">Login</h3>
+			<label class="text form__label" for="username">Username</label>
+			<input class="text text-input" id="username" type="text" name="username" value="${previousUsername}">
 
-		<label for="password">Password</label>
-		<input id="password" type="password" name="password">
-		<c:forEach items="${passwordErrorMessages}" var="passwordErrorMessage">
-			<c:out value="${passwordErrorMessage}"/>
-		</c:forEach>
+			<label class="text form__label" for="password">Password</label>
+			<input class="text text-input" id="password" type="password" name="password">
 
-		<c:out value="${loginErrorMessage}"/>
-		<input type="submit" name="login-submit" value="Log in">
+			<c:forEach items="${usernameErrorMessages}" var="usernameErrorMessage">
+				<p class="text text--error form__text"><c:out value="${usernameErrorMessage}"/></p>
+			</c:forEach>
+			<c:forEach items="${passwordErrorMessages}" var="passwordErrorMessage">
+				<p class="text text--error form__text"><c:out value="${passwordErrorMessage}"/></p>
+			</c:forEach>
+			<c:if test="${loginErrorMessage != null && !loginErrorMessage.isEmpty()}">
+				<p class="text text--error form__text"><c:out value="${loginErrorMessage}"/></p>
+			</c:if>
+			<input class="text button form__button" type="submit" name="login-submit" value="Log in">
 		</form>
 	</body>
 </html>

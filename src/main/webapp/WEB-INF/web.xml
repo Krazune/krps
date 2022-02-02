@@ -118,8 +118,20 @@
 		<servlet-name>default</servlet-name>
 		<url-pattern>*.js</url-pattern>
 	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>*.txt</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>*.html</url-pattern>
+	</servlet-mapping>
 
 	<listener>
 		<listener-class>krazune.krps.MainServletContextListeneter</listener-class>
 	</listener>
+
+	<error-page>
+		<location>/WEB-INF/html/error.html</location>
+	</error-page>
 </web-app>

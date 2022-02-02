@@ -1,3 +1,4 @@
+/* TODO: Re-do styles, and reorganizar classes. */
 @font-face
 {
 	font-family: "Dosis";
@@ -12,18 +13,140 @@
 {
 	margin: 0 auto;
 	width: 1000px;
-	background-color: #1c1c1c;
+	background-color: #282828;
+}
+
+.hr
+{
+	border: none;
+	border-top: 3px solid #679436;
+}
+
+.hr--short
+{
+	width: 300px;
+	border: none;
+	border-top: 3px solid #679436;
+}
+
+.button
+{
+	font-size: 1.5rem;
+	padding: 10px 45px;
+	border: none;
+	border-radius: 5px;
+	background-color: #679436;
+	cursor: pointer;
+}
+
+.button:hover
+{
+	background-color: #87a330;
+}
+
+.button:disabled
+{
+	background-color: #343434;
 }
 
 .text
 {
+	font-size: 1.2rem;
 	font-family: 'Dosis', sans-serif;
-	color: #ebebeb;
+	color: #e5e5e5;
 }
 
 .text--special
 {
-	color: #f75c03;
+	color: #679436;
+}
+
+.text--error
+{
+	color: #ea3838;
+	text-decoration: underline;
+}
+
+.text--big-error
+{
+	font-weight: bold;
+	margin-top: 20px;
+	margin-bottom: 10px;
+	font-size: 2rem;
+	color: #ea3838;
+}
+
+.text--centered
+{
+	text-align: center;
+	display: block;
+}
+
+.form
+{
+	display: flex;
+	padding: 20px;
+	flex-direction: column;
+	gap: 5px;
+}
+
+.form--limited-width
+{
+	width: 450px;
+	margin: auto;
+}
+
+.form__title
+{
+	font-size: 1.3rem;
+	margin-bottom: 4px;
+}
+
+.form__label
+{
+	font-size: 1.25em;
+}
+
+.form__button
+{
+	margin: 10px auto;
+}
+
+.form__text
+{
+	margin-top: 2px;
+	margin-bottom: 8px;
+}
+
+.text-input
+{
+	font-size: 1.4rem;
+	border-style: none none solid none;
+	border-color: #e5e5e5;
+	padding: 5px;
+	background-color: #343434;
+	outline: none;
+ }
+
+.text-input:focus
+{
+	border-color: #679436;
+}
+
+.table
+{
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.table--no-decoration
+{
+	border: none;
+}
+
+.table--centered-text
+{
+	text-align: center;
 }
 
 .list
@@ -41,30 +164,30 @@
 
 .link:hover
 {
-	color: #f75c03;
+	color: #679436;
 }
 
 .header
 {
-	padding: 10px;
+	padding: 5px;
 }
 
 .header__author
 {
 	text-transform: uppercase;
-	font-size: 1em;
+	font-size: 1rem;
 	text-align: center;
-	margin: 5px auto;
-	line-height: 1em;
+	margin: 2px;
+	line-height: 1;
 }
 
 .header__title
 {
 	text-transform: uppercase;
-	font-size: 3em;
+	font-size: 3rem;
 	text-align: center;
-	margin: 5px auto;
-	line-height: 1em;
+	margin: 2px;
+	line-height: 1;
 }
 
 .navigation
@@ -81,7 +204,6 @@
 
 .navigation__link
 {
-	font-size: 1.3em;
 }
 
 .navigation__link--fake
@@ -94,9 +216,10 @@
 
 .game
 {
-	padding: 10px;
+	padding: 30px;
 	display: grid;
 	place-items: center;
+	grid-template-columns: 1.25fr 0.5fr 1.25fr;
 	grid-template-areas:
 		"user-profile vs-label computer-profile"
 		"game-status game-status game-status"
@@ -119,11 +242,13 @@
 .game__player-profile--user
 {
 	grid-area: user-profile;
+	margin-right: 50px;
 }
 
 .game__player-profile--computer
 {
 	grid-area: computer-profile;
+	margin-left: 50px;
 }
 
 .game__player-choice-container
@@ -131,7 +256,7 @@
 	padding: 50px;
 	border-radius: 100%;
 	border-style: solid;
-	border-color: #f75c03;
+	border-color: #679436;
 	border-width: 4px;
 }
 
@@ -144,14 +269,17 @@
 
 .game__player-name
 {
-	font-size: 2em;
-	margin: 5px;
+	font-size: 1.5rem;
+	margin: 5px auto;
 	text-align: center;
+	overflow: hidden;
+	max-width: 150px;
+	text-overflow: ellipsis;
 }
 
 .game__vs-label
 {
-	font-size: 1.6em;
+	font-size: 1.6rem;
 	text-align: center;
 	grid-area: vs-label;
 }
@@ -159,7 +287,7 @@
 .game__status
 {
 	text-align: center;
-	font-size: 2em;
+	font-size: 2rem;
 	margin: 10px;
 	grid-area: game-status;
 }
@@ -176,19 +304,18 @@
 	padding: 20px;
 	margin: 20px;
 	border-radius: 100%;
-	border: solid 3px #ebebeb;
+	border: solid 3px #e5e5e5;
 	cursor: pointer;
-}
-
-.game__choice-button:hover
-{
-	border-color: #f75c03;
 }
 
 .game__choice-button--selected
 {
-	background-color: #f75c03;
-	border-color: #f75c03;
+	border-color: #679436;
+}
+
+.game__choice-button:hover
+{
+	border-color: #87a330;
 }
 
 .game__choice-image
@@ -205,7 +332,31 @@
 
 .game__account-warning
 {
-	font-size: 1.2em;
 	margin: 10px;
 	grid-area: account-warning;
+}
+
+.article
+{
+	padding: 20px;
+}
+
+.article--centered-text
+{
+	text-align: center;
+}
+
+.article--limited-width
+{
+	width: 800px;
+	margin: auto;
+}
+
+.article__title
+{
+	font-size: 1.3rem;
+}
+
+.article__paragraph
+{
 }
