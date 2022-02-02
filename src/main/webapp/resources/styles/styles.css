@@ -21,6 +21,13 @@
 	border-top: 3px solid #679436;
 }
 
+.hr--short
+{
+	width: 300px;
+	border: none;
+	border-top: 3px solid #679436;
+}
+
 .button
 {
 	font-size: 1.5rem;
@@ -44,6 +51,7 @@
 .form
 {
 	display: flex;
+	padding: 20px;
 	flex-direction: column;
 	gap: 5px;
 }
@@ -175,9 +183,10 @@
 
 .game
 {
-	padding: 10px;
+	padding: 30px;
 	display: grid;
 	place-items: center;
+	grid-template-columns: 1.25fr 0.5fr 1.25fr;
 	grid-template-areas:
 		"user-profile vs-label computer-profile"
 		"game-status game-status game-status"
@@ -200,11 +209,13 @@
 .game__player-profile--user
 {
 	grid-area: user-profile;
+	margin-right: 50px;
 }
 
 .game__player-profile--computer
 {
 	grid-area: computer-profile;
+	margin-left: 50px;
 }
 
 .game__player-choice-container
@@ -225,9 +236,12 @@
 
 .game__player-name
 {
-	font-size: 2rem;
-	margin: 5px;
+	font-size: 1.5rem;
+	margin: 5px auto;
 	text-align: center;
+	overflow: hidden;
+	max-width: 150px;
+	text-overflow: ellipsis;
 }
 
 .game__vs-label
@@ -291,7 +305,18 @@
 
 .article
 {
-	margin: 10px;
+	padding: 20px;
+}
+
+.article--centered-text
+{
+	text-align: center;
+}
+
+.article--limited-width
+{
+	width: 800px;
+	margin: auto;
 }
 
 .article__title
