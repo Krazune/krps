@@ -27,7 +27,7 @@ public class EmptyStringValidatorManager extends ValidatorManager<String>
 {
 	private static final String EMPTY_INPUT = "The %s cannot be empty.";
 
-	private String identifier;
+	private final String identifier;
 
 	public EmptyStringValidatorManager(String identifier)
 	{

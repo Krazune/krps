@@ -31,7 +31,7 @@ import krazune.krps.user.dao.UserDao;
 
 public class UniqueUsernameValidation implements Validation<String>
 {
-	private UserDao userDao;
+	private final UserDao userDao;
 
 	public UniqueUsernameValidation(UserDao userDao)
 	{

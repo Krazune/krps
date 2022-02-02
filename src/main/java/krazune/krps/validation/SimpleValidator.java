@@ -28,7 +28,7 @@ import java.util.List;
 
 public class SimpleValidator<T> implements Validator<T>
 {
-	private List<Validation<T>> validations = new ArrayList<>();
+	private final List<Validation<T>> validations = new ArrayList<>();
 
 	@Override
 	public Validator<T> addValidation(Validation newValidation)

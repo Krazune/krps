@@ -45,7 +45,7 @@ public class PostgreSqlUserDao implements UserDao
 	private static final String DELETE_QUERY = "DELETE FROM users WHERE id = ?";
 	private static final String COUNT_QUERY = "SELECT COUNT(id) FROM users";
 
-	private DataSource dataSource;
+	private final DataSource dataSource;
 
 	public PostgreSqlUserDao(DataSource dataSource)
 	{

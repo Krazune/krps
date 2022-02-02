@@ -31,7 +31,7 @@ import krazune.krps.user.dao.UserDao;
 
 public class PostgreSqlDaoFactory implements DaoFactory
 {
-	private DataSource dataSource;
+	private final DataSource dataSource;
 
 	public PostgreSqlDaoFactory(DataSource dataSource)
 	{

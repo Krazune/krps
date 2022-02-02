@@ -28,12 +28,12 @@ import de.mkammerer.argon2.Argon2Factory;
 
 public class Argon2IdHashGenerator implements HashGenerator
 {
-	private int saltSize;
-	private int hashSize;
+	private final int saltSize;
+	private final int hashSize;
 
-	private int iterations;
-	private int memory;
-	private int parallelism;
+	private final int iterations;
+	private final int memory;
+	private final int parallelism;
 
 	public Argon2IdHashGenerator(int saltSize, int hashSize, int iterations, int memory, int parallelism)
 	{

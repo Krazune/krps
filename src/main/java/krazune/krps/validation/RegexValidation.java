@@ -30,7 +30,7 @@ import java.util.regex.Pattern;
 
 public class RegexValidation implements Validation<String>
 {
-	private String patternString;
+	private final String patternString;
 
 	public RegexValidation(String patternString)
 	{

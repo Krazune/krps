@@ -59,7 +59,7 @@ public class PostgreSqlGameDao implements GameDao
 	private static final String COUNT_BY_USER_CHOICE_BY_USER_QUERY = "SELECT COUNT(id) FROM games WHERE user_choice = ? AND user_id = ?";
 	private static final String COUNT_BY_COMPUTER_CHOICE_QUERY = "SELECT COUNT(id) FROM games WHERE computer_choice = ?";
 
-	private DataSource dataSource;
+	private final DataSource dataSource;
 
 	public PostgreSqlGameDao(DataSource dataSource)
 	{

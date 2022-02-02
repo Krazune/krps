@@ -28,7 +28,7 @@ import java.util.List;
 
 public class StringEqualityValidation implements Validation<String>
 {
-	private String expectedString;
+	private final String expectedString;
 
 	public StringEqualityValidation(String expectedString)
 	{
